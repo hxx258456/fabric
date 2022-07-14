@@ -8,12 +8,16 @@ package signer
 
 import (
 	"crypto"
-	"crypto/x509"
 	"io"
 
+	"github.com/hxx258456/ccgo/x509"
 	"github.com/hyperledger/fabric/bccsp"
 	"github.com/pkg/errors"
 )
+
+/*
+bccsp/signer/signer.go 定义 bccspCryptoSigner 结构体并为其实现`crypto.Signer`接口
+*/
 
 // bccspCryptoSigner is the BCCSP-based implementation of a crypto.Signer
 type bccspCryptoSigner struct {

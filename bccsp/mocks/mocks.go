@@ -49,6 +49,10 @@ type MockBCCSP struct {
 	HashErr error
 }
 
+func (csp *MockBCCSP) ShowAlgorithms() string {
+	return "unkown"
+}
+
 func (*MockBCCSP) KeyGen(opts bccsp.KeyGenOpts) (bccsp.Key, error) {
 	panic("Not yet implemented")
 }
@@ -147,6 +151,10 @@ func (m *MockKey) PublicKey() (bccsp.Key, error) {
 	return m.PK, m.PKErr
 }
 
+func (k *MockKey) InsideKey() interface{} {
+	return k.PK
+}
+
 type SignerOpts struct {
 	HashFuncValue crypto.Hash
 }
@@ -195,10 +203,8 @@ func (*KeyImportOpts) Ephemeral() bool {
 	panic("Not yet implemented")
 }
 
-type (
-	EncrypterOpts struct{}
-	DecrypterOpts struct{}
-)
+type EncrypterOpts struct{}
+type DecrypterOpts struct{}
 
 type HashOpts struct{}
 

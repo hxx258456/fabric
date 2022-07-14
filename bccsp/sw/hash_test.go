@@ -17,14 +17,14 @@ limitations under the License.
 package sw
 
 import (
-	"crypto/sha256"
 	"errors"
 	"reflect"
 	"testing"
 
+	"github.com/hxx258456/ccgo/sm3"
 	mocks2 "github.com/hyperledger/fabric/bccsp/mocks"
 	"github.com/hyperledger/fabric/bccsp/sw/mocks"
-	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestHash(t *testing.T) {
@@ -44,8 +44,8 @@ func TestHash(t *testing.T) {
 	}
 	csp := CSP{Hashers: hashers}
 	value, err := csp.Hash(expectetMsg, expectedOpts)
-	require.Equal(t, expectetValue, value)
-	require.Nil(t, err)
+	assert.Equal(t, expectetValue, value)
+	assert.Nil(t, err)
 
 	hashers = make(map[reflect.Type]Hasher)
 	hashers[reflect.TypeOf(&mocks2.HashOpts{})] = &mocks.Hasher{
@@ -56,15 +56,15 @@ func TestHash(t *testing.T) {
 	}
 	csp = CSP{Hashers: hashers}
 	value, err = csp.Hash(expectetMsg, expectedOpts)
-	require.Nil(t, value)
-	require.Contains(t, err.Error(), expectedErr.Error())
+	assert.Nil(t, value)
+	assert.Contains(t, err.Error(), expectedErr.Error())
 }
 
 func TestGetHash(t *testing.T) {
 	t.Parallel()
 
 	expectedOpts := &mocks2.HashOpts{}
-	expectetValue := sha256.New()
+	expectetValue := sm3.New()
 	expectedErr := errors.New("Expected Error")
 
 	hashers := make(map[reflect.Type]Hasher)
@@ -75,8 +75,8 @@ func TestGetHash(t *testing.T) {
 	}
 	csp := CSP{Hashers: hashers}
 	value, err := csp.GetHash(expectedOpts)
-	require.Equal(t, expectetValue, value)
-	require.Nil(t, err)
+	assert.Equal(t, expectetValue, value)
+	assert.Nil(t, err)
 
 	hashers = make(map[reflect.Type]Hasher)
 	hashers[reflect.TypeOf(&mocks2.HashOpts{})] = &mocks.Hasher{
@@ -86,24 +86,24 @@ func TestGetHash(t *testing.T) {
 	}
 	csp = CSP{Hashers: hashers}
 	value, err = csp.GetHash(expectedOpts)
-	require.Nil(t, value)
-	require.Contains(t, err.Error(), expectedErr.Error())
+	assert.Nil(t, value)
+	assert.Contains(t, err.Error(), expectedErr.Error())
 }
 
 func TestHasher(t *testing.T) {
 	t.Parallel()
 
-	hasher := &hasher{hash: sha256.New}
+	hasher := &hasher{hash: sm3.New}
 
 	msg := []byte("Hello World")
 	out, err := hasher.Hash(msg, nil)
-	require.NoError(t, err)
-	h := sha256.New()
+	assert.NoError(t, err)
+	h := sm3.New()
 	h.Write(msg)
 	out2 := h.Sum(nil)
-	require.Equal(t, out, out2)
+	assert.Equal(t, out, out2)
 
 	hf, err := hasher.GetHash(nil)
-	require.NoError(t, err)
-	require.Equal(t, hf, sha256.New())
+	assert.NoError(t, err)
+	assert.Equal(t, hf, sm3.New())
 }

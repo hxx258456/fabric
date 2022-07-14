@@ -23,7 +23,7 @@ import (
 
 	mocks2 "github.com/hyperledger/fabric/bccsp/mocks"
 	"github.com/hyperledger/fabric/bccsp/sw/mocks"
-	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestVerify(t *testing.T) {
@@ -47,8 +47,8 @@ func TestVerify(t *testing.T) {
 	}
 	csp := CSP{Verifiers: verifiers}
 	value, err := csp.Verify(expectedKey, expectetSignature, expectetDigest, expectedOpts)
-	require.Equal(t, expectetValue, value)
-	require.Nil(t, err)
+	assert.Equal(t, expectetValue, value)
+	assert.Nil(t, err)
 
 	verifiers = make(map[reflect.Type]Verifier)
 	verifiers[reflect.TypeOf(&mocks2.MockKey{})] = &mocks.Verifier{
@@ -61,6 +61,6 @@ func TestVerify(t *testing.T) {
 	}
 	csp = CSP{Verifiers: verifiers}
 	value, err = csp.Verify(expectedKey, expectetSignature, expectetDigest, expectedOpts)
-	require.False(t, value)
-	require.Contains(t, err.Error(), expectedErr.Error())
+	assert.False(t, value)
+	assert.Contains(t, err.Error(), expectedErr.Error())
 }

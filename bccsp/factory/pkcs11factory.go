@@ -9,56 +9,65 @@ SPDX-License-Identifier: Apache-2.0
 
 package factory
 
-import (
-	"encoding/hex"
+/*
+bccsp/factory/pkcs11factory.go 国密对应后废弃
+*/
 
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/bccsp/pkcs11"
-	"github.com/hyperledger/fabric/bccsp/sw"
-	"github.com/pkg/errors"
-)
+// import (
+// 	"encoding/hex"
 
-const (
-	// PKCS11BasedFactoryName is the name of the factory of the hsm-based BCCSP implementation
-	PKCS11BasedFactoryName = "PKCS11"
-)
+// 	"github.com/hyperledger/fabric/bccsp"
+// 	"github.com/hyperledger/fabric/bccsp/pkcs11"
+// 	"github.com/hyperledger/fabric/bccsp/sw"
+// 	"github.com/pkg/errors"
+// )
 
-// PKCS11Factory is the factory of the HSM-based BCCSP.
-type PKCS11Factory struct{}
+// /*
+// bccsp/factory/pkcs11factory.go 定义 PKCS11Factory 结构体并为其实现`factory.BCCSPFactory`接口(bccsp/factory/factory.go)
+// 需要添加编译条件: `pkcs11`
+// */
 
-// Name returns the name of this factory
-func (f *PKCS11Factory) Name() string {
-	return PKCS11BasedFactoryName
-}
+// const (
+// 	// PKCS11BasedFactoryName is the name of the factory of the hsm-based BCCSP implementation
+// 	PKCS11BasedFactoryName = "PKCS11"
+// )
 
-// Get returns an instance of BCCSP using Opts.
-func (f *PKCS11Factory) Get(config *FactoryOpts) (bccsp.BCCSP, error) {
-	// Validate arguments
-	if config == nil || config.PKCS11 == nil {
-		return nil, errors.New("Invalid config. It must not be nil.")
-	}
+// // PKCS11Factory is the factory of the HSM-based BCCSP.
+// type PKCS11Factory struct{}
 
-	p11Opts := *config.PKCS11
-	ks := sw.NewDummyKeyStore()
-	mapper := skiMapper(p11Opts)
+// // Name returns the name of this factory
+// func (f *PKCS11Factory) Name() string {
+// 	return PKCS11BasedFactoryName
+// }
 
-	return pkcs11.New(p11Opts, ks, pkcs11.WithKeyMapper(mapper))
-}
+// // Get returns an instance of BCCSP using Opts.
+// func (f *PKCS11Factory) Get(config *FactoryOpts) (bccsp.BCCSP, error) {
+// 	// Validate arguments
+// 	if config == nil || config.Pkcs11Opts == nil {
+// 		return nil, errors.New("Invalid config. It must not be nil.")
+// 	}
 
-func skiMapper(p11Opts pkcs11.PKCS11Opts) func([]byte) []byte {
-	keyMap := map[string]string{}
-	for _, k := range p11Opts.KeyIDs {
-		keyMap[k.SKI] = k.ID
-	}
+// 	p11Opts := *config.Pkcs11Opts
+// 	ks := sw.NewDummyKeyStore()
+// 	mapper := skiMapper(p11Opts)
 
-	return func(ski []byte) []byte {
-		keyID := hex.EncodeToString(ski)
-		if id, ok := keyMap[keyID]; ok {
-			return []byte(id)
-		}
-		if p11Opts.AltID != "" {
-			return []byte(p11Opts.AltID)
-		}
-		return ski
-	}
-}
+// 	return pkcs11.New(p11Opts, ks, pkcs11.WithKeyMapper(mapper))
+// }
+
+// func skiMapper(p11Opts pkcs11.PKCS11Opts) func([]byte) []byte {
+// 	keyMap := map[string]string{}
+// 	for _, k := range p11Opts.KeyIDs {
+// 		keyMap[k.SKI] = k.ID
+// 	}
+
+// 	return func(ski []byte) []byte {
+// 		keyID := hex.EncodeToString(ski)
+// 		if id, ok := keyMap[keyID]; ok {
+// 			return []byte(id)
+// 		}
+// 		if p11Opts.AltID != "" {
+// 			return []byte(p11Opts.AltID)
+// 		}
+// 		return ski
+// 	}
+// }

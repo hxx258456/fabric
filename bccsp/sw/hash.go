@@ -22,6 +22,10 @@ import (
 	"github.com/hyperledger/fabric/bccsp"
 )
 
+/*
+bccsp/sw/hash.go 实现`sw.Hasher`接口(bccsp/sw/internals.go)
+*/
+
 type hasher struct {
 	hash func() hash.Hash
 }

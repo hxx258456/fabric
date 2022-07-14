@@ -9,68 +9,74 @@ SPDX-License-Identifier: Apache-2.0
 
 package factory
 
-import (
-	"os"
-	"testing"
+/*
+bccsp/factory/pkcs11_test.go 国密对应后废弃
+*/
 
-	"github.com/hyperledger/fabric/bccsp/pkcs11"
-	"github.com/stretchr/testify/require"
-)
+// import (
+// 	"os"
+// 	"testing"
 
-func TestExportedInitFactories(t *testing.T) {
-	// Reset errors from previous negative test runs
-	factoriesInitError = initFactories(nil)
+// 	"github.com/hyperledger/fabric/bccsp/pkcs11"
+// 	"github.com/stretchr/testify/assert"
+// )
 
-	err := InitFactories(nil)
-	require.NoError(t, err)
-}
+// func TestExportedInitFactories(t *testing.T) {
+// 	// Reset errors from previous negative test runs
+// 	factoriesInitError = initFactories(nil)
 
-func TestInitFactories(t *testing.T) {
-	err := initFactories(nil)
-	require.NoError(t, err)
+// 	err := InitFactories(nil)
+// 	assert.NoError(t, err)
+// }
 
-	err = initFactories(&FactoryOpts{})
-	require.NoError(t, err)
-}
+// func TestInitFactories(t *testing.T) {
+// 	err := initFactories(nil)
+// 	assert.NoError(t, err)
 
-func TestInitFactoriesInvalidArgs(t *testing.T) {
-	err := initFactories(&FactoryOpts{
-		Default: "SW",
-		SW:      &SwOpts{},
-	})
-	require.EqualError(t, err, "Failed initializing SW.BCCSP: Could not initialize BCCSP SW [Failed initializing configuration at [0,]: Hash Family not supported []]")
+// 	err = initFactories(&FactoryOpts{})
+// 	assert.NoError(t, err)
+// }
 
-	err = initFactories(&FactoryOpts{
-		Default: "PKCS11",
-		PKCS11:  &pkcs11.PKCS11Opts{},
-	})
-	require.EqualError(t, err, "Failed initializing PKCS11.BCCSP: Could not initialize BCCSP PKCS11 [Failed initializing configuration: Security level not supported [0]]")
-}
+// func TestInitFactoriesInvalidArgs(t *testing.T) {
+// 	err := initFactories(&FactoryOpts{
+// 		ProviderName: "SW",
+// 		SwOpts:       &SwOpts{},
+// 	})
+// 	assert.EqualError(t, err, "Failed initializing SW.BCCSP: Could not initialize BCCSP SW [Failed initializing configuration at [0,]: Hash Family not supported []]")
 
-func TestGetBCCSPFromOpts(t *testing.T) {
-	opts := GetDefaultOpts()
-	opts.SW.FileKeystore = &FileKeystoreOpts{KeyStorePath: os.TempDir()}
-	csp, err := GetBCCSPFromOpts(opts)
-	require.NoError(t, err)
-	require.NotNil(t, csp)
+// 	err = initFactories(&FactoryOpts{
+// 		ProviderName: "PKCS11",
+// 		Pkcs11Opts:   &pkcs11.PKCS11Opts{},
+// 	})
+// 	assert.EqualError(t, err, "Failed initializing PKCS11.BCCSP: Could not initialize BCCSP PKCS11 [Failed initializing configuration: Hash Family not supported []]")
+// }
 
-	lib, pin, label := pkcs11.FindPKCS11Lib()
-	csp, err = GetBCCSPFromOpts(&FactoryOpts{
-		Default: "PKCS11",
-		PKCS11: &pkcs11.PKCS11Opts{
-			Security: 256,
-			Hash:     "SHA2",
-			Library:  lib,
-			Pin:      pin,
-			Label:    label,
-		},
-	})
-	require.NoError(t, err)
-	require.NotNil(t, csp)
+// func TestGetBCCSPFromOpts(t *testing.T) {
+// 	opts := GetDefaultOpts()
+// 	opts.SwOpts.FileKeystore = &FileKeystoreOpts{KeyStorePath: os.TempDir()}
+// 	opts.SwOpts.Ephemeral = false
+// 	csp, err := GetBCCSPFromOpts(opts)
+// 	assert.NoError(t, err)
+// 	assert.NotNil(t, csp)
 
-	csp, err = GetBCCSPFromOpts(&FactoryOpts{
-		Default: "BadName",
-	})
-	require.EqualError(t, err, "Could not find BCCSP, no 'BadName' provider")
-	require.Nil(t, csp)
-}
+// 	lib, pin, label := pkcs11.FindPKCS11Lib()
+// 	csp, err = GetBCCSPFromOpts(&FactoryOpts{
+// 		ProviderName: "PKCS11",
+// 		Pkcs11Opts: &pkcs11.PKCS11Opts{
+// 			SecLevel:   256,
+// 			HashFamily: "SHA2",
+// 			Ephemeral:  true,
+// 			Library:    lib,
+// 			Pin:        pin,
+// 			Label:      label,
+// 		},
+// 	})
+// 	assert.NoError(t, err)
+// 	assert.NotNil(t, csp)
+
+// 	csp, err = GetBCCSPFromOpts(&FactoryOpts{
+// 		ProviderName: "BadName",
+// 	})
+// 	assert.EqualError(t, err, "Could not find BCCSP, no 'BadName' provider")
+// 	assert.Nil(t, csp)
+// }

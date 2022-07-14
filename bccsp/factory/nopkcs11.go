@@ -14,12 +14,19 @@ import (
 	"github.com/pkg/errors"
 )
 
+/*
+bccsp/factory/nopkcs11.go 为 SWFactory 提供 FactoryOpts 以及相关函数。
+在不添加编译条件`pkcs11`时生效
+*/
+
 const pkcs11Enabled = false
 
+// TODO 注意这里定义的FactoryOpts不会与`pkcs11.go`里定义的FactoryOpts冲突，因为该文件头声明了编译条件是 `!pkcs11`，而`pkcs11.go`的编译条件是`pkcs11`
 // FactoryOpts holds configuration information used to initialize factory implementations
 type FactoryOpts struct {
-	Default string  `json:"default" yaml:"Default"`
-	SW      *SwOpts `json:"SW,omitempty" yaml:"SW,omitempty"`
+	ProviderName string  `mapstructure:"default" json:"default" yaml:"Default"`
+	SwOpts       *SwOpts `mapstructure:"SW,omitempty" json:"SW,omitempty" yaml:"SwOpts"`
+	UsingGM      string  `mapstructure:"usingGM,omitempty" json:"usingGM,omitempty" yaml:"usingGM,omitempty"`
 }
 
 // InitFactories must be called before using factory interfaces
@@ -40,16 +47,20 @@ func initFactories(config *FactoryOpts) error {
 		config = GetDefaultOpts()
 	}
 
-	if config.Default == "" {
-		config.Default = "SW"
+	if config.ProviderName == "" {
+		config.ProviderName = "SW"
 	}
 
-	if config.SW == nil {
-		config.SW = GetDefaultOpts().SW
+	if config.SwOpts == nil {
+		config.SwOpts = GetDefaultOpts().SwOpts
+	}
+
+	if config.UsingGM == "" {
+		config.UsingGM = "Y"
 	}
 
 	// Software-Based BCCSP
-	if config.Default == "SW" && config.SW != nil {
+	if config.ProviderName == "SW" && config.SwOpts != nil {
 		f := &SWFactory{}
 		var err error
 		defaultBCCSP, err = initBCCSP(f, config)
@@ -57,9 +68,18 @@ func initFactories(config *FactoryOpts) error {
 			return errors.Wrapf(err, "Failed initializing BCCSP")
 		}
 	}
+	// // Software-Based BCCSP
+	// if config.ProviderName == "GM" && config.SwOpts != nil {
+	// 	f := &GMFactory{}
+	// 	var err error
+	// 	defaultBCCSP, err = initBCCSP(f, config)
+	// 	if err != nil {
+	// 		return errors.Wrapf(err, "Failed initializing BCCSP")
+	// 	}
+	// }
 
 	if defaultBCCSP == nil {
-		return errors.Errorf("Could not find default `%s` BCCSP", config.Default)
+		return errors.Errorf("Could not find default `%s` BCCSP", config.ProviderName)
 	}
 
 	return nil
@@ -68,11 +88,13 @@ func initFactories(config *FactoryOpts) error {
 // GetBCCSPFromOpts returns a BCCSP created according to the options passed in input.
 func GetBCCSPFromOpts(config *FactoryOpts) (bccsp.BCCSP, error) {
 	var f BCCSPFactory
-	switch config.Default {
+	switch config.ProviderName {
+	// case "GM":
+	// 	f = &GMFactory{}
 	case "SW":
 		f = &SWFactory{}
 	default:
-		return nil, errors.Errorf("Could not find BCCSP, no '%s' provider", config.Default)
+		return nil, errors.Errorf("Could not find BCCSP, no '%s' provider", config.ProviderName)
 	}
 
 	csp, err := f.Get(config)

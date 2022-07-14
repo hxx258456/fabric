@@ -18,9 +18,9 @@ package factory
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestFactoryOptsFactoryName(t *testing.T) {
-	require.Equal(t, GetDefaultOpts().FactoryName(), "SW")
+	assert.Equal(t, GetDefaultOpts().FactoryName(), "SW")
 }

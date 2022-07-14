@@ -15,50 +15,62 @@ limitations under the License.
 */
 package sw
 
-import (
-	"crypto/sha256"
-	"errors"
+/*
+bccsp/sw/aeskey.go 国密对应后废弃
+*/
 
-	"github.com/hyperledger/fabric/bccsp"
-)
+// import (
+// 	"crypto/sha256"
+// 	"errors"
 
-type aesPrivateKey struct {
-	privKey    []byte
-	exportable bool
-}
+// 	"github.com/hyperledger/fabric/bccsp"
+// )
 
-// Bytes converts this key to its byte representation,
-// if this operation is allowed.
-func (k *aesPrivateKey) Bytes() (raw []byte, err error) {
-	if k.exportable {
-		return k.privKey, nil
-	}
+// /*
+// bccsp/sw/aeskey.go 定义AES密钥结构体，并实现`bccsp.Key`(bccsp/bccsp.go)接口
+// */
 
-	return nil, errors.New("Not supported.")
-}
+// type AESPrivateKey struct {
+// 	privKey    []byte
+// 	exportable bool
+// }
 
-// SKI returns the subject key identifier of this key.
-func (k *aesPrivateKey) SKI() (ski []byte) {
-	hash := sha256.New()
-	hash.Write([]byte{0x01})
-	hash.Write(k.privKey)
-	return hash.Sum(nil)
-}
+// // Bytes converts this key to its byte representation,
+// // if this operation is allowed.
+// func (k *AESPrivateKey) Bytes() (raw []byte, err error) {
+// 	if k.exportable {
+// 		return k.privKey, nil
+// 	}
 
-// Symmetric returns true if this key is a symmetric key,
-// false if this key is asymmetric
-func (k *aesPrivateKey) Symmetric() bool {
-	return true
-}
+// 	return nil, errors.New("not supported")
+// }
 
-// Private returns true if this key is a private key,
-// false otherwise.
-func (k *aesPrivateKey) Private() bool {
-	return true
-}
+// // SKI returns the subject key identifier of this key.
+// func (k *AESPrivateKey) SKI() (ski []byte) {
+// 	hash := sha256.New()
+// 	hash.Write([]byte{0x01})
+// 	hash.Write(k.privKey)
+// 	return hash.Sum(nil)
+// }
 
-// PublicKey returns the corresponding public key part of an asymmetric public/private key pair.
-// This method returns an error in symmetric key schemes.
-func (k *aesPrivateKey) PublicKey() (bccsp.Key, error) {
-	return nil, errors.New("Cannot call this method on a symmetric key.")
-}
+// // Symmetric returns true if this key is a symmetric key,
+// // false if this key is asymmetric
+// func (k *AESPrivateKey) Symmetric() bool {
+// 	return true
+// }
+
+// // Private returns true if this key is a private key,
+// // false otherwise.
+// func (k *AESPrivateKey) Private() bool {
+// 	return true
+// }
+
+// // PublicKey returns the corresponding public key part of an asymmetric public/private key pair.
+// // This method returns an error in symmetric key schemes.
+// func (k *AESPrivateKey) PublicKey() (bccsp.Key, error) {
+// 	return nil, errors.New("cannot call this method on a symmetric key")
+// }
+
+// func (k *AESPrivateKey) InsideKey() interface{} {
+// 	return k.privKey
+// }

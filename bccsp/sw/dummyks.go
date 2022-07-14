@@ -16,10 +16,13 @@ limitations under the License.
 package sw
 
 import (
-	"errors"
-
 	"github.com/hyperledger/fabric/bccsp"
+	"github.com/pkg/errors"
 )
+
+/*
+bccsp/sw/dummyks.go 实现`bccsp.KeyStore`接口(bccsp/keystore.go)，用于key的Dummy存储读写功能
+*/
 
 // NewDummyKeyStore instantiate a dummy key store
 // that neither loads nor stores keys
@@ -28,7 +31,8 @@ func NewDummyKeyStore() bccsp.KeyStore {
 }
 
 // dummyKeyStore is a read-only KeyStore that neither loads nor stores keys.
-type dummyKeyStore struct{}
+type dummyKeyStore struct {
+}
 
 // ReadOnly returns true if this KeyStore is read only, false otherwise.
 // If ReadOnly is true then StoreKey will fail.

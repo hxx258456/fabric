@@ -7,88 +7,89 @@ SPDX-License-Identifier: Apache-2.0
 package sw
 
 import (
-	"crypto/ecdsa"
-	"crypto/elliptic"
 	"crypto/rand"
-	"crypto/x509"
-	"encoding/asn1"
 	"encoding/pem"
+	"fmt"
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"github.com/hxx258456/ccgo/sm2"
+	"github.com/hxx258456/ccgo/x509"
+	"github.com/stretchr/testify/assert"
 )
 
-func TestOidFromNamedCurve(t *testing.T) {
-	var (
-		oidNamedCurveP224 = asn1.ObjectIdentifier{1, 3, 132, 0, 33}
-		oidNamedCurveP256 = asn1.ObjectIdentifier{1, 2, 840, 10045, 3, 1, 7}
-		oidNamedCurveP384 = asn1.ObjectIdentifier{1, 3, 132, 0, 34}
-		oidNamedCurveP521 = asn1.ObjectIdentifier{1, 3, 132, 0, 35}
-	)
+// func TestOidFromNamedCurve(t *testing.T) {
+// 	var (
+// 		oidNamedCurveP224 = asn1.ObjectIdentifier{1, 3, 132, 0, 33}
+// 		oidNamedCurveP256 = asn1.ObjectIdentifier{1, 2, 840, 10045, 3, 1, 7}
+// 		oidNamedCurveP384 = asn1.ObjectIdentifier{1, 3, 132, 0, 34}
+// 		oidNamedCurveP521 = asn1.ObjectIdentifier{1, 3, 132, 0, 35}
+// 	)
 
-	type result struct {
-		oid asn1.ObjectIdentifier
-		ok  bool
-	}
+// 	type result struct {
+// 		oid asn1.ObjectIdentifier
+// 		ok  bool
+// 	}
 
-	tests := []struct {
-		name     string
-		curve    elliptic.Curve
-		expected result
-	}{
-		{
-			name:  "P224",
-			curve: elliptic.P224(),
-			expected: result{
-				oid: oidNamedCurveP224,
-				ok:  true,
-			},
-		},
-		{
-			name:  "P256",
-			curve: elliptic.P256(),
-			expected: result{
-				oid: oidNamedCurveP256,
-				ok:  true,
-			},
-		},
-		{
-			name:  "P384",
-			curve: elliptic.P384(),
-			expected: result{
-				oid: oidNamedCurveP384,
-				ok:  true,
-			},
-		},
-		{
-			name:  "P521",
-			curve: elliptic.P521(),
-			expected: result{
-				oid: oidNamedCurveP521,
-				ok:  true,
-			},
-		},
-		{
-			name:  "T-1000",
-			curve: &elliptic.CurveParams{Name: "T-1000"},
-			expected: result{
-				oid: nil,
-				ok:  false,
-			},
-		},
-	}
+// 	var tests = []struct {
+// 		name     string
+// 		curve    elliptic.Curve
+// 		expected result
+// 	}{
+// 		{
+// 			name:  "P224",
+// 			curve: elliptic.P224(),
+// 			expected: result{
+// 				oid: oidNamedCurveP224,
+// 				ok:  true,
+// 			},
+// 		},
+// 		{
+// 			name:  "P256",
+// 			curve: elliptic.P256(),
+// 			expected: result{
+// 				oid: oidNamedCurveP256,
+// 				ok:  true,
+// 			},
+// 		},
+// 		{
+// 			name:  "P384",
+// 			curve: elliptic.P384(),
+// 			expected: result{
+// 				oid: oidNamedCurveP384,
+// 				ok:  true,
+// 			},
+// 		},
+// 		{
+// 			name:  "P521",
+// 			curve: elliptic.P521(),
+// 			expected: result{
+// 				oid: oidNamedCurveP521,
+// 				ok:  true,
+// 			},
+// 		},
+// 		{
+// 			name:  "T-1000",
+// 			curve: &elliptic.CurveParams{Name: "T-1000"},
+// 			expected: result{
+// 				oid: nil,
+// 				ok:  false,
+// 			},
+// 		},
+// 	}
 
-	for _, test := range tests {
-		t.Run(test.name, func(t *testing.T) {
-			oid, ok := oidFromNamedCurve(test.curve)
-			require.Equal(t, oid, test.expected.oid)
-			require.Equal(t, ok, test.expected.ok)
-		})
-	}
-}
+// 	for _, test := range tests {
+// 		t.Run(test.name, func(t *testing.T) {
+// 			oid, ok := oidFromNamedCurve(test.curve)
+// 			assert.Equal(t, oid, test.expected.oid)
+// 			assert.Equal(t, ok, test.expected.ok)
+// 		})
+// 	}
 
-func TestECDSAKeys(t *testing.T) {
-	key, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+// }
+
+func TestSM2Keys(t *testing.T) {
+	// key, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	key, err := sm2.GenerateKey(rand.Reader)
 	if err != nil {
 		t.Fatalf("Failed generating ECDSA key [%s]", err)
 	}
@@ -102,15 +103,15 @@ func TestECDSAKeys(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed converting DER to private key [%s]", err)
 	}
-	ecdsaKeyFromDer := keyFromDER.(*ecdsa.PrivateKey)
+	sm2KeyFromDer := keyFromDER.(*sm2.PrivateKey)
 	// TODO: check the curve
-	if key.D.Cmp(ecdsaKeyFromDer.D) != 0 {
+	if key.D.Cmp(sm2KeyFromDer.D) != 0 {
 		t.Fatal("Failed converting DER to private key. Invalid D.")
 	}
-	if key.X.Cmp(ecdsaKeyFromDer.X) != 0 {
+	if key.X.Cmp(sm2KeyFromDer.X) != 0 {
 		t.Fatal("Failed converting DER to private key. Invalid X coordinate.")
 	}
-	if key.Y.Cmp(ecdsaKeyFromDer.Y) != 0 {
+	if key.Y.Cmp(sm2KeyFromDer.Y) != 0 {
 		t.Fatal("Failed converting DER to private key. Invalid Y coordinate.")
 	}
 
@@ -123,6 +124,7 @@ func TestECDSAKeys(t *testing.T) {
 	if pemBlock.Type != "PRIVATE KEY" {
 		t.Fatalf("Expected type 'PRIVATE KEY' but found '%s'", pemBlock.Type)
 	}
+	// _, err = x509.ParsePKCS8PrivateKey(pemBlock.Bytes)
 	_, err = x509.ParsePKCS8PrivateKey(pemBlock.Bytes)
 	if err != nil {
 		t.Fatalf("Failed to parse PKCS#8 private key [%s]", err)
@@ -131,15 +133,15 @@ func TestECDSAKeys(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed converting DER to private key [%s]", err)
 	}
-	ecdsaKeyFromPEM := keyFromPEM.(*ecdsa.PrivateKey)
+	sm2KeyFromPEM := keyFromPEM.(*sm2.PrivateKey)
 	// TODO: check the curve
-	if key.D.Cmp(ecdsaKeyFromPEM.D) != 0 {
+	if key.D.Cmp(sm2KeyFromPEM.D) != 0 {
 		t.Fatal("Failed converting PEM to private key. Invalid D.")
 	}
-	if key.X.Cmp(ecdsaKeyFromPEM.X) != 0 {
+	if key.X.Cmp(sm2KeyFromPEM.X) != 0 {
 		t.Fatal("Failed converting PEM to private key. Invalid X coordinate.")
 	}
-	if key.Y.Cmp(ecdsaKeyFromPEM.Y) != 0 {
+	if key.Y.Cmp(sm2KeyFromPEM.Y) != 0 {
 		t.Fatal("Failed converting PEM to private key. Invalid Y coordinate.")
 	}
 
@@ -149,7 +151,7 @@ func TestECDSAKeys(t *testing.T) {
 		t.Fatal("PublicKeyToPEM should fail on nil")
 	}
 
-	_, err = privateKeyToPEM((*ecdsa.PrivateKey)(nil), nil)
+	_, err = privateKeyToPEM((*sm2.PrivateKey)(nil), nil)
 	if err == nil {
 		t.Fatal("PrivateKeyToPEM should fail on nil")
 	}
@@ -185,12 +187,12 @@ func TestECDSAKeys(t *testing.T) {
 		t.Fatalf("Failed converting private key to encrypted PEM [%s]", err)
 	}
 	_, err = pemToPrivateKey(encPEM, nil)
-	require.Error(t, err)
+	assert.Error(t, err)
 	encKeyFromPEM, err := pemToPrivateKey(encPEM, []byte("passwd"))
 	if err != nil {
 		t.Fatalf("Failed converting DER to private key [%s]", err)
 	}
-	ecdsaKeyFromEncPEM := encKeyFromPEM.(*ecdsa.PrivateKey)
+	ecdsaKeyFromEncPEM := encKeyFromPEM.(*sm2.PrivateKey)
 	// TODO: check the curve
 	if key.D.Cmp(ecdsaKeyFromEncPEM.D) != 0 {
 		t.Fatal("Failed converting encrypted PEM to private key. Invalid D.")
@@ -215,7 +217,7 @@ func TestECDSAKeys(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed converting DER to public key [%s]", err)
 	}
-	ecdsaPkFromPEM := keyFromPEM.(*ecdsa.PublicKey)
+	ecdsaPkFromPEM := keyFromPEM.(*sm2.PublicKey)
 	// TODO: check the curve
 	if key.X.Cmp(ecdsaPkFromPEM.X) != 0 {
 		t.Fatal("Failed converting PEM to private key. Invalid X coordinate.")
@@ -246,12 +248,12 @@ func TestECDSAKeys(t *testing.T) {
 		t.Fatalf("Failed converting private key to encrypted PEM [%s]", err)
 	}
 	_, err = pemToPublicKey(encPEM, nil)
-	require.Error(t, err)
+	assert.Error(t, err)
 	pkFromEncPEM, err := pemToPublicKey(encPEM, []byte("passwd"))
 	if err != nil {
 		t.Fatalf("Failed converting DER to private key [%s]", err)
 	}
-	ecdsaPkFromEncPEM := pkFromEncPEM.(*ecdsa.PublicKey)
+	ecdsaPkFromEncPEM := pkFromEncPEM.(*sm2.PublicKey)
 	// TODO: check the curve
 	if key.X.Cmp(ecdsaPkFromEncPEM.X) != 0 {
 		t.Fatal("Failed converting encrypted PEM to private key. Invalid X coordinate.")
@@ -287,10 +289,10 @@ func TestECDSAKeys(t *testing.T) {
 
 	// Public Key DER format
 	der, err = x509.MarshalPKIXPublicKey(&key.PublicKey)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	keyFromDER, err = derToPublicKey(der)
-	require.NoError(t, err)
-	ecdsaPkFromPEM = keyFromDER.(*ecdsa.PublicKey)
+	assert.NoError(t, err)
+	ecdsaPkFromPEM = keyFromDER.(*sm2.PublicKey)
 	// TODO: check the curve
 	if key.X.Cmp(ecdsaPkFromPEM.X) != 0 {
 		t.Fatal("Failed converting PEM to private key. Invalid X coordinate.")
@@ -300,71 +302,99 @@ func TestECDSAKeys(t *testing.T) {
 	}
 }
 
-func TestAESKey(t *testing.T) {
-	k := []byte{0, 1, 2, 3, 4, 5}
-	pem := aesToPEM(k)
+// func TestAESKey(t *testing.T) {
+// 	k := []byte{0, 1, 2, 3, 4, 5}
+// 	pem := aesToPEM(k)
 
-	k2, err := pemToAES(pem, nil)
-	require.NoError(t, err)
-	require.Equal(t, k, k2)
+// 	k2, err := pemToAES(pem, nil)
+// 	assert.NoError(t, err)
+// 	assert.Equal(t, k, k2)
 
-	pem, err = aesToEncryptedPEM(k, k)
-	require.NoError(t, err)
+// 	pem, err = aesToEncryptedPEM(k, k)
+// 	assert.NoError(t, err)
 
-	k2, err = pemToAES(pem, k)
-	require.NoError(t, err)
-	require.Equal(t, k, k2)
+// 	k2, err = pemToAES(pem, k)
+// 	assert.NoError(t, err)
+// 	assert.Equal(t, k, k2)
 
-	_, err = pemToAES(pem, nil)
-	require.Error(t, err)
+// 	_, err = pemToAES(pem, nil)
+// 	assert.Error(t, err)
 
-	_, err = aesToEncryptedPEM(k, nil)
-	require.NoError(t, err)
+// 	_, err = aesToEncryptedPEM(k, nil)
+// 	assert.NoError(t, err)
 
-	k2, err = pemToAES(pem, k)
-	require.NoError(t, err)
-	require.Equal(t, k, k2)
+// 	k2, err = pemToAES(pem, k)
+// 	assert.NoError(t, err)
+// 	assert.Equal(t, k, k2)
+// }
+
+func TestSM4Key(t *testing.T) {
+	k, _ := GetRandomBytes(16)
+	fmt.Printf("生成随机sm4密钥: %v", k)
+
+	pem := sm4ToPEM(k)
+
+	k2, err := pemToSM4(pem, nil)
+	assert.NoError(t, err)
+	assert.Equal(t, k, k2)
+
+	pem, err = sm4ToEncryptedPEM(k, k)
+	assert.NoError(t, err)
+
+	k2, err = pemToSM4(pem, k)
+	assert.NoError(t, err)
+	assert.Equal(t, k, k2)
+
+	_, err = pemToSM4(pem, nil)
+	assert.Error(t, err)
+
+	_, err = sm4ToEncryptedPEM(k, nil)
+	assert.NoError(t, err)
+
+	k2, err = pemToSM4(pem, k)
+	assert.NoError(t, err)
+	assert.Equal(t, k, k2)
 }
 
 func TestDERToPublicKey(t *testing.T) {
 	_, err := derToPublicKey(nil)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestNil(t *testing.T) {
 	_, err := privateKeyToEncryptedPEM(nil, nil)
-	require.Error(t, err)
+	assert.Error(t, err)
 
-	_, err = privateKeyToEncryptedPEM((*ecdsa.PrivateKey)(nil), nil)
-	require.Error(t, err)
+	_, err = privateKeyToEncryptedPEM((*sm2.PrivateKey)(nil), nil)
+	assert.Error(t, err)
 
 	_, err = privateKeyToEncryptedPEM("Hello World", nil)
-	require.Error(t, err)
+	assert.Error(t, err)
 
-	_, err = pemToAES(nil, nil)
-	require.Error(t, err)
+	// _, err = pemToAES(nil, nil)
+	// assert.Error(t, err)
 
-	_, err = aesToEncryptedPEM(nil, nil)
-	require.Error(t, err)
+	// _, err = aesToEncryptedPEM(nil, nil)
+	// assert.Error(t, err)
 
 	_, err = publicKeyToPEM(nil, nil)
-	require.Error(t, err)
-	_, err = publicKeyToPEM((*ecdsa.PublicKey)(nil), nil)
-	require.Error(t, err)
+	assert.Error(t, err)
+	_, err = publicKeyToPEM((*sm2.PublicKey)(nil), nil)
+	assert.Error(t, err)
 	_, err = publicKeyToPEM(nil, []byte("hello world"))
-	require.Error(t, err)
+	assert.Error(t, err)
 
 	_, err = publicKeyToPEM("hello world", nil)
-	require.Error(t, err)
+	assert.Error(t, err)
 	_, err = publicKeyToPEM("hello world", []byte("hello world"))
-	require.Error(t, err)
+	assert.Error(t, err)
 
 	_, err = publicKeyToEncryptedPEM(nil, nil)
-	require.Error(t, err)
-	_, err = publicKeyToEncryptedPEM((*ecdsa.PublicKey)(nil), nil)
-	require.Error(t, err)
+	assert.Error(t, err)
+	_, err = publicKeyToEncryptedPEM((*sm2.PublicKey)(nil), nil)
+	assert.Error(t, err)
 	_, err = publicKeyToEncryptedPEM("hello world", nil)
-	require.Error(t, err)
+	assert.Error(t, err)
 	_, err = publicKeyToEncryptedPEM("hello world", []byte("Hello world"))
-	require.Error(t, err)
+	assert.Error(t, err)
 }

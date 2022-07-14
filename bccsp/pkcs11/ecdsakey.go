@@ -15,83 +15,95 @@ limitations under the License.
 */
 package pkcs11
 
-import (
-	"crypto/ecdsa"
-	"crypto/x509"
-	"errors"
-	"fmt"
+/*
+bccsp/pkcs11/ecdsakey.go 国密对应后废弃
+*/
 
-	"github.com/hyperledger/fabric/bccsp"
-)
+// import (
+// 	"crypto/ecdsa"
+// 	"crypto/x509"
+// 	"errors"
+// 	"fmt"
 
-type ecdsaPrivateKey struct {
-	ski []byte
-	pub ecdsaPublicKey
-}
+// 	"github.com/hyperledger/fabric/bccsp"
+// )
 
-// Bytes converts this key to its byte representation,
-// if this operation is allowed.
-func (k *ecdsaPrivateKey) Bytes() ([]byte, error) {
-	return nil, errors.New("Not supported.")
-}
+// type ecdsaPrivateKey struct {
+// 	ski []byte
+// 	pub ecdsaPublicKey
+// }
 
-// SKI returns the subject key identifier of this key.
-func (k *ecdsaPrivateKey) SKI() []byte {
-	return k.ski
-}
+// // Bytes converts this key to its byte representation,
+// // if this operation is allowed.
+// func (k *ecdsaPrivateKey) Bytes() ([]byte, error) {
+// 	return nil, errors.New("not supported")
+// }
 
-// Symmetric returns true if this key is a symmetric key,
-// false if this key is asymmetric
-func (k *ecdsaPrivateKey) Symmetric() bool {
-	return false
-}
+// // SKI returns the subject key identifier of this key.
+// func (k *ecdsaPrivateKey) SKI() []byte {
+// 	return k.ski
+// }
 
-// Private returns true if this key is a private key,
-// false otherwise.
-func (k *ecdsaPrivateKey) Private() bool {
-	return true
-}
+// // Symmetric returns true if this key is a symmetric key,
+// // false if this key is asymmetric
+// func (k *ecdsaPrivateKey) Symmetric() bool {
+// 	return false
+// }
 
-// PublicKey returns the corresponding public key part of an asymmetric public/private key pair.
-// This method returns an error in symmetric key schemes.
-func (k *ecdsaPrivateKey) PublicKey() (bccsp.Key, error) {
-	return &k.pub, nil
-}
+// // Private returns true if this key is a private key,
+// // false otherwise.
+// func (k *ecdsaPrivateKey) Private() bool {
+// 	return true
+// }
 
-type ecdsaPublicKey struct {
-	ski []byte
-	pub *ecdsa.PublicKey
-}
+// // PublicKey returns the corresponding public key part of an asymmetric public/private key pair.
+// // This method returns an error in symmetric key schemes.
+// func (k *ecdsaPrivateKey) PublicKey() (bccsp.Key, error) {
+// 	return &k.pub, nil
+// }
 
-// Bytes converts this key to its byte representation,
-// if this operation is allowed.
-func (k *ecdsaPublicKey) Bytes() (raw []byte, err error) {
-	raw, err = x509.MarshalPKIXPublicKey(k.pub)
-	if err != nil {
-		return nil, fmt.Errorf("Failed marshalling key [%s]", err)
-	}
-	return
-}
+// func (k *ecdsaPrivateKey) InsideKey() interface{} {
+// 	return k.pub
+// }
 
-// SKI returns the subject key identifier of this key.
-func (k *ecdsaPublicKey) SKI() []byte {
-	return k.ski
-}
+// type ecdsaPublicKey struct {
+// 	ski []byte
+// 	pub *ecdsa.PublicKey
+// }
 
-// Symmetric returns true if this key is a symmetric key,
-// false if this key is asymmetric
-func (k *ecdsaPublicKey) Symmetric() bool {
-	return false
-}
+// // Bytes converts this key to its byte representation,
+// // if this operation is allowed.
+// func (k *ecdsaPublicKey) Bytes() (raw []byte, err error) {
+// 	raw, err = x509.MarshalPKIXPublicKey(k.pub)
+// 	if err != nil {
+// 		return nil, fmt.Errorf("failed marshalling key [%s]", err)
+// 	}
+// 	return
+// }
 
-// Private returns true if this key is a private key,
-// false otherwise.
-func (k *ecdsaPublicKey) Private() bool {
-	return false
-}
+// // SKI returns the subject key identifier of this key.
+// func (k *ecdsaPublicKey) SKI() []byte {
+// 	return k.ski
+// }
 
-// PublicKey returns the corresponding public key part of an asymmetric public/private key pair.
-// This method returns an error in symmetric key schemes.
-func (k *ecdsaPublicKey) PublicKey() (bccsp.Key, error) {
-	return k, nil
-}
+// // Symmetric returns true if this key is a symmetric key,
+// // false if this key is asymmetric
+// func (k *ecdsaPublicKey) Symmetric() bool {
+// 	return false
+// }
+
+// // Private returns true if this key is a private key,
+// // false otherwise.
+// func (k *ecdsaPublicKey) Private() bool {
+// 	return false
+// }
+
+// // PublicKey returns the corresponding public key part of an asymmetric public/private key pair.
+// // This method returns an error in symmetric key schemes.
+// func (k *ecdsaPublicKey) PublicKey() (bccsp.Key, error) {
+// 	return k, nil
+// }
+
+// func (k *ecdsaPublicKey) InsideKey() interface{} {
+// 	return k.pub
+// }

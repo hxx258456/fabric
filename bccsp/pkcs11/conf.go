@@ -6,37 +6,92 @@ SPDX-License-Identifier: Apache-2.0
 
 package pkcs11
 
-import "time"
+/*
+bccsp/pkcs11/conf.go 国密对应后废弃
+*/
 
-const (
-	defaultCreateSessionRetries    = 10
-	defaultCreateSessionRetryDelay = 100 * time.Millisecond
-	defaultSessionCacheSize        = 10
-)
+// import (
+// 	"crypto/sha256"
+// 	"crypto/sha512"
+// 	"encoding/asn1"
+// 	"fmt"
+// 	"hash"
 
-// PKCS11Opts contains options for the P11Factory
-type PKCS11Opts struct {
-	// Default algorithms when not specified (Deprecated?)
-	Security int    `json:"security"`
-	Hash     string `json:"hash"`
+// 	"golang.org/x/crypto/sha3"
+// )
 
-	// PKCS11 options
-	Library        string         `json:"library"`
-	Label          string         `json:"label"`
-	Pin            string         `json:"pin"`
-	SoftwareVerify bool           `json:"softwareverify,omitempty"`
-	Immutable      bool           `json:"immutable,omitempty"`
-	AltID          string         `json:"altid,omitempty"`
-	KeyIDs         []KeyIDMapping `json:"keyids,omitempty" mapstructure:"keyids"`
+// type config struct {
+// 	ellipticCurve asn1.ObjectIdentifier
+// 	hashFunction  func() hash.Hash
+// 	aesBitLength  int
+// }
 
-	sessionCacheSize        int
-	createSessionRetries    int
-	createSessionRetryDelay time.Duration
-}
+// func (conf *config) setSecurityLevel(securityLevel int, hashFamily string) (err error) {
+// 	switch hashFamily {
+// 	case "SHA2":
+// 		err = conf.setSecurityLevelSHA2(securityLevel)
+// 	case "SHA3":
+// 		err = conf.setSecurityLevelSHA3(securityLevel)
+// 	default:
+// 		err = fmt.Errorf("hash Family not supported [%s]", hashFamily)
+// 	}
+// 	return
+// }
 
-// A KeyIDMapping associates the CKA_ID attribute of a cryptoki object with a
-// subject key identifer.
-type KeyIDMapping struct {
-	SKI string `json:"ski,omitempty"`
-	ID  string `json:"id,omitempty"`
-}
+// func (conf *config) setSecurityLevelSHA2(level int) (err error) {
+// 	switch level {
+// 	case 256:
+// 		conf.ellipticCurve = oidNamedCurveP256
+// 		conf.hashFunction = sha256.New
+// 		conf.aesBitLength = 32
+// 	case 384:
+// 		conf.ellipticCurve = oidNamedCurveP384
+// 		conf.hashFunction = sha512.New384
+// 		conf.aesBitLength = 32
+// 	default:
+// 		err = fmt.Errorf("security level not supported [%d]", level)
+// 	}
+// 	return
+// }
+
+// func (conf *config) setSecurityLevelSHA3(level int) (err error) {
+// 	switch level {
+// 	case 256:
+// 		conf.ellipticCurve = oidNamedCurveP256
+// 		conf.hashFunction = sha3.New256
+// 		conf.aesBitLength = 32
+// 	case 384:
+// 		conf.ellipticCurve = oidNamedCurveP384
+// 		conf.hashFunction = sha3.New384
+// 		conf.aesBitLength = 32
+// 	default:
+// 		err = fmt.Errorf("security level not supported [%d]", level)
+// 	}
+// 	return
+// }
+
+// // PKCS11Opts contains options for the P11Factory
+// type PKCS11Opts struct {
+// 	// Default algorithms when not specified (Deprecated?)
+// 	SecLevel   int    `mapstructure:"security" json:"security"`
+// 	HashFamily string `mapstructure:"hash" json:"hash"`
+
+// 	// Keystore options
+// 	Ephemeral bool `mapstructure:"tempkeys,omitempty" json:"tempkeys,omitempty"`
+
+// 	// PKCS11 options
+// 	Library    string         `mapstructure:"library" json:"library"`
+// 	Label      string         `mapstructure:"label" json:"label"`
+// 	Pin        string         `mapstructure:"pin" json:"pin"`
+// 	SoftVerify bool           `mapstructure:"softwareverify,omitempty" json:"softwareverify,omitempty"`
+// 	Immutable  bool           `mapstructure:"immutable,omitempty" json:"immutable,omitempty"`
+// 	AltID      string         `json:"altid,omitempty"`
+// 	KeyIDs     []KeyIDMapping `json:"keyids,omitempty" mapstructure:"keyids"`
+// }
+
+// // A KeyIDMapping associates the CKA_ID attribute of a cryptoki object with a
+// // subject key identifer.
+// type KeyIDMapping struct {
+// 	SKI string `json:"ski,omitempty"`
+// 	ID  string `json:"id,omitempty"`
+// }

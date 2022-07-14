@@ -12,18 +12,18 @@ package factory
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestInitFactories(t *testing.T) {
 	err := initFactories(&FactoryOpts{
-		Default: "SW",
-		SW:      &SwOpts{},
+		ProviderName: "SW",
+		SwOpts:       &SwOpts{},
 	})
-	require.EqualError(t, err, "Failed initializing BCCSP: Could not initialize BCCSP SW [Failed initializing configuration at [0,]: Hash Family not supported []]")
+	assert.EqualError(t, err, "Failed initializing BCCSP: Could not initialize BCCSP SW [Failed initializing configuration at [0,]: 非国密的安全级别配置不支持 []]")
 
 	err = initFactories(&FactoryOpts{
-		Default: "PKCS11",
+		ProviderName: "PKCS11",
 	})
-	require.EqualError(t, err, "Could not find default `PKCS11` BCCSP")
+	assert.EqualError(t, err, "Could not find default `PKCS11` BCCSP")
 }

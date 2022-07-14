@@ -24,7 +24,15 @@ import (
 	"github.com/pkg/errors"
 )
 
-var logger = flogging.MustGetLogger("bccsp_sw")
+/*
+bccsp/sw/impl.go 定义了`sw.CSP`，并实现了`bccsp.BCCSP`接口(bccsp/bccsp.go)。
+除了对`bccsp.BCCSP`接口的实现，impl只提供了`sw.CSP`的New函数以及AddWrapper方法。
+获取配置好的csp需要调用`bccsp/sw/new.go`提供的相关函数。
+*/
+
+var (
+	logger = flogging.MustGetLogger("bccsp_sw")
+)
 
 // CSP provides a generic implementation of the BCCSP interface based
 // on wrappers. It can be customized by providing implementations for the
@@ -42,6 +50,8 @@ type CSP struct {
 	Signers       map[reflect.Type]Signer
 	Verifiers     map[reflect.Type]Verifier
 	Hashers       map[reflect.Type]Hasher
+
+	Algorithms string
 }
 
 func New(keyStore bccsp.KeyStore) (*CSP, error) {
@@ -58,11 +68,9 @@ func New(keyStore bccsp.KeyStore) (*CSP, error) {
 	keyDerivers := make(map[reflect.Type]KeyDeriver)
 	keyImporters := make(map[reflect.Type]KeyImporter)
 
-	csp := &CSP{
-		keyStore,
+	csp := &CSP{keyStore,
 		keyGenerators, keyDerivers, keyImporters, encryptors,
-		decryptors, signers, verifiers, hashers,
-	}
+		decryptors, signers, verifiers, hashers, ""}
 
 	return csp, nil
 }
@@ -304,6 +312,10 @@ func (csp *CSP) Decrypt(k bccsp.Key, ciphertext []byte, opts bccsp.DecrypterOpts
 	}
 
 	return
+}
+
+func (csp *CSP) ShowAlgorithms() string {
+	return csp.Algorithms
 }
 
 // AddWrapper binds the passed type to the passed wrapper.

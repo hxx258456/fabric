@@ -9,89 +9,110 @@ SPDX-License-Identifier: Apache-2.0
 
 package factory
 
-import (
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/bccsp/pkcs11"
-	"github.com/pkg/errors"
-)
+/*
+bccsp/factory/pkcs11.go 国密对应后废弃
+*/
 
-const pkcs11Enabled = false
+// import (
+// 	"github.com/hyperledger/fabric/bccsp"
+// 	"github.com/hyperledger/fabric/bccsp/pkcs11"
+// 	"github.com/pkg/errors"
+// )
 
-// FactoryOpts holds configuration information used to initialize factory implementations
-type FactoryOpts struct {
-	Default string             `json:"default" yaml:"Default"`
-	SW      *SwOpts            `json:"SW,omitempty" yaml:"SW,omitempty"`
-	PKCS11  *pkcs11.PKCS11Opts `json:"PKCS11,omitempty" yaml:"PKCS11"`
-}
+// /*
+// bccsp/factory/pkcs11.go 为 PKCS11Factory 提供 FactoryOpts 及相关的函数
+// 需要添加编译条件: `pkcs11`
+// */
 
-// InitFactories must be called before using factory interfaces
-// It is acceptable to call with config = nil, in which case
-// some defaults will get used
-// Error is returned only if defaultBCCSP cannot be found
-func InitFactories(config *FactoryOpts) error {
-	factoriesInitOnce.Do(func() {
-		factoriesInitError = initFactories(config)
-	})
+// const pkcs11Enabled = false
 
-	return factoriesInitError
-}
+// // FactoryOpts holds configuration information used to initialize factory implementations
+// type FactoryOpts struct {
+// 	ProviderName string             `mapstructure:"default" json:"default" yaml:"Default"`
+// 	SwOpts       *SwOpts            `mapstructure:"SW,omitempty" json:"SW,omitempty" yaml:"SwOpts"`
+// 	Pkcs11Opts   *pkcs11.PKCS11Opts `mapstructure:"PKCS11,omitempty" json:"PKCS11,omitempty" yaml:"PKCS11"`
+// }
 
-func initFactories(config *FactoryOpts) error {
-	// Take some precautions on default opts
-	if config == nil {
-		config = GetDefaultOpts()
-	}
+// // InitFactories must be called before using factory interfaces
+// // It is acceptable to call with config = nil, in which case
+// // some defaults will get used
+// // Error is returned only if defaultBCCSP cannot be found
+// func InitFactories(config *FactoryOpts) error {
+// 	factoriesInitOnce.Do(func() {
+// 		factoriesInitError = initFactories(config)
+// 	})
 
-	if config.Default == "" {
-		config.Default = "SW"
-	}
+// 	return factoriesInitError
+// }
 
-	if config.SW == nil {
-		config.SW = GetDefaultOpts().SW
-	}
+// func initFactories(config *FactoryOpts) error {
+// 	// Take some precautions on default opts
+// 	if config == nil {
+// 		config = GetDefaultOpts()
+// 	}
 
-	// Software-Based BCCSP
-	if config.Default == "SW" && config.SW != nil {
-		f := &SWFactory{}
-		var err error
-		defaultBCCSP, err = initBCCSP(f, config)
-		if err != nil {
-			return errors.Wrap(err, "Failed initializing SW.BCCSP")
-		}
-	}
+// 	if config.ProviderName == "" {
+// 		config.ProviderName = "SW"
+// 	}
 
-	// PKCS11-Based BCCSP
-	if config.Default == "PKCS11" && config.PKCS11 != nil {
-		f := &PKCS11Factory{}
-		var err error
-		defaultBCCSP, err = initBCCSP(f, config)
-		if err != nil {
-			return errors.Wrapf(err, "Failed initializing PKCS11.BCCSP")
-		}
-	}
+// 	if config.SwOpts == nil {
+// 		config.SwOpts = GetDefaultOpts().SwOpts
+// 	}
 
-	if defaultBCCSP == nil {
-		return errors.Errorf("Could not find default `%s` BCCSP", config.Default)
-	}
+// 	// // Software-Based BCCSP
+// 	// if config.ProviderName == "GM" && config.SwOpts != nil {
+// 	// 	f := &GMFactory{}
+// 	// 	var err error
+// 	// 	defaultBCCSP, err = initBCCSP(f, config)
+// 	// 	if err != nil {
+// 	// 		return errors.Wrap(err, "Failed initializing SW.BCCSP")
+// 	// 	}
+// 	// }
 
-	return nil
-}
+// 	// Software-Based BCCSP
+// 	if config.ProviderName == "SW" && config.SwOpts != nil {
+// 		f := &SWFactory{}
+// 		var err error
+// 		defaultBCCSP, err = initBCCSP(f, config)
+// 		if err != nil {
+// 			return errors.Wrap(err, "Failed initializing SW.BCCSP")
+// 		}
+// 	}
 
-// GetBCCSPFromOpts returns a BCCSP created according to the options passed in input.
-func GetBCCSPFromOpts(config *FactoryOpts) (bccsp.BCCSP, error) {
-	var f BCCSPFactory
-	switch config.Default {
-	case "SW":
-		f = &SWFactory{}
-	case "PKCS11":
-		f = &PKCS11Factory{}
-	default:
-		return nil, errors.Errorf("Could not find BCCSP, no '%s' provider", config.Default)
-	}
+// 	// PKCS11-Based BCCSP
+// 	if config.ProviderName == "PKCS11" && config.Pkcs11Opts != nil {
+// 		f := &PKCS11Factory{}
+// 		var err error
+// 		defaultBCCSP, err = initBCCSP(f, config)
+// 		if err != nil {
+// 			return errors.Wrapf(err, "Failed initializing PKCS11.BCCSP")
+// 		}
+// 	}
 
-	csp, err := f.Get(config)
-	if err != nil {
-		return nil, errors.Wrapf(err, "Could not initialize BCCSP %s", f.Name())
-	}
-	return csp, nil
-}
+// 	if defaultBCCSP == nil {
+// 		return errors.Errorf("Could not find default `%s` BCCSP", config.ProviderName)
+// 	}
+
+// 	return nil
+// }
+
+// // GetBCCSPFromOpts returns a BCCSP created according to the options passed in input.
+// func GetBCCSPFromOpts(config *FactoryOpts) (bccsp.BCCSP, error) {
+// 	var f BCCSPFactory
+// 	switch config.ProviderName {
+// 	// case "GM":
+// 	// 	f = &GMFactory{}
+// 	case "SW":
+// 		f = &SWFactory{}
+// 	case "PKCS11":
+// 		f = &PKCS11Factory{}
+// 	default:
+// 		return nil, errors.Errorf("Could not find BCCSP, no '%s' provider", config.ProviderName)
+// 	}
+
+// 	csp, err := f.Get(config)
+// 	if err != nil {
+// 		return nil, errors.Wrapf(err, "Could not initialize BCCSP %s", f.Name())
+// 	}
+// 	return csp, nil
+// }

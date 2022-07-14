@@ -11,9 +11,21 @@ import (
 	"hash"
 )
 
+/*
+ * bccsp/bccsp.go 定义了一系列接口:
+ * bccsp.Key : 对称加密的密钥或签名/非对称加密的公私钥
+ * bccsp.KeyGenOpts : bccsp.Key生成器配置
+ * bccsp.KeyDerivOpts : bccsp.Key驱动配置
+ * bccsp.KeyImportOpts : bccsp.Key导入配置
+ * bccsp.HashOpts : bccsp摘要算法配置
+ * bccsp.SignerOpts : bccsp签名器配置
+ * bccsp.EncrypterOpts : bccsp对称加密器配置
+ * bccsp.DecrypterOpts : bccsp对称解密器配置
+ * bccsp.BCCSP : bccsp接口，提供完整的密钥生成、对称加解密、签名/验签、摘要等功能
+ */
+
 // Key represents a cryptographic key
 type Key interface {
-
 	// Bytes converts this key to its byte representation,
 	// if this operation is allowed.
 	Bytes() ([]byte, error)
@@ -23,6 +35,7 @@ type Key interface {
 
 	// Symmetric returns true if this key is a symmetric key,
 	// false is this key is asymmetric
+	// 是否对称密钥
 	Symmetric() bool
 
 	// Private returns true if this key is a private key,
@@ -32,6 +45,9 @@ type Key interface {
 	// PublicKey returns the corresponding public key part of an asymmetric public/private key pair.
 	// This method returns an error in symmetric key schemes.
 	PublicKey() (Key, error)
+
+	// 返回内部密钥
+	InsideKey() interface{}
 }
 
 // KeyGenOpts contains options for key-generation with a CSP.
@@ -42,6 +58,7 @@ type KeyGenOpts interface {
 
 	// Ephemeral returns true if the key to generate has to be ephemeral,
 	// false otherwise.
+	// 生成的key是否是临时的
 	Ephemeral() bool
 }
 
@@ -131,4 +148,6 @@ type BCCSP interface {
 	// Decrypt decrypts ciphertext using key k.
 	// The opts argument should be appropriate for the algorithm used.
 	Decrypt(k Key, ciphertext []byte, opts DecrypterOpts) (plaintext []byte, err error)
+
+	ShowAlgorithms() string
 }
