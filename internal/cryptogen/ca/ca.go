@@ -22,7 +22,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hyperledger/fabric/internal/cryptogen/csp"
+	"github.com/hxx258456/fabric/internal/cryptogen/csp"
 	"github.com/pkg/errors"
 )
 

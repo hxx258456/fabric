@@ -16,12 +16,12 @@ import (
 
 	docker "github.com/fsouza/go-dockerclient"
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-protos-go/common"
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/core/aclmgmt/resources"
-	"github.com/hyperledger/fabric/integration/nwo"
-	"github.com/hyperledger/fabric/integration/nwo/commands"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/core/aclmgmt/resources"
+	"github.com/hxx258456/fabric/integration/nwo"
+	"github.com/hxx258456/fabric/integration/nwo/commands"
+	"github.com/hxx258456/fabric/protoutil"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gbytes"
@@ -72,7 +72,7 @@ var _ = Describe("EndToEndACL", func() {
 		chaincode = nwo.Chaincode{
 			Name:    "mycc",
 			Version: "0.0",
-			Path:    "github.com/hyperledger/fabric/integration/chaincode/simple/cmd",
+			Path:    "github.com/hxx258456/fabric/integration/chaincode/simple/cmd",
 			Ctor:    `{"Args":["init","a","100","b","200"]}`,
 			Policy:  `OR ('Org1MSP.member','Org2MSP.member')`,
 		}
@@ -243,7 +243,7 @@ var _ = Describe("EndToEndACL", func() {
 		chaincode = nwo.Chaincode{
 			Name:                "mycc",
 			Version:             "0.0",
-			Path:                components.Build("github.com/hyperledger/fabric/integration/chaincode/simple/cmd"),
+			Path:                components.Build("github.com/hxx258456/fabric/integration/chaincode/simple/cmd"),
 			Lang:                "binary",
 			PackageFile:         filepath.Join(testDir, "simplecc.tar.gz"),
 			Ctor:                `{"Args":["init","a","100","b","200"]}`,

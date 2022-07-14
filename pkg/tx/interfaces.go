@@ -10,9 +10,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/pkg/statedata"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/pkg/statedata"
 )
 
 // ProcessorCreator creates a new instance of a processor of a particular transaction type.

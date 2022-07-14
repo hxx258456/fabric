@@ -10,9 +10,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hyperledger/fabric/gossip/common"
-	"github.com/hyperledger/fabric/gossip/filter"
-	"github.com/hyperledger/fabric/gossip/protoext"
+	"github.com/hxx258456/fabric/gossip/common"
+	"github.com/hxx258456/fabric/gossip/filter"
+	"github.com/hxx258456/fabric/gossip/protoext"
 )
 
 // emittedGossipMessage encapsulates signed gossip message to compose

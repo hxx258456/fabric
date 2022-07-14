@@ -9,15 +9,15 @@ package txmgr
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric-protos-go/ledger/queryresult"
-	"github.com/hyperledger/fabric-protos-go/ledger/rwset/kvrwset"
-	"github.com/hyperledger/fabric/common/ledger/testutil"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/core/ledger/internal/version"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/privacyenabledstate"
-	"github.com/hyperledger/fabric/core/ledger/mock"
-	"github.com/hyperledger/fabric/core/ledger/util"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/queryresult"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset/kvrwset"
+	"github.com/hxx258456/fabric/common/ledger/testutil"
+	"github.com/hxx258456/fabric/core/ledger"
+	"github.com/hxx258456/fabric/core/ledger/internal/version"
+	"github.com/hxx258456/fabric/core/ledger/kvledger/txmgmt/privacyenabledstate"
+	"github.com/hxx258456/fabric/core/ledger/mock"
+	"github.com/hxx258456/fabric/core/ledger/util"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/stretchr/testify/require"
 )
 

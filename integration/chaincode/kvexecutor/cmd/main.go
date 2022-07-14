@@ -10,8 +10,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/hxx258456/fabric/integration/chaincode/kvexecutor"
 	"github.com/hyperledger/fabric-chaincode-go/shim"
-	"github.com/hyperledger/fabric/integration/chaincode/kvexecutor"
 )
 
 func main() {

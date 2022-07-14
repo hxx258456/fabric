@@ -7,11 +7,11 @@ SPDX-License-Identifier: Apache-2.0
 package raft
 
 import (
-	"github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric-protos-go/orderer"
-	"github.com/hyperledger/fabric/integration/nwo"
-	"github.com/hyperledger/fabric/integration/ordererclient"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
+	orderer "github.com/hxx258456/fabric-protos-go-cc/orderer"
+	"github.com/hxx258456/fabric/integration/nwo"
+	"github.com/hxx258456/fabric/integration/ordererclient"
+	"github.com/hxx258456/fabric/protoutil"
 	. "github.com/onsi/gomega"
 )
 

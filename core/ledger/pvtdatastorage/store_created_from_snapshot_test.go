@@ -11,11 +11,11 @@ import (
 	"path"
 	"testing"
 
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/core/ledger/confighistory/confighistorytest"
-	"github.com/hyperledger/fabric/core/ledger/internal/version"
-	btltestutil "github.com/hyperledger/fabric/core/ledger/pvtdatapolicy/testutil"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/core/ledger"
+	"github.com/hxx258456/fabric/core/ledger/confighistory/confighistorytest"
+	"github.com/hxx258456/fabric/core/ledger/internal/version"
+	btltestutil "github.com/hxx258456/fabric/core/ledger/pvtdatapolicy/testutil"
 	"github.com/stretchr/testify/require"
 )
 

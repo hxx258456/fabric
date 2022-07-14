@@ -99,7 +99,7 @@ chaincode events emitted by successfully committed transactions. These events
 can be used to trigger external business processes in response to ledger
 updates. For further details, refer to the API documentation:
 
-* `Go <https://pkg.go.dev/github.com/hyperledger/fabric-gateway/pkg/client#Network.ChaincodeEvents>`_
+* `Go <https://pkg.go.dev/github.com/hxx258456/fabric-gateway/pkg/client#Network.ChaincodeEvents>`_
 * `Node.js <https://hyperledger.github.io/fabric-gateway/main/api/node/interfaces/Network.html#getChaincodeEvents>`_
 * `Java <https://hyperledger.github.io/fabric-gateway/main/api/java/org/hyperledger/fabric/client/Network.html>`_
 

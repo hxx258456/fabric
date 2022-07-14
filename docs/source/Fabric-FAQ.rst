@@ -224,9 +224,9 @@ Ordering Service
   against raft_ . You can study it to learn more for your own implementation. The ordering service code can be found under
   the `orderer package`_.
 
-.. _consensus package: https://github.com/hyperledger/fabric/blob/release-2.0/orderer/consensus/consensus.go
-.. _raft: https://github.com/hyperledger/fabric/tree/release-2.0/orderer/consensus/etcdraft
-.. _orderer package: https://github.com/hyperledger/fabric/tree/release-2.0/orderer
+.. _consensus package: https://github.com/hxx258456/fabric/blob/release-2.0/orderer/consensus/consensus.go
+.. _raft: https://github.com/hxx258456/fabric/tree/release-2.0/orderer/consensus/etcdraft
+.. _orderer package: https://github.com/hxx258456/fabric/tree/release-2.0/orderer
 
 ..
 

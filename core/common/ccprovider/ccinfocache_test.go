@@ -26,8 +26,8 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/bccsp/sw"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/bccsp/sw"
 	"github.com/stretchr/testify/require"
 )
 

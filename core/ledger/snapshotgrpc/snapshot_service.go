@@ -12,12 +12,12 @@ import (
 
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/empty"
-	cb "github.com/hyperledger/fabric-protos-go/common"
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/common/crypto"
-	"github.com/hyperledger/fabric/core/aclmgmt/resources"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/protoutil"
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/common/crypto"
+	"github.com/hxx258456/fabric/core/aclmgmt/resources"
+	"github.com/hxx258456/fabric/core/ledger"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
 )
 

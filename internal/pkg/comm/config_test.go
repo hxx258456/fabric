@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hyperledger/fabric/common/crypto/tlsgen"
+	"github.com/hxx258456/fabric/common/crypto/tlsgen"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"

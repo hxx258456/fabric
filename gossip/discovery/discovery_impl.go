@@ -15,11 +15,11 @@ import (
 	"sync"
 	"time"
 
-	proto "github.com/hyperledger/fabric-protos-go/gossip"
-	"github.com/hyperledger/fabric/gossip/common"
-	"github.com/hyperledger/fabric/gossip/gossip/msgstore"
-	"github.com/hyperledger/fabric/gossip/protoext"
-	"github.com/hyperledger/fabric/gossip/util"
+	proto "github.com/hxx258456/fabric-protos-go-cc/gossip"
+	"github.com/hxx258456/fabric/gossip/common"
+	"github.com/hxx258456/fabric/gossip/gossip/msgstore"
+	"github.com/hxx258456/fabric/gossip/protoext"
+	"github.com/hxx258456/fabric/gossip/util"
 	"github.com/pkg/errors"
 )
 

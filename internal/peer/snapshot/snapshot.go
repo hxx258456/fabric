@@ -8,12 +8,12 @@ package snapshot
 
 import (
 	"github.com/golang/protobuf/proto"
-	cb "github.com/hyperledger/fabric-protos-go/common"
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/internal/peer/common"
-	"github.com/hyperledger/fabric/protoutil"
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/bccsp"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/internal/peer/common"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )

@@ -7,10 +7,10 @@ SPDX-License-Identifier: Apache-2.0
 package gossip
 
 import (
-	mspproto "github.com/hyperledger/fabric-protos-go/msp"
-	"github.com/hyperledger/fabric/msp"
-	"github.com/hyperledger/fabric/msp/mgmt"
-	"github.com/hyperledger/fabric/protoutil"
+	mspproto "github.com/hxx258456/fabric-protos-go-cc/msp"
+	"github.com/hxx258456/fabric/msp"
+	"github.com/hxx258456/fabric/msp/mgmt"
+	"github.com/hxx258456/fabric/protoutil"
 )
 
 // DeserializersManager is a support interface to

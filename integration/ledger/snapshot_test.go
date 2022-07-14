@@ -21,16 +21,16 @@ import (
 	"time"
 
 	docker "github.com/fsouza/go-dockerclient"
-	cb "github.com/hyperledger/fabric-protos-go/common"
-	ab "github.com/hyperledger/fabric-protos-go/orderer"
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/core/ledger/util"
-	"github.com/hyperledger/fabric/integration/chaincode/kvexecutor"
-	"github.com/hyperledger/fabric/integration/nwo"
-	"github.com/hyperledger/fabric/integration/nwo/commands"
-	"github.com/hyperledger/fabric/integration/nwo/runner"
-	"github.com/hyperledger/fabric/integration/pvtdata/marblechaincodeutil"
-	"github.com/hyperledger/fabric/protoutil"
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
+	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/core/ledger/util"
+	"github.com/hxx258456/fabric/integration/chaincode/kvexecutor"
+	"github.com/hxx258456/fabric/integration/nwo"
+	"github.com/hxx258456/fabric/integration/nwo/commands"
+	"github.com/hxx258456/fabric/integration/nwo/runner"
+	"github.com/hxx258456/fabric/integration/pvtdata/marblechaincodeutil"
+	"github.com/hxx258456/fabric/protoutil"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gbytes"
@@ -291,7 +291,7 @@ var _ = Describe("Snapshot Generation and Bootstrap", func() {
 			cc2 := nwo.Chaincode{
 				Name:            "kvexecutor",
 				Version:         "1.0",
-				Path:            components.Build("github.com/hyperledger/fabric/integration/chaincode/kvexecutor/cmd"),
+				Path:            components.Build("github.com/hxx258456/fabric/integration/chaincode/kvexecutor/cmd"),
 				Lang:            "binary",
 				SignaturePolicy: `OR ('Org1MSP.member','Org2MSP.member', 'Org3MSP.member', 'Org4MSP.member')`,
 				PackageFile:     filepath.Join(setup.testDir, "kvexecutor20.tar.gz"),
@@ -314,7 +314,7 @@ var _ = Describe("Snapshot Generation and Bootstrap", func() {
 			newlifecycleChaincode = nwo.Chaincode{
 				Name:              "marblesp",
 				Version:           "1.0",
-				Path:              components.Build("github.com/hyperledger/fabric/integration/chaincode/marbles_private/cmd"),
+				Path:              components.Build("github.com/hxx258456/fabric/integration/chaincode/marbles_private/cmd"),
 				Lang:              "binary",
 				PackageFile:       filepath.Join(setup.testDir, "marbles-pvtdata.tar.gz"),
 				Label:             "marbles-private-20",

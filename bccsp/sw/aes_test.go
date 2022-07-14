@@ -28,8 +28,8 @@ bccsp/sw/aes_test.go 国密对应后废弃
 // 	mrand "math/rand"
 // 	"testing"
 
-// 	"github.com/hyperledger/fabric/bccsp"
-// 	"github.com/hyperledger/fabric/bccsp/mocks"
+// 	"github.com/hxx258456/fabric/bccsp"
+// 	"github.com/hxx258456/fabric/bccsp/mocks"
 // 	"github.com/stretchr/testify/assert"
 // )
 

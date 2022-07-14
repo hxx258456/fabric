@@ -9,9 +9,9 @@ package inquire
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric-protos-go/msp"
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/msp"
+	"github.com/hxx258456/fabric/common/policies"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/stretchr/testify/require"
 )
 

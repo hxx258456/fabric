@@ -49,7 +49,7 @@ Specify a list of packages (separated by space), for example:
 
 ::
 
-    export TEST_PKGS="github.com/hyperledger/fabric/core/ledger/..."
+    export TEST_PKGS="github.com/hxx258456/fabric/core/ledger/..."
     make unit-test
 
 To run a specific test use the ``-run RE`` flag where RE is a regular
@@ -69,7 +69,7 @@ Running Node.js Client SDK Unit Tests
 You must also run the Node.js unit tests to ensure that the Node.js
 client SDK is not broken by your changes. To run the Node.js unit tests,
 follow the instructions
-`here <https://github.com/hyperledger/fabric-sdk-node/blob/main/README.md>`__.
+`here <https://github.com/hxx258456/fabric-sdk-node/blob/main/README.md>`__.
 
 Configuration
 -------------

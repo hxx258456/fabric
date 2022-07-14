@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/hyperledger/fabric/common/ledger/testutil"
+	"github.com/hxx258456/fabric/common/ledger/testutil"
 	"github.com/stretchr/testify/require"
 )
 

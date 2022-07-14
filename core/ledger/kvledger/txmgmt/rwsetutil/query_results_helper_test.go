@@ -12,8 +12,8 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-protos-go/ledger/rwset/kvrwset"
-	"github.com/hyperledger/fabric/core/ledger/internal/version"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset/kvrwset"
+	"github.com/hxx258456/fabric/core/ledger/internal/version"
 	"github.com/stretchr/testify/require"
 )
 

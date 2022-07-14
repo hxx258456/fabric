@@ -10,8 +10,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/internal/pkg/gateway/commit/mocks"
+	"github.com/hxx258456/fabric/core/ledger"
+	"github.com/hxx258456/fabric/internal/pkg/gateway/commit/mocks"
 	"github.com/stretchr/testify/require"
 )
 

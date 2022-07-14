@@ -10,10 +10,10 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/bccsp/sw"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
+	peer "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/bccsp/sw"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/stretchr/testify/require"
 )
 

@@ -14,14 +14,14 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
-	cb "github.com/hyperledger/fabric-protos-go/common"
-	ab "github.com/hyperledger/fabric-protos-go/orderer"
-	"github.com/hyperledger/fabric/common/crypto"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/ledger/blockledger"
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/protoutil"
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
+	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
+	"github.com/hxx258456/fabric/common/crypto"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/ledger/blockledger"
+	"github.com/hxx258456/fabric/common/policies"
+	"github.com/hxx258456/fabric/common/util"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
 )
 

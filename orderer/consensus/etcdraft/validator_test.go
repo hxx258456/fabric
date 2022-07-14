@@ -15,14 +15,14 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	raftprotos "github.com/hyperledger/fabric-protos-go/orderer/etcdraft"
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/bccsp/sw"
-	"github.com/hyperledger/fabric/common/channelconfig"
-	"github.com/hyperledger/fabric/common/crypto/tlsgen"
-	"github.com/hyperledger/fabric/orderer/consensus/etcdraft"
-	"github.com/hyperledger/fabric/orderer/consensus/etcdraft/mocks"
-	consensusmocks "github.com/hyperledger/fabric/orderer/consensus/mocks"
+	raftprotos "github.com/hxx258456/fabric-protos-go-cc/orderer/etcdraft"
+	"github.com/hxx258456/fabric/bccsp"
+	"github.com/hxx258456/fabric/bccsp/sw"
+	"github.com/hxx258456/fabric/common/channelconfig"
+	"github.com/hxx258456/fabric/common/crypto/tlsgen"
+	"github.com/hxx258456/fabric/orderer/consensus/etcdraft"
+	"github.com/hxx258456/fabric/orderer/consensus/etcdraft/mocks"
+	consensusmocks "github.com/hxx258456/fabric/orderer/consensus/mocks"
 )
 
 func makeOrdererOrg(caCert []byte) *mocks.OrdererOrg {

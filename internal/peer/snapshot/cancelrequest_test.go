@@ -11,7 +11,7 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/ptypes/empty"
-	"github.com/hyperledger/fabric/internal/peer/snapshot/mock"
+	"github.com/hxx258456/fabric/internal/peer/snapshot/mock"
 	"github.com/onsi/gomega/gbytes"
 	"github.com/stretchr/testify/require"
 )

@@ -12,8 +12,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/hyperledger/fabric/bccsp/factory"
-	"github.com/hyperledger/fabric/core/config/configtest"
+	"github.com/hxx258456/fabric/bccsp/factory"
+	"github.com/hxx258456/fabric/core/config/configtest"
 	"github.com/stretchr/testify/require"
 )
 

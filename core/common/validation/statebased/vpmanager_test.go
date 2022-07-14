@@ -15,12 +15,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hyperledger/fabric-protos-go/ledger/rwset"
-	"github.com/hyperledger/fabric-protos-go/ledger/rwset/kvrwset"
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/common/policydsl"
-	validation "github.com/hyperledger/fabric/core/handlers/validation/api/state"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset/kvrwset"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/common/policydsl"
+	validation "github.com/hxx258456/fabric/core/handlers/validation/api/state"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
 )

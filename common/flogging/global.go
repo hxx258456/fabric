@@ -9,8 +9,8 @@ package flogging
 import (
 	"io"
 
+	"github.com/hxx258456/ccgo/grpc/grpclog"
 	"go.uber.org/zap/zapcore"
-	"google.golang.org/grpc/grpclog"
 )
 
 const (

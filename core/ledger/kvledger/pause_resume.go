@@ -7,8 +7,8 @@ SPDX-License-Identifier: Apache-2.0
 package kvledger
 
 import (
-	"github.com/hyperledger/fabric/common/ledger/util/leveldbhelper"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/msgs"
+	"github.com/hxx258456/fabric/common/ledger/util/leveldbhelper"
+	"github.com/hxx258456/fabric/core/ledger/kvledger/msgs"
 	"github.com/pkg/errors"
 )
 

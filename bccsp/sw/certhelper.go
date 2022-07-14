@@ -21,7 +21,7 @@ import (
 
 	"github.com/hxx258456/ccgo/sm2"
 	gx509 "github.com/hxx258456/ccgo/x509"
-	"github.com/hyperledger/fabric/bccsp"
+	"github.com/hxx258456/fabric/bccsp"
 )
 
 /*

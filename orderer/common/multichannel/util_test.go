@@ -9,18 +9,18 @@ package multichannel
 import (
 	"fmt"
 
-	cb "github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric/common/capabilities"
-	"github.com/hyperledger/fabric/common/channelconfig"
-	"github.com/hyperledger/fabric/common/configtx"
-	"github.com/hyperledger/fabric/core/config/configtest"
-	"github.com/hyperledger/fabric/internal/configtxgen/encoder"
-	"github.com/hyperledger/fabric/internal/configtxgen/genesisconfig"
-	"github.com/hyperledger/fabric/orderer/common/blockcutter"
-	"github.com/hyperledger/fabric/orderer/common/msgprocessor"
-	"github.com/hyperledger/fabric/orderer/common/types"
-	"github.com/hyperledger/fabric/orderer/consensus"
-	"github.com/hyperledger/fabric/protoutil"
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
+	"github.com/hxx258456/fabric/common/capabilities"
+	"github.com/hxx258456/fabric/common/channelconfig"
+	"github.com/hxx258456/fabric/common/configtx"
+	"github.com/hxx258456/fabric/core/config/configtest"
+	"github.com/hxx258456/fabric/internal/configtxgen/encoder"
+	"github.com/hxx258456/fabric/internal/configtxgen/genesisconfig"
+	"github.com/hxx258456/fabric/orderer/common/blockcutter"
+	"github.com/hxx258456/fabric/orderer/common/msgprocessor"
+	"github.com/hxx258456/fabric/orderer/common/types"
+	"github.com/hxx258456/fabric/orderer/consensus"
+	"github.com/hxx258456/fabric/protoutil"
 )
 
 type mockChainCluster struct {

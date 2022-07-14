@@ -7,22 +7,24 @@ SPDX-License-Identifier: Apache-2.0
 package signer
 
 import (
-	"crypto"
 	"crypto/ecdsa"
 	"crypto/rand"
 	"crypto/x509"
-	"encoding/asn1"
 	"encoding/pem"
 	"io/ioutil"
-	"math/big"
 	"strings"
 
-	"github.com/hyperledger/fabric-protos-go/msp"
-	"github.com/hyperledger/fabric/bccsp/utils"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/protoutil"
+	"gitee.com/zhaochuninhefei/gmgo/sm2"
+	"github.com/hxx258456/fabric-protos-go-cc/msp"
+	"github.com/hxx258456/fabric/bccsp/sw"
+	"github.com/hxx258456/fabric/common/util"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
 )
+
+/*
+cmd/common/signer/signer.go 貌似是MSP的签名器
+*/
 
 // Config holds the configuration for
 // creation of a Signer
@@ -97,6 +99,7 @@ func (si *Signer) Sign(msg []byte) ([]byte, error) {
 	return signECDSA(si.key, digest)
 }
 
+// 将未加密的pem文件转为sm2私钥
 func loadPrivateKey(file string) (*ecdsa.PrivateKey, error) {
 	b, err := ioutil.ReadFile(file)
 	if err != nil {
@@ -113,46 +116,59 @@ func loadPrivateKey(file string) (*ecdsa.PrivateKey, error) {
 	return key.(*ecdsa.PrivateKey), nil
 }
 
-// Based on crypto/tls/tls.go but modified for Fabric:
-func parsePrivateKey(der []byte) (crypto.PrivateKey, error) {
-	// OpenSSL 1.0.0 generates PKCS#8 keys.
-	if key, err := x509.ParsePKCS8PrivateKey(der); err == nil {
-		switch key := key.(type) {
-		// Fabric only supports ECDSA at the moment.
-		case *ecdsa.PrivateKey:
-			return key, nil
-		default:
-			return nil, errors.Errorf("found unknown private key type (%T) in PKCS#8 wrapping", key)
-		}
-	}
-
-	// OpenSSL ecparam generates SEC1 EC private keys for ECDSA.
-	key, err := x509.ParseECPrivateKey(der)
+func signSM2(k *sm2.PrivateKey, digest []byte) (signature []byte, err error) {
+	r, s, err := sm2.Sm2Sign(k, digest, nil, rand.Reader)
 	if err != nil {
-		return nil, errors.Errorf("failed to parse private key: %v", err)
+		return nil, err
 	}
-
-	return key, nil
-}
-
-func signECDSA(k *ecdsa.PrivateKey, digest []byte) (signature []byte, err error) {
-	r, s, err := ecdsa.Sign(rand.Reader, k, digest)
+	//s, err = utils.ToLowS(&k.PublicKey, s)
 	if err != nil {
 		return nil, err
 	}
 
-	s, err = utils.ToLowS(&k.PublicKey, s)
-	if err != nil {
-		return nil, err
-	}
-
-	return marshalECDSASignature(r, s)
+	return sw.MarshalSM2Signature(r, s)
 }
 
-func marshalECDSASignature(r, s *big.Int) ([]byte, error) {
-	return asn1.Marshal(ECDSASignature{r, s})
-}
+// // Based on crypto/tls/tls.go but modified for Fabric:
+// func parsePrivateKey(der []byte) (crypto.PrivateKey, error) {
+// 	// OpenSSL 1.0.0 generates PKCS#8 keys.
+// 	if key, err := x509.ParsePKCS8PrivateKey(der); err == nil {
+// 		switch key := key.(type) {
+// 		// Fabric only supports ECDSA at the moment.
+// 		case *ecdsa.PrivateKey:
+// 			return key, nil
+// 		default:
+// 			return nil, errors.Errorf("found unknown private key type (%T) in PKCS#8 wrapping", key)
+// 		}
+// 	}
 
-type ECDSASignature struct {
-	R, S *big.Int
-}
+// 	// OpenSSL ecparam generates SEC1 EC private keys for ECDSA.
+// 	key, err := x509.ParseECPrivateKey(der)
+// 	if err != nil {
+// 		return nil, errors.Errorf("failed to parse private key: %v", err)
+// 	}
+
+// 	return key, nil
+// }
+
+// func signECDSA(k *ecdsa.PrivateKey, digest []byte) (signature []byte, err error) {
+// 	r, s, err := ecdsa.Sign(rand.Reader, k, digest)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// 	s, err = utils.ToLowS(&k.PublicKey, s)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// 	return marshalECDSASignature(r, s)
+// }
+
+// func marshalECDSASignature(r, s *big.Int) ([]byte, error) {
+// 	return asn1.Marshal(ECDSASignature{r, s})
+// }
+
+// type ECDSASignature struct {
+// 	R, S *big.Int
+// }

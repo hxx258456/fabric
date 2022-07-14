@@ -13,8 +13,8 @@ import (
 	"os"
 	"reflect"
 
-	"github.com/hyperledger/fabric/internal/fileutil"
-	"github.com/hyperledger/fabric/internal/ledgerutil/models"
+	"github.com/hxx258456/fabric/internal/fileutil"
+	"github.com/hxx258456/fabric/internal/ledgerutil/models"
 	"github.com/pkg/errors"
 )
 

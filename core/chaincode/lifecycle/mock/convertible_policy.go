@@ -4,9 +4,10 @@ package mock
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric/msp"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
+
+	"github.com/hxx258456/fabric/msp"
+	"github.com/hxx258456/fabric/protoutil"
 )
 
 type ConvertiblePolicy struct {

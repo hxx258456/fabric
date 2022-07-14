@@ -4,7 +4,7 @@ package mock
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb"
+	"github.com/hxx258456/fabric/core/ledger/kvledger/txmgmt/statedb"
 )
 
 type ChannelInfoProvider struct {

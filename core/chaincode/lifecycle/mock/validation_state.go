@@ -4,7 +4,7 @@ package mock
 import (
 	"sync"
 
-	validation "github.com/hyperledger/fabric/core/handlers/validation/api/state"
+	validation "github.com/hxx258456/fabric/core/handlers/validation/api/state"
 )
 
 type ValidationState struct {

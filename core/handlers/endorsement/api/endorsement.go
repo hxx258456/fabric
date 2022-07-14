@@ -7,7 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 package endorsement
 
 import (
-	"github.com/hyperledger/fabric-protos-go/peer"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
 )
 
 // Argument defines the argument for endorsement

@@ -4,7 +4,7 @@ package mock
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/msp"
+	"github.com/hxx258456/fabric/msp"
 )
 
 type IdentityDeserializerFactory struct {

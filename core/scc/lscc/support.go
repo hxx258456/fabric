@@ -7,12 +7,12 @@ SPDX-License-Identifier: Apache-2.0
 package lscc
 
 import (
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/common/cauthdsl"
-	"github.com/hyperledger/fabric/common/policydsl"
-	"github.com/hyperledger/fabric/core/common/ccprovider"
-	"github.com/hyperledger/fabric/msp"
-	"github.com/hyperledger/fabric/protoutil"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/common/cauthdsl"
+	"github.com/hxx258456/fabric/common/policydsl"
+	"github.com/hxx258456/fabric/core/common/ccprovider"
+	"github.com/hxx258456/fabric/msp"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
 )
 

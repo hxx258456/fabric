@@ -16,27 +16,27 @@ import (
 
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/timestamp"
-	cp "github.com/hyperledger/fabric-protos-go/common"
-	dp "github.com/hyperledger/fabric-protos-go/discovery"
-	pb "github.com/hyperledger/fabric-protos-go/gateway"
-	"github.com/hyperledger/fabric-protos-go/gossip"
-	"github.com/hyperledger/fabric-protos-go/msp"
-	ab "github.com/hyperledger/fabric-protos-go/orderer"
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/common/crypto/tlsgen"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/flogging/mock"
-	"github.com/hyperledger/fabric/common/ledger"
-	"github.com/hyperledger/fabric/gossip/api"
-	"github.com/hyperledger/fabric/gossip/common"
-	gdiscovery "github.com/hyperledger/fabric/gossip/discovery"
-	"github.com/hyperledger/fabric/internal/pkg/comm"
-	"github.com/hyperledger/fabric/internal/pkg/gateway/commit"
-	"github.com/hyperledger/fabric/internal/pkg/gateway/config"
-	ledgermocks "github.com/hyperledger/fabric/internal/pkg/gateway/ledger/mocks"
-	"github.com/hyperledger/fabric/internal/pkg/gateway/mocks"
-	idmocks "github.com/hyperledger/fabric/internal/pkg/identity/mocks"
-	"github.com/hyperledger/fabric/protoutil"
+	cp "github.com/hxx258456/fabric-protos-go-cc/common"
+	dp "github.com/hxx258456/fabric-protos-go-cc/discovery"
+	pb "github.com/hxx258456/fabric-protos-go-cc/gateway"
+	"github.com/hxx258456/fabric-protos-go-cc/gossip"
+	"github.com/hxx258456/fabric-protos-go-cc/msp"
+	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/common/crypto/tlsgen"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/flogging/mock"
+	"github.com/hxx258456/fabric/common/ledger"
+	"github.com/hxx258456/fabric/gossip/api"
+	"github.com/hxx258456/fabric/gossip/common"
+	gdiscovery "github.com/hxx258456/fabric/gossip/discovery"
+	"github.com/hxx258456/fabric/internal/pkg/comm"
+	"github.com/hxx258456/fabric/internal/pkg/gateway/commit"
+	"github.com/hxx258456/fabric/internal/pkg/gateway/config"
+	ledgermocks "github.com/hxx258456/fabric/internal/pkg/gateway/ledger/mocks"
+	"github.com/hxx258456/fabric/internal/pkg/gateway/mocks"
+	idmocks "github.com/hxx258456/fabric/internal/pkg/identity/mocks"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/require"
@@ -72,7 +72,7 @@ type commitFinder interface {
 	CommitFinder
 }
 
-//go:generate counterfeiter -o mocks/chaincodeeventsserver.go --fake-name ChaincodeEventsServer github.com/hyperledger/fabric-protos-go/gateway.Gateway_ChaincodeEventsServer
+//go:generate counterfeiter -o mocks/chaincodeeventsserver.go --fake-name ChaincodeEventsServer github.com/hxx258456/fabric-protos-go-cc/gateway.Gateway_ChaincodeEventsServer
 
 //go:generate counterfeiter -o mocks/aclchecker.go --fake-name ACLChecker . aclChecker
 type aclChecker interface {

@@ -19,10 +19,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Shopify/sarama"
+	"gitee.com/zhaochuninhefei/saramagm/sarama"
 	version "github.com/hashicorp/go-version"
-	"github.com/hyperledger/fabric/bccsp/factory"
-	"github.com/hyperledger/fabric/common/flogging"
+	"github.com/hxx258456/fabric/bccsp/factory"
+	"github.com/hxx258456/fabric/common/flogging"
 	"github.com/mitchellh/mapstructure"
 	"github.com/pkg/errors"
 	"gopkg.in/yaml.v2"

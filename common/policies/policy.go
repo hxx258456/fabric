@@ -7,15 +7,17 @@ SPDX-License-Identifier: Apache-2.0
 package policies
 
 import (
+	"encoding/pem"
 	"fmt"
 	"strings"
 
 	"github.com/golang/protobuf/proto"
-	cb "github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric-protos-go/msp"
-	"github.com/hyperledger/fabric/common/flogging"
-	mspi "github.com/hyperledger/fabric/msp"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/ccgo/x509"
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
+	msp "github.com/hxx258456/fabric-protos-go-cc/msp"
+	"github.com/hxx258456/fabric/common/flogging"
+	mspi "github.com/hxx258456/fabric/msp"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
 	"go.uber.org/zap/zapcore"
 )
@@ -392,4 +394,24 @@ func SignatureSetToValidIdentities(signedData []*protoutil.SignedData, identityD
 	}
 
 	return identities
+}
+
+func logMessageForSerializedIdentity(serializedIdentity []byte) (string, error) {
+	id := &msp.SerializedIdentity{}
+	err := proto.Unmarshal(serializedIdentity, id)
+	if err != nil {
+		return "", errors.Wrap(err, "unmarshaling serialized identity")
+	}
+	pemBlock, _ := pem.Decode(id.IdBytes)
+	if pemBlock == nil {
+		// not all identities are certificates so simply log the serialized
+		// identity bytes
+		return fmt.Sprintf("serialized-identity=%x", serializedIdentity), nil
+	}
+
+	cert, err := x509.ParseCertificate(pemBlock.Bytes)
+	if err != nil {
+		return "", errors.Wrap(err, "parsing certificate")
+	}
+	return fmt.Sprintf("certificate subject=%s serialnumber=%d", cert.Subject, cert.SerialNumber), nil
 }

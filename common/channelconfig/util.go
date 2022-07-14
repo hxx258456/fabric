@@ -12,13 +12,13 @@ import (
 	"math"
 
 	"github.com/golang/protobuf/proto"
-	cb "github.com/hyperledger/fabric-protos-go/common"
-	mspprotos "github.com/hyperledger/fabric-protos-go/msp"
-	ab "github.com/hyperledger/fabric-protos-go/orderer"
-	"github.com/hyperledger/fabric-protos-go/orderer/etcdraft"
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/protoutil"
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
+	mspprotos "github.com/hxx258456/fabric-protos-go-cc/msp"
+	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
+	"github.com/hxx258456/fabric-protos-go-cc/orderer/etcdraft"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/bccsp"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
 )
 
@@ -32,7 +32,7 @@ const (
 	// AdminsPolicyKey is the key used for the read policy
 	AdminsPolicyKey = "Admins"
 
-	defaultHashingAlgorithm = bccsp.SHA256
+	defaultHashingAlgorithm = bccsp.SM3
 
 	defaultBlockDataHashingStructureWidth = math.MaxUint32
 )

@@ -9,12 +9,12 @@ package discovery
 import (
 	"context"
 
-	"github.com/hyperledger/fabric-protos-go/discovery"
-	"github.com/hyperledger/fabric/cmd/common"
-	"github.com/hyperledger/fabric/cmd/common/comm"
-	"github.com/hyperledger/fabric/cmd/common/signer"
-	discoveryclient "github.com/hyperledger/fabric/discovery/client"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/discovery"
+	"github.com/hxx258456/fabric/cmd/common"
+	"github.com/hxx258456/fabric/cmd/common/comm"
+	"github.com/hxx258456/fabric/cmd/common/signer"
+	discoveryclient "github.com/hxx258456/fabric/discovery/client"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
 )
 

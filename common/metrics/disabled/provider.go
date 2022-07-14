@@ -7,7 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 package disabled
 
 import (
-	"github.com/hyperledger/fabric/common/metrics"
+	"github.com/hxx258456/fabric/common/metrics"
 )
 
 type Provider struct{}

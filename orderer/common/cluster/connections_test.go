@@ -10,9 +10,9 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/hyperledger/fabric/common/metrics/disabled"
-	"github.com/hyperledger/fabric/orderer/common/cluster"
-	"github.com/hyperledger/fabric/orderer/common/cluster/mocks"
+	"github.com/hxx258456/fabric/common/metrics/disabled"
+	"github.com/hxx258456/fabric/orderer/common/cluster"
+	"github.com/hxx258456/fabric/orderer/common/cluster/mocks"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"

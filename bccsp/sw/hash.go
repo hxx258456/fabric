@@ -19,7 +19,7 @@ package sw
 import (
 	"hash"
 
-	"github.com/hyperledger/fabric/bccsp"
+	"github.com/hxx258456/fabric/bccsp"
 )
 
 /*

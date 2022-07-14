@@ -11,9 +11,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hyperledger/fabric/common/metrics"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/status"
+	"github.com/hxx258456/fabric/common/metrics"
+
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/status"
 )
 
 type UnaryMetrics struct {

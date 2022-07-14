@@ -8,19 +8,21 @@ package grpclogging_test
 
 import (
 	"bytes"
-	"crypto/ecdsa"
-	"crypto/elliptic"
 	"crypto/rand"
-	"crypto/tls"
-	"crypto/x509"
 	"crypto/x509/pkix"
+
+	// "crypto/tls"
+	// "crypto/x509"
 	"encoding/pem"
 	"math/big"
 	"net"
 	"testing"
 	"time"
 
-	"github.com/hyperledger/fabric/common/grpclogging/testpb"
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/sm2"
+	"github.com/hxx258456/ccgo/x509"
+	"github.com/hxx258456/fabric/common/grpclogging/testpb"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )
@@ -103,7 +105,7 @@ func newTemplate(subjectCN string, hosts ...string) x509.Certificate {
 	return template
 }
 
-func pemEncode(derCert []byte, key *ecdsa.PrivateKey) (pemCert, pemKey []byte) {
+func pemEncode(derCert []byte, key *sm2.PrivateKey) (pemCert, pemKey []byte) {
 	certBuf := &bytes.Buffer{}
 	err := pem.Encode(certBuf, &pem.Block{Type: "CERTIFICATE", Bytes: derCert})
 	Expect(err).NotTo(HaveOccurred())
@@ -119,7 +121,7 @@ func pemEncode(derCert []byte, key *ecdsa.PrivateKey) (pemCert, pemKey []byte) {
 }
 
 func generateCA(subjectCN string, hosts ...string) (pemCert, pemKey []byte) {
-	privateKey, err := ecdsa.GenerateKey(elliptic.P384(), rand.Reader)
+	privateKey, err := sm2.GenerateKey(rand.Reader)
 	Expect(err).NotTo(HaveOccurred())
 	publicKey := privateKey.Public()
 
@@ -140,7 +142,7 @@ func issueCertificate(caCert, caKey []byte, subjectCN string, hosts ...string) (
 	ca, err := x509.ParseCertificate(tlsCert.Certificate[0])
 	Expect(err).NotTo(HaveOccurred())
 
-	privateKey, err := ecdsa.GenerateKey(elliptic.P384(), rand.Reader)
+	privateKey, err := sm2.GenerateKey(rand.Reader)
 	Expect(err).NotTo(HaveOccurred())
 	publicKey := privateKey.Public()
 

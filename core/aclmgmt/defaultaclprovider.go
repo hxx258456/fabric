@@ -9,12 +9,12 @@ package aclmgmt
 import (
 	"fmt"
 
-	"github.com/hyperledger/fabric-protos-go/common"
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/core/aclmgmt/resources"
-	"github.com/hyperledger/fabric/core/policy"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/common/policies"
+	"github.com/hxx258456/fabric/core/aclmgmt/resources"
+	"github.com/hxx258456/fabric/core/policy"
+	"github.com/hxx258456/fabric/protoutil"
 )
 
 const (

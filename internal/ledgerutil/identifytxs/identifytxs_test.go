@@ -13,8 +13,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/hyperledger/fabric/common/ledger/testutil"
-	"github.com/hyperledger/fabric/internal/ledgerutil/jsonrw"
+	"github.com/hxx258456/fabric/common/ledger/testutil"
+	"github.com/hxx258456/fabric/internal/ledgerutil/jsonrw"
 	"github.com/stretchr/testify/require"
 )
 

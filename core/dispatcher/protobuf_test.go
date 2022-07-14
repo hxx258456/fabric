@@ -10,8 +10,8 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	lc "github.com/hyperledger/fabric-protos-go/peer/lifecycle"
-	"github.com/hyperledger/fabric/core/dispatcher"
+	lc "github.com/hxx258456/fabric-protos-go-cc/peer/lifecycle"
+	"github.com/hxx258456/fabric/core/dispatcher"
 
 	"github.com/golang/protobuf/proto"
 )

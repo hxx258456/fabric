@@ -20,9 +20,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/bccsp/signer"
-	"github.com/hyperledger/fabric/bccsp/sw/mocks"
+	"github.com/hxx258456/fabric/bccsp"
+	"github.com/hxx258456/fabric/bccsp/signer"
+	"github.com/hxx258456/fabric/bccsp/sw/mocks"
 	"github.com/stretchr/testify/assert"
 
 	gmx509 "github.com/hxx258456/ccgo/x509"

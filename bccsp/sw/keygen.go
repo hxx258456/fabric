@@ -23,7 +23,7 @@ import (
 	"github.com/pkg/errors"
 
 	"github.com/hxx258456/ccgo/sm2"
-	"github.com/hyperledger/fabric/bccsp"
+	"github.com/hxx258456/fabric/bccsp"
 )
 
 /*

@@ -34,7 +34,7 @@ The ``fabric-contract-api`` provides the contract interface, a high level API fo
 Within Hyperledger Fabric, Smart Contracts are also known as Chaincode. Working with this API provides a high level entry point to writing business logic.
 Documentation of the Fabric Contract API for different languages can be found at the links below:
 
-  - `Go <https://godoc.org/github.com/hyperledger/fabric-contract-api-go/contractapi>`__
+  - `Go <https://godoc.org/github.com/hxx258456/fabric-contract-api-go/contractapi>`__
   - `Node.js <https://hyperledger.github.io/fabric-chaincode-node/{BRANCH}/api/>`__
   - `Java <https://hyperledger.github.io/fabric-chaincode-java/{BRANCH}/api/org/hyperledger/fabric/contract/package-summary.html>`__
 
@@ -85,7 +85,7 @@ Housekeeping
 ^^^^^^^^^^^^
 
 First, let's start with some housekeeping. As with every chaincode, it implements the
-`fabric-contract-api interface <https://godoc.org/github.com/hyperledger/fabric-contract-api-go/contractapi>`_,
+`fabric-contract-api interface <https://godoc.org/github.com/hxx258456/fabric-contract-api-go/contractapi>`_,
 so let's add the Go import statements for the necessary dependencies for our chaincode. We'll import the
 fabric contract api package and define our SmartContract.
 
@@ -97,7 +97,7 @@ fabric contract api package and define our SmartContract.
     "fmt"
     "encoding/json"
     "log"
-    "github.com/hyperledger/fabric-contract-api-go/contractapi"
+    "github.com/hxx258456/fabric-contract-api-go/contractapi"
   )
 
   // SmartContract provides functions for managing an Asset
@@ -339,7 +339,7 @@ return all of the assets on the ledger.
           to keep this tutorial as clear and straightforward as possible. In a
           real-world implementation, it is likely that packages will be segmented
           where a ``main`` package imports the chaincode package to allow for easy unit testing.
-          To see what this looks like, see the asset-transfer `Go chaincode <https://github.com/hyperledger/fabric-samples/tree/main/asset-transfer-basic/chaincode-go>`__
+          To see what this looks like, see the asset-transfer `Go chaincode <https://github.com/hxx258456/fabric-samples/tree/main/asset-transfer-basic/chaincode-go>`__
           in fabric-samples. If you look at ``assetTransfer.go``, you will see that
           it contains ``package main`` and imports ``package chaincode`` defined in ``smartcontract.go`` and
           located at ``fabric-samples/asset-transfer-basic/chaincode-go/chaincode/``.
@@ -350,7 +350,7 @@ Pulling it All Together
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Finally, we need to add the ``main`` function, which will call the
-`ContractChaincode.Start <https://godoc.org/github.com/hyperledger/fabric-contract-api-go/contractapi#ContractChaincode.Start>`_
+`ContractChaincode.Start <https://godoc.org/github.com/hxx258456/fabric-contract-api-go/contractapi#ContractChaincode.Start>`_
 function. Here's the whole chaincode program source.
 
 .. code:: go
@@ -362,7 +362,7 @@ function. Here's the whole chaincode program source.
     "fmt"
     "log"
 
-    "github.com/hyperledger/fabric-contract-api-go/contractapi"
+    "github.com/hxx258456/fabric-contract-api-go/contractapi"
   )
 
   // SmartContract provides functions for managing an Asset
@@ -635,7 +635,7 @@ Java provides several libraries to serialize an object into a JSON string. Howev
 The ``Gson`` library, for example, does not provide any consistency and should therefore be avoided for this application. On the other hand,
 the ``Genson`` library is a good fit for our purpose as it produces consistent JSON in alphabetic oreder.
 
-You can find a good exemplification of this practise on the `asset-transfer-basic <https://github.com/hyperledger/fabric-samples/tree/main/asset-transfer-basic>`_ chaincodes.
+You can find a good exemplification of this practise on the `asset-transfer-basic <https://github.com/hxx258456/fabric-samples/tree/main/asset-transfer-basic>`_ chaincodes.
 
 .. Note:: 
         This is only one of the many approaches which we think can be effective.

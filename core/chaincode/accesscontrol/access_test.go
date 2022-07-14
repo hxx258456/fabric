@@ -8,21 +8,22 @@ package accesscontrol
 
 import (
 	"context"
-	"crypto/tls"
-	"crypto/x509"
 	"fmt"
 	"net"
 	"testing"
 	"time"
 
 	"github.com/golang/protobuf/proto"
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/common/crypto/tlsgen"
-	"github.com/hyperledger/fabric/common/flogging/floggingtest"
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/credentials"
+	"github.com/hxx258456/ccgo/x509"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/common/crypto/tlsgen"
+
+	"github.com/hxx258456/fabric/common/flogging/floggingtest"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap/zapcore"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 )
 
 type ccSrv struct {

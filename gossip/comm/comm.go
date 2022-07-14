@@ -11,9 +11,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hyperledger/fabric/gossip/api"
-	"github.com/hyperledger/fabric/gossip/common"
-	"github.com/hyperledger/fabric/gossip/protoext"
+	"github.com/hxx258456/fabric/gossip/api"
+	"github.com/hxx258456/fabric/gossip/common"
+	"github.com/hxx258456/fabric/gossip/protoext"
 )
 
 // Comm is an object that enables to communicate with other peers

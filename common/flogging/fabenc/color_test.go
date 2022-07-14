@@ -9,7 +9,7 @@ package fabenc_test
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/common/flogging/fabenc"
+	"github.com/hxx258456/fabric/common/flogging/fabenc"
 	"github.com/stretchr/testify/require"
 )
 

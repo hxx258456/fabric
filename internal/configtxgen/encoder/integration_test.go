@@ -10,12 +10,12 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	cb "github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric/bccsp/sw"
-	"github.com/hyperledger/fabric/common/channelconfig"
-	"github.com/hyperledger/fabric/core/config/configtest"
-	"github.com/hyperledger/fabric/internal/configtxgen/encoder"
-	"github.com/hyperledger/fabric/internal/configtxgen/genesisconfig"
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
+	"github.com/hxx258456/fabric/bccsp/sw"
+	"github.com/hxx258456/fabric/common/channelconfig"
+	"github.com/hxx258456/fabric/core/config/configtest"
+	"github.com/hxx258456/fabric/internal/configtxgen/encoder"
+	"github.com/hxx258456/fabric/internal/configtxgen/genesisconfig"
 
 	"github.com/pkg/errors"
 )

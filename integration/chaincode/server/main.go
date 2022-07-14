@@ -12,8 +12,8 @@ import (
 	"io/ioutil"
 	"os"
 
+	"github.com/hxx258456/fabric/integration/chaincode/simple"
 	"github.com/hyperledger/fabric-chaincode-go/shim"
-	"github.com/hyperledger/fabric/integration/chaincode/simple"
 )
 
 type config struct {

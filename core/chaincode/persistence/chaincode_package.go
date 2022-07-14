@@ -17,7 +17,7 @@ import (
 	"path/filepath"
 	"regexp"
 
-	pb "github.com/hyperledger/fabric-protos-go/peer"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
 
 	"github.com/pkg/errors"
 )

@@ -9,10 +9,10 @@ package util
 import (
 	"context"
 	"crypto/sha256"
-	"crypto/x509"
 
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/peer"
+	"github.com/hxx258456/ccgo/grpc/credentials"
+	"github.com/hxx258456/ccgo/grpc/peer"
+	"github.com/hxx258456/ccgo/x509"
 )
 
 func ExtractRemoteAddress(ctx context.Context) string {

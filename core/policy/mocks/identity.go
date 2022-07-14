@@ -2,9 +2,9 @@
 
 package mocks
 
-import fabric_protos_gomsp "github.com/hyperledger/fabric-protos-go/msp"
+import fabric_protos_gomsp "github.com/hxx258456/fabric-protos-go-cc/msp"
 import mock "github.com/stretchr/testify/mock"
-import msp "github.com/hyperledger/fabric/msp"
+import msp "github.com/hxx258456/fabric/msp"
 
 import time "time"
 

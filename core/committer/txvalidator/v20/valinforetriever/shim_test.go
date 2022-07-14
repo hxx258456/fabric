@@ -9,12 +9,12 @@ package valinforetriever_test
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
+	peer "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/protoutil"
 
-	"github.com/hyperledger/fabric/core/committer/txvalidator/v20/valinforetriever"
-	"github.com/hyperledger/fabric/core/committer/txvalidator/v20/valinforetriever/mocks"
+	"github.com/hxx258456/fabric/core/committer/txvalidator/v20/valinforetriever"
+	"github.com/hxx258456/fabric/core/committer/txvalidator/v20/valinforetriever/mocks"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
 )

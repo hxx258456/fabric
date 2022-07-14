@@ -7,11 +7,11 @@ SPDX-License-Identifier: Apache-2.0
 package fabhttp
 
 import (
-	"crypto/tls"
-	"crypto/x509"
 	"io/ioutil"
 
-	"github.com/hyperledger/fabric/internal/pkg/comm"
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
+	"github.com/hxx258456/fabric/internal/pkg/comm"
 )
 
 type TLS struct {

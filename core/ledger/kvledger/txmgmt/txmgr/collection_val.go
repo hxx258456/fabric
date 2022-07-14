@@ -7,8 +7,8 @@ SPDX-License-Identifier: Apache-2.0
 package txmgr
 
 import (
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/core/ledger"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/core/ledger"
 )
 
 // collNameValidator validates the presence of a collection in a namespace

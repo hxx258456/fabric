@@ -9,21 +9,21 @@ package lifecycle_test
 import (
 	"fmt"
 
-	"github.com/hyperledger/fabric-protos-go/ledger/queryresult"
-	"github.com/hyperledger/fabric-protos-go/ledger/rwset/kvrwset"
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	lb "github.com/hyperledger/fabric-protos-go/peer/lifecycle"
-	"github.com/hyperledger/fabric/common/chaincode"
-	commonledger "github.com/hyperledger/fabric/common/ledger"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/chaincode/lifecycle"
-	"github.com/hyperledger/fabric/core/chaincode/lifecycle/mock"
-	"github.com/hyperledger/fabric/core/chaincode/persistence"
-	"github.com/hyperledger/fabric/core/container"
-	"github.com/hyperledger/fabric/core/container/externalbuilder"
-	"github.com/hyperledger/fabric/core/ledger"
-	ledgermock "github.com/hyperledger/fabric/core/ledger/mock"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/queryresult"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset/kvrwset"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	lb "github.com/hxx258456/fabric-protos-go-cc/peer/lifecycle"
+	"github.com/hxx258456/fabric/common/chaincode"
+	commonledger "github.com/hxx258456/fabric/common/ledger"
+	"github.com/hxx258456/fabric/common/util"
+	"github.com/hxx258456/fabric/core/chaincode/lifecycle"
+	"github.com/hxx258456/fabric/core/chaincode/lifecycle/mock"
+	"github.com/hxx258456/fabric/core/chaincode/persistence"
+	"github.com/hxx258456/fabric/core/container"
+	"github.com/hxx258456/fabric/core/container/externalbuilder"
+	"github.com/hxx258456/fabric/core/ledger"
+	ledgermock "github.com/hxx258456/fabric/core/ledger/mock"
+	"github.com/hxx258456/fabric/protoutil"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
@@ -111,27 +111,27 @@ var _ = Describe("Cache", func() {
 					},
 					Approved: true,
 					Hashes: []string{
-						string(util.ComputeSHA256([]byte("namespaces/metadata/chaincode-name#3"))),
-						string(util.ComputeSHA256([]byte("namespaces/fields/chaincode-name#3/Sequence"))),
-						string(util.ComputeSHA256([]byte("namespaces/fields/chaincode-name#3/EndorsementInfo"))),
-						string(util.ComputeSHA256([]byte("namespaces/fields/chaincode-name#3/ValidationInfo"))),
-						string(util.ComputeSHA256([]byte("namespaces/fields/chaincode-name#3/Collections"))),
-						string(util.ComputeSHA256([]byte("chaincode-sources/fields/chaincode-name#3/PackageID"))),
+						string(util.ComputeSHA256ButSm3([]byte("namespaces/metadata/chaincode-name#3"))),
+						string(util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name#3/Sequence"))),
+						string(util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name#3/EndorsementInfo"))),
+						string(util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name#3/ValidationInfo"))),
+						string(util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name#3/Collections"))),
+						string(util.ComputeSHA256ButSm3([]byte("chaincode-sources/fields/chaincode-name#3/PackageID"))),
 					},
 				},
 			},
 			InterestingHashes: map[string]string{
-				string(util.ComputeSHA256([]byte("namespaces/metadata/chaincode-name#3"))):                "chaincode-name",
-				string(util.ComputeSHA256([]byte("namespaces/fields/chaincode-name#3/Sequence"))):         "chaincode-name",
-				string(util.ComputeSHA256([]byte("namespaces/fields/chaincode-name#3/EndorsementInfo"))):  "chaincode-name",
-				string(util.ComputeSHA256([]byte("namespaces/fields/chaincode-name#3/ValidationInfo"))):   "chaincode-name",
-				string(util.ComputeSHA256([]byte("namespaces/fields/chaincode-name#3/Collections"))):      "chaincode-name",
-				string(util.ComputeSHA256([]byte("chaincode-sources/fields/chaincode-name#3/PackageID"))): "chaincode-name",
+				string(util.ComputeSHA256ButSm3([]byte("namespaces/metadata/chaincode-name#3"))):                "chaincode-name",
+				string(util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name#3/Sequence"))):         "chaincode-name",
+				string(util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name#3/EndorsementInfo"))):  "chaincode-name",
+				string(util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name#3/ValidationInfo"))):   "chaincode-name",
+				string(util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name#3/Collections"))):      "chaincode-name",
+				string(util.ComputeSHA256ButSm3([]byte("chaincode-sources/fields/chaincode-name#3/PackageID"))): "chaincode-name",
 			},
 		}
 
 		localChaincodes = map[string]*lifecycle.LocalChaincode{
-			string(util.ComputeSHA256(protoutil.MarshalOrPanic(&lb.StateData{
+			string(util.ComputeSHA256ButSm3(protoutil.MarshalOrPanic(&lb.StateData{
 				Type: &lb.StateData_String_{String_: "packageID"},
 			}))): {
 				References: map[string]map[string]*lifecycle.CachedChaincodeDefinition{
@@ -147,7 +147,7 @@ var _ = Describe("Cache", func() {
 					PackageID: "packageID",
 				},
 			},
-			string(util.ComputeSHA256(protoutil.MarshalOrPanic(&lb.StateData{
+			string(util.ComputeSHA256ButSm3(protoutil.MarshalOrPanic(&lb.StateData{
 				Type: &lb.StateData_String_{String_: "notinstalled-packageID"},
 			}))): {
 				References: map[string]map[string]*lifecycle.CachedChaincodeDefinition{
@@ -419,11 +419,11 @@ var _ = Describe("Cache", func() {
 			Expect(channelCache.Chaincodes["chaincode-name"].Definition.Sequence).To(Equal(int64(7)))
 			Expect(channelCache.Chaincodes["chaincode-name"].Approved).To(BeTrue())
 			Expect(channelCache.Chaincodes["chaincode-name"].Hashes).To(Equal([]string{
-				string(util.ComputeSHA256([]byte("namespaces/metadata/chaincode-name#7"))),
-				string(util.ComputeSHA256([]byte("namespaces/fields/chaincode-name#7/EndorsementInfo"))),
-				string(util.ComputeSHA256([]byte("namespaces/fields/chaincode-name#7/ValidationInfo"))),
-				string(util.ComputeSHA256([]byte("namespaces/fields/chaincode-name#7/Collections"))),
-				string(util.ComputeSHA256([]byte("chaincode-sources/fields/chaincode-name#7/PackageID"))),
+				string(util.ComputeSHA256ButSm3([]byte("namespaces/metadata/chaincode-name#7"))),
+				string(util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name#7/EndorsementInfo"))),
+				string(util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name#7/ValidationInfo"))),
+				string(util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name#7/Collections"))),
+				string(util.ComputeSHA256ButSm3([]byte("chaincode-sources/fields/chaincode-name#7/PackageID"))),
 			}))
 			for _, hash := range channelCache.Chaincodes["chaincode-name"].Hashes {
 				Expect(channelCache.InterestingHashes[hash]).To(Equal("chaincode-name"))
@@ -701,7 +701,7 @@ var _ = Describe("Cache", func() {
 			}
 
 			localChaincodes = map[string]*lifecycle.LocalChaincode{
-				string(util.ComputeSHA256(protoutil.MarshalOrPanic(&lb.StateData{
+				string(util.ComputeSHA256ButSm3(protoutil.MarshalOrPanic(&lb.StateData{
 					Type: &lb.StateData_String_{String_: "packageID"},
 				}))): {
 					References: map[string]map[string]*lifecycle.CachedChaincodeDefinition{
@@ -829,7 +829,7 @@ var _ = Describe("Cache", func() {
 			}
 
 			localChaincodes = map[string]*lifecycle.LocalChaincode{
-				string(util.ComputeSHA256(protoutil.MarshalOrPanic(&lb.StateData{
+				string(util.ComputeSHA256ButSm3(protoutil.MarshalOrPanic(&lb.StateData{
 					Type: &lb.StateData_String_{String_: "packageID"},
 				}))): {
 					References: map[string]map[string]*lifecycle.CachedChaincodeDefinition{
@@ -840,7 +840,7 @@ var _ = Describe("Cache", func() {
 					},
 				},
 
-				string(util.ComputeSHA256(protoutil.MarshalOrPanic(&lb.StateData{
+				string(util.ComputeSHA256ButSm3(protoutil.MarshalOrPanic(&lb.StateData{
 					Type: &lb.StateData_String_{String_: "anotherPackageID"},
 				}))): {
 					References: map[string]map[string]*lifecycle.CachedChaincodeDefinition{
@@ -1025,7 +1025,7 @@ var _ = Describe("Cache", func() {
 				BeforeEach(func() {
 					trigger.StateUpdates["_lifecycle"].PublicUpdates = nil
 					trigger.StateUpdates["_lifecycle"].CollHashUpdates["_implicit_org_my-mspid"] = []*kvrwset.KVWriteHash{
-						{KeyHash: util.ComputeSHA256([]byte("namespaces/fields/chaincode-name#3/EndorsementInfo"))},
+						{KeyHash: util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name#3/EndorsementInfo"))},
 					}
 				})
 
@@ -1040,7 +1040,7 @@ var _ = Describe("Cache", func() {
 				BeforeEach(func() {
 					trigger.StateUpdates["_lifecycle"].PublicUpdates = nil
 					trigger.StateUpdates["_lifecycle"].CollHashUpdates["_implicit_org_other-mspid"] = []*kvrwset.KVWriteHash{
-						{KeyHash: util.ComputeSHA256([]byte("namespaces/fields/chaincode-name#3/EndorsementInfo"))},
+						{KeyHash: util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name#3/EndorsementInfo"))},
 					}
 				})
 
@@ -1056,7 +1056,7 @@ var _ = Describe("Cache", func() {
 				BeforeEach(func() {
 					trigger.StateUpdates["_lifecycle"].PublicUpdates = nil
 					trigger.StateUpdates["_lifecycle"].CollHashUpdates["random-collection"] = []*kvrwset.KVWriteHash{
-						{KeyHash: util.ComputeSHA256([]byte("namespaces/fields/chaincode-name#3/EndorsementInfo"))},
+						{KeyHash: util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name#3/EndorsementInfo"))},
 					}
 				})
 
@@ -1155,7 +1155,7 @@ var _ = Describe("Cache", func() {
 							CollHashUpdates: map[string][]*kvrwset.KVWriteHash{
 								"_implicit_org_my-mspid": {
 									{
-										KeyHash: util.ComputeSHA256([]byte("namespaces/fields/chaincode-name-1#1/EndorsementInfo")),
+										KeyHash: util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name-1#1/EndorsementInfo")),
 									},
 								},
 							},
@@ -1302,7 +1302,7 @@ var _ = Describe("Cache", func() {
 					definitionTrigger.StateUpdates["_lifecycle"].PublicUpdates[0].Key = "namespaces/fields/chaincode-name/Sequence"
 
 					approvalTrigger.StateUpdates["_lifecycle"].CollHashUpdates["_implicit_org_my-mspid"] = []*kvrwset.KVWriteHash{
-						{KeyHash: util.ComputeSHA256([]byte("namespaces/fields/chaincode-name#4/EndorsementInfo"))},
+						{KeyHash: util.ComputeSHA256ButSm3([]byte("namespaces/fields/chaincode-name#4/EndorsementInfo"))},
 					}
 				})
 
@@ -1332,7 +1332,7 @@ var _ = Describe("Cache", func() {
 					}
 
 					localChaincodes = map[string]*lifecycle.LocalChaincode{
-						string(util.ComputeSHA256(protoutil.MarshalOrPanic(&lb.StateData{
+						string(util.ComputeSHA256ButSm3(protoutil.MarshalOrPanic(&lb.StateData{
 							Type: &lb.StateData_String_{String_: "packageID"},
 						}))): {
 							References: map[string]map[string]*lifecycle.CachedChaincodeDefinition{
@@ -1357,7 +1357,7 @@ var _ = Describe("Cache", func() {
 				Context("by an approve event with an empty package ID for the current sequence number", func() {
 					BeforeEach(func() {
 						approvalTrigger.StateUpdates["_lifecycle"].CollHashUpdates["_implicit_org_my-mspid"] = []*kvrwset.KVWriteHash{
-							{KeyHash: util.ComputeSHA256([]byte("chaincode-sources/fields/chaincode-name#3/PackageID"))},
+							{KeyHash: util.ComputeSHA256ButSm3([]byte("chaincode-sources/fields/chaincode-name#3/PackageID"))},
 						}
 					})
 
@@ -1378,7 +1378,7 @@ var _ = Describe("Cache", func() {
 				Context("by approve and commit events with an empty package ID for the next sequence number", func() {
 					BeforeEach(func() {
 						approvalTrigger.StateUpdates["_lifecycle"].CollHashUpdates["_implicit_org_my-mspid"] = []*kvrwset.KVWriteHash{
-							{KeyHash: util.ComputeSHA256([]byte("chaincode-sources/fields/chaincode-name#4/PackageID"))},
+							{KeyHash: util.ComputeSHA256ButSm3([]byte("chaincode-sources/fields/chaincode-name#4/PackageID"))},
 						}
 
 						definitionTrigger.StateUpdates["_lifecycle"].PublicUpdates[0].Key = "namespaces/fields/chaincode-name/Sequence"

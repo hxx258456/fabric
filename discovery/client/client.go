@@ -13,13 +13,13 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/hyperledger/fabric-protos-go/peer"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-protos-go/discovery"
-	"github.com/hyperledger/fabric-protos-go/msp"
-	"github.com/hyperledger/fabric/discovery/protoext"
-	gprotoext "github.com/hyperledger/fabric/gossip/protoext"
+	discovery "github.com/hxx258456/fabric-protos-go-cc/discovery"
+	msp "github.com/hxx258456/fabric-protos-go-cc/msp"
+	"github.com/hxx258456/fabric/discovery/protoext"
+	gprotoext "github.com/hxx258456/fabric/gossip/protoext"
 	"github.com/pkg/errors"
 )
 

@@ -14,10 +14,10 @@ import (
 	"os"
 	"plugin"
 
-	"github.com/hyperledger/fabric/core/handlers/auth"
-	"github.com/hyperledger/fabric/core/handlers/decoration"
-	endorsement "github.com/hyperledger/fabric/core/handlers/endorsement/api"
-	validation "github.com/hyperledger/fabric/core/handlers/validation/api"
+	"github.com/hxx258456/fabric/core/handlers/auth"
+	"github.com/hxx258456/fabric/core/handlers/decoration"
+	endorsement "github.com/hxx258456/fabric/core/handlers/endorsement/api"
+	validation "github.com/hxx258456/fabric/core/handlers/validation/api"
 )
 
 // loadPlugin loads a pluggable handler

@@ -12,15 +12,15 @@ import (
 	"io"
 	"net"
 
-	"github.com/hyperledger/fabric/common/grpcmetrics"
-	"github.com/hyperledger/fabric/common/grpcmetrics/fakes"
-	"github.com/hyperledger/fabric/common/grpcmetrics/testpb"
-	"github.com/hyperledger/fabric/common/metrics/metricsfakes"
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/codes"
+	"github.com/hxx258456/ccgo/grpc/status"
+	"github.com/hxx258456/fabric/common/grpcmetrics"
+	"github.com/hxx258456/fabric/common/grpcmetrics/fakes"
+	"github.com/hxx258456/fabric/common/grpcmetrics/testpb"
+	"github.com/hxx258456/fabric/common/metrics/metricsfakes"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
 var _ = Describe("Interceptor", func() {

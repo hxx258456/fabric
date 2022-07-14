@@ -13,7 +13,7 @@ import (
 	"math/big"
 
 	"github.com/golang/protobuf/proto"
-	cb "github.com/hyperledger/fabric-protos-go/common"
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/pkg/errors"
 )
 

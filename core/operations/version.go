@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/hyperledger/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/flogging"
 )
 
 type VersionInfoHandler struct {

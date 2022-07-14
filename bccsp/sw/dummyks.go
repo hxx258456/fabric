@@ -16,7 +16,7 @@ limitations under the License.
 package sw
 
 import (
-	"github.com/hyperledger/fabric/bccsp"
+	"github.com/hxx258456/fabric/bccsp"
 	"github.com/pkg/errors"
 )
 

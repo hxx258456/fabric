@@ -14,19 +14,19 @@ import (
 	"net"
 	"time"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/grpclogging"
-	"github.com/hyperledger/fabric/common/grpclogging/fakes"
-	"github.com/hyperledger/fabric/common/grpclogging/testpb"
+	grpc "github.com/hxx258456/ccgo/grpc"
+	codes "github.com/hxx258456/ccgo/grpc/codes"
+	"github.com/hxx258456/ccgo/grpc/credentials"
+	status "github.com/hxx258456/ccgo/grpc/status"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/grpclogging"
+	"github.com/hxx258456/fabric/common/grpclogging/fakes"
+	"github.com/hxx258456/fabric/common/grpclogging/testpb"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"go.uber.org/zap/zaptest/observer"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/status"
 )
 
 var _ = Describe("Server", func() {

@@ -18,24 +18,24 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric-protos-go/ledger/queryresult"
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/bccsp/sw"
-	"github.com/hyperledger/fabric/common/ledger/testutil"
-	"github.com/hyperledger/fabric/common/metrics/disabled"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/chaincode/implicitcollection"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/core/ledger/cceventmgmt"
-	"github.com/hyperledger/fabric/core/ledger/confighistory/confighistorytest"
-	"github.com/hyperledger/fabric/core/ledger/internal/version"
-	kvledgermock "github.com/hyperledger/fabric/core/ledger/kvledger/mock"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/msgs"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb/statecouchdb"
-	"github.com/hyperledger/fabric/core/ledger/mock"
-	"github.com/hyperledger/fabric/internal/fileutil"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/queryresult"
+	peer "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/bccsp/sw"
+	"github.com/hxx258456/fabric/common/ledger/testutil"
+	"github.com/hxx258456/fabric/common/metrics/disabled"
+	"github.com/hxx258456/fabric/common/util"
+	"github.com/hxx258456/fabric/core/chaincode/implicitcollection"
+	"github.com/hxx258456/fabric/core/ledger"
+	"github.com/hxx258456/fabric/core/ledger/cceventmgmt"
+	"github.com/hxx258456/fabric/core/ledger/confighistory/confighistorytest"
+	"github.com/hxx258456/fabric/core/ledger/internal/version"
+	kvledgermock "github.com/hxx258456/fabric/core/ledger/kvledger/mock"
+	"github.com/hxx258456/fabric/core/ledger/kvledger/msgs"
+	"github.com/hxx258456/fabric/core/ledger/kvledger/txmgmt/statedb/statecouchdb"
+	"github.com/hxx258456/fabric/core/ledger/mock"
+	"github.com/hxx258456/fabric/internal/fileutil"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/stretchr/testify/require"
 )
 
@@ -568,7 +568,7 @@ func TestGenerateSnapshotErrors(t *testing.T) {
 		require.Error(t, err)
 		errStackTrace := fmt.Sprintf("%+v", err)
 		require.Contains(t, errStackTrace, "internal leveldb error while obtaining db iterator")
-		require.Contains(t, errStackTrace, "github.com/hyperledger/fabric/common/ledger/blkstorage")
+		require.Contains(t, errStackTrace, "github.com/hxx258456/fabric/common/ledger/blkstorage")
 	})
 
 	t.Run("config history mgr returns error", func(t *testing.T) {
@@ -578,7 +578,7 @@ func TestGenerateSnapshotErrors(t *testing.T) {
 		require.Error(t, err)
 		errStackTrace := fmt.Sprintf("%+v", err)
 		require.Contains(t, errStackTrace, "internal leveldb error while obtaining db iterator")
-		require.Contains(t, errStackTrace, "github.com/hyperledger/fabric/core/ledger/confighistory")
+		require.Contains(t, errStackTrace, "github.com/hxx258456/fabric/core/ledger/confighistory")
 	})
 
 	t.Run("statedb returns error", func(t *testing.T) {

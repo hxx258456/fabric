@@ -14,9 +14,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Shopify/sarama"
-	"github.com/hyperledger/fabric/bccsp/factory"
-	"github.com/hyperledger/fabric/orderer/mocks/util"
+	"gitee.com/zhaochuninhefei/saramagm/sarama"
+	"github.com/hxx258456/fabric/bccsp/factory"
+	"github.com/hxx258456/fabric/orderer/mocks/util"
 	"github.com/stretchr/testify/require"
 )
 
@@ -370,8 +370,8 @@ func TestBCCSPDecodeHookOverride(t *testing.T) {
 	err = config.EnhancedExactUnmarshal(&tc)
 	require.NoError(t, err, "failed to unmarshal")
 	require.NotNil(t, tc.BCCSP)
-	require.NotNil(t, tc.BCCSP.SW)
-	require.Equal(t, 1111, tc.BCCSP.SW.Security)
+	require.NotNil(t, tc.BCCSP.SwOpts)
+	require.Equal(t, 1111, tc.BCCSP.SwOpts.SecLevel)
 }
 
 func TestDurationDecode(t *testing.T) {

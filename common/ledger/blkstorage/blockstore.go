@@ -9,11 +9,11 @@ package blkstorage
 import (
 	"time"
 
-	"github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/common/ledger"
-	"github.com/hyperledger/fabric/common/ledger/snapshot"
-	"github.com/hyperledger/fabric/common/ledger/util/leveldbhelper"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
+	peer "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/common/ledger"
+	"github.com/hxx258456/fabric/common/ledger/snapshot"
+	"github.com/hxx258456/fabric/common/ledger/util/leveldbhelper"
 )
 
 // BlockStore - filesystem based implementation for `BlockStore`

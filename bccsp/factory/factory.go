@@ -9,8 +9,8 @@ package factory
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/common/flogging"
+	"github.com/hxx258456/fabric/bccsp"
+	"github.com/hxx258456/fabric/common/flogging"
 	"github.com/pkg/errors"
 )
 

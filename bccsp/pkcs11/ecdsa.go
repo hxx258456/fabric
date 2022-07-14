@@ -14,8 +14,8 @@ bccsp/pkcs11/ecdsa.go 国密对应后废弃
 // 	"crypto/ecdsa"
 // 	"fmt"
 
-// 	"github.com/hyperledger/fabric/bccsp"
-// 	"github.com/hyperledger/fabric/bccsp/utils"
+// 	"github.com/hxx258456/fabric/bccsp"
+// 	"github.com/hxx258456/fabric/bccsp/utils"
 // )
 
 // func (csp *impl) signECDSA(k ecdsaPrivateKey, digest []byte, opts bccsp.SignerOpts) ([]byte, error) {

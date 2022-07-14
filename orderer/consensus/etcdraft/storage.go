@@ -14,7 +14,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/hyperledger/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/flogging"
 	"github.com/pkg/errors"
 	"go.etcd.io/etcd/client/pkg/v3/fileutil"
 	raft "go.etcd.io/etcd/raft/v3"

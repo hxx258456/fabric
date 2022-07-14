@@ -11,10 +11,10 @@ import (
 	"strings"
 	"testing"
 
-	cb "github.com/hyperledger/fabric-protos-go/common"
-	mockpolicies "github.com/hyperledger/fabric/common/configtx/mock"
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/protoutil"
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
+	mockpolicies "github.com/hxx258456/fabric/common/configtx/mock"
+	"github.com/hxx258456/fabric/common/policies"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/stretchr/testify/require"
 )
 

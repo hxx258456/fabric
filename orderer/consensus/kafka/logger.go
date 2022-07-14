@@ -12,7 +12,7 @@ import (
 	"sync"
 
 	"github.com/Shopify/sarama"
-	"github.com/hyperledger/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/flogging"
 	"go.uber.org/zap"
 )
 

@@ -11,7 +11,7 @@ import (
 
 	"github.com/hxx258456/ccgo/sm3"
 
-	"github.com/hyperledger/fabric/bccsp"
+	"github.com/hxx258456/fabric/bccsp"
 	"github.com/pkg/errors"
 )
 

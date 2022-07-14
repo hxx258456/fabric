@@ -11,8 +11,8 @@ import (
 	"fmt"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-protos-go/gossip"
-	"github.com/hyperledger/fabric-protos-go/msp"
+	"github.com/hxx258456/fabric-protos-go-cc/gossip"
+	msp "github.com/hxx258456/fabric-protos-go-cc/msp"
 )
 
 // MemberToString prints Endpoint and PKI-id

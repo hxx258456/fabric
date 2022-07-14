@@ -7,9 +7,10 @@ import (
 	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	grpc "google.golang.org/grpc"
-	codes "google.golang.org/grpc/codes"
-	status "google.golang.org/grpc/status"
+	grpc "github.com/hxx258456/ccgo/grpc"
+	codes "github.com/hxx258456/ccgo/grpc/codes"
+	status "github.com/hxx258456/ccgo/grpc/status"
+	
 	math "math"
 )
 
@@ -104,7 +105,7 @@ const _ = grpc.SupportPackageIsVersion6
 
 // EchoServiceClient is the client API for EchoService service.
 //
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/github.com/hxx258456/ccgo/grpc#ClientConn.NewStream.
 type EchoServiceClient interface {
 	Echo(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
 	EchoStream(ctx context.Context, opts ...grpc.CallOption) (EchoService_EchoStreamClient, error)

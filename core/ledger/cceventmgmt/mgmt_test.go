@@ -10,10 +10,10 @@ import (
 	"os"
 	"testing"
 
-	"github.com/hyperledger/fabric-protos-go/ledger/rwset/kvrwset"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/core/ledger/mock"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset/kvrwset"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/core/ledger"
+	"github.com/hxx258456/fabric/core/ledger/mock"
 	"github.com/stretchr/testify/require"
 )
 

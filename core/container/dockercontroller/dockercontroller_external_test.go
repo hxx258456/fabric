@@ -7,7 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 package dockercontroller_test
 
 import (
-	"github.com/hyperledger/fabric/core/container/dockercontroller"
+	"github.com/hxx258456/fabric/core/container/dockercontroller"
 )
 
 //go:generate counterfeiter -o mock/platform_builder.go --fake-name PlatformBuilder . platformBuilder

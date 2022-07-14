@@ -9,10 +9,10 @@ package node
 import (
 	"path/filepath"
 
-	coreconfig "github.com/hyperledger/fabric/core/config"
-	"github.com/hyperledger/fabric/core/ledger/kvledger"
-	"github.com/hyperledger/fabric/core/transientstore"
-	"github.com/hyperledger/fabric/internal/peer/common"
+	coreconfig "github.com/hxx258456/fabric/core/config"
+	"github.com/hxx258456/fabric/core/ledger/kvledger"
+	"github.com/hxx258456/fabric/core/transientstore"
+	"github.com/hxx258456/fabric/internal/peer/common"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 )

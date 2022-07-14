@@ -18,9 +18,9 @@ import (
 	"regexp"
 	"strings"
 
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/core/chaincode/platforms/util"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/core/chaincode/platforms/util"
 )
 
 var logger = flogging.MustGetLogger("chaincode.platform.node")

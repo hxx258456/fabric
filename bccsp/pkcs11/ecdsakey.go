@@ -25,7 +25,7 @@ bccsp/pkcs11/ecdsakey.go 国密对应后废弃
 // 	"errors"
 // 	"fmt"
 
-// 	"github.com/hyperledger/fabric/bccsp"
+// 	"github.com/hxx258456/fabric/bccsp"
 // )
 
 // type ecdsaPrivateKey struct {

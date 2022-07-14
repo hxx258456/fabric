@@ -10,10 +10,10 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/core/endorser/mocks"
-	mocks2 "github.com/hyperledger/fabric/core/handlers/endorsement/builtin/mocks"
-	plgn "github.com/hyperledger/fabric/core/handlers/endorsement/plugin"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/core/endorser/mocks"
+	mocks2 "github.com/hxx258456/fabric/core/handlers/endorsement/builtin/mocks"
+	plgn "github.com/hxx258456/fabric/core/handlers/endorsement/plugin"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 )

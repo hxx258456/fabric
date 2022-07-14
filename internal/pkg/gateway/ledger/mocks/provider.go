@@ -4,7 +4,7 @@ package mocks
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/internal/pkg/gateway/ledger"
+	"github.com/hxx258456/fabric/internal/pkg/gateway/ledger"
 )
 
 type Provider struct {

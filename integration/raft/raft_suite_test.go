@@ -10,9 +10,9 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/integration"
-	"github.com/hyperledger/fabric/integration/nwo"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/integration"
+	"github.com/hxx258456/fabric/integration/nwo"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )

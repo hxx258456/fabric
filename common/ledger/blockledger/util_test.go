@@ -9,9 +9,9 @@ package blockledger_test
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric/common/deliver/mock"
-	"github.com/hyperledger/fabric/common/ledger/blockledger"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
+	"github.com/hxx258456/fabric/common/deliver/mock"
+	"github.com/hxx258456/fabric/common/ledger/blockledger"
 	"github.com/stretchr/testify/require"
 )
 

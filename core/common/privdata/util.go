@@ -8,11 +8,11 @@ package privdata
 
 import (
 	"github.com/golang/protobuf/proto"
-	mspp "github.com/hyperledger/fabric-protos-go/msp"
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/common/cauthdsl"
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/msp"
+	mspp "github.com/hxx258456/fabric-protos-go-cc/msp"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/common/cauthdsl"
+	"github.com/hxx258456/fabric/common/policies"
+	"github.com/hxx258456/fabric/msp"
 	"github.com/pkg/errors"
 )
 

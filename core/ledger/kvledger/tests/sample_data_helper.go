@@ -10,8 +10,8 @@ import (
 	"fmt"
 	"testing"
 
-	protopeer "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/core/ledger"
+	protopeer "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/core/ledger"
 	"github.com/stretchr/testify/require"
 )
 

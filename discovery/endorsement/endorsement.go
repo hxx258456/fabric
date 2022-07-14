@@ -9,18 +9,18 @@ package endorsement
 import (
 	"fmt"
 
-	"github.com/hyperledger/fabric-protos-go/peer"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
 
-	"github.com/hyperledger/fabric-protos-go/discovery"
-	"github.com/hyperledger/fabric-protos-go/msp"
-	"github.com/hyperledger/fabric/common/chaincode"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/graph"
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/common/policies/inquire"
-	"github.com/hyperledger/fabric/gossip/api"
-	"github.com/hyperledger/fabric/gossip/common"
-	gossipdiscovery "github.com/hyperledger/fabric/gossip/discovery"
+	discovery "github.com/hxx258456/fabric-protos-go-cc/discovery"
+	msp "github.com/hxx258456/fabric-protos-go-cc/msp"
+	"github.com/hxx258456/fabric/common/chaincode"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/graph"
+	"github.com/hxx258456/fabric/common/policies"
+	"github.com/hxx258456/fabric/common/policies/inquire"
+	"github.com/hxx258456/fabric/gossip/api"
+	"github.com/hxx258456/fabric/gossip/common"
+	gossipdiscovery "github.com/hxx258456/fabric/gossip/discovery"
 	"github.com/pkg/errors"
 )
 

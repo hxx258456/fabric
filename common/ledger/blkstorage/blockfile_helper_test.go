@@ -14,7 +14,7 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/ledger/testutil"
+	"github.com/hxx258456/fabric/common/ledger/testutil"
 	"github.com/stretchr/testify/require"
 )
 

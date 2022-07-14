@@ -12,11 +12,11 @@ import (
 	"crypto/x509"
 	"time"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/metrics"
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/keepalive"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/metrics"
 	"github.com/pkg/errors"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/keepalive"
 )
 
 // Configuration defaults

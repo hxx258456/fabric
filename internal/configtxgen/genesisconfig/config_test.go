@@ -10,9 +10,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/hyperledger/fabric-protos-go/orderer/etcdraft"
-	"github.com/hyperledger/fabric/common/viperutil"
-	"github.com/hyperledger/fabric/core/config/configtest"
+	"github.com/hxx258456/fabric-protos-go-cc/orderer/etcdraft"
+	"github.com/hxx258456/fabric/common/viperutil"
+	"github.com/hxx258456/fabric/core/config/configtest"
 	"github.com/stretchr/testify/require"
 )
 

@@ -10,10 +10,10 @@ import (
 	"testing"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/hyperledger/fabric/core/ledger/internal/version"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/privacyenabledstate"
-	btltestutil "github.com/hyperledger/fabric/core/ledger/pvtdatapolicy/testutil"
-	"github.com/hyperledger/fabric/core/ledger/util"
+	"github.com/hxx258456/fabric/core/ledger/internal/version"
+	"github.com/hxx258456/fabric/core/ledger/kvledger/txmgmt/privacyenabledstate"
+	btltestutil "github.com/hxx258456/fabric/core/ledger/pvtdatapolicy/testutil"
+	"github.com/hxx258456/fabric/core/ledger/util"
 	"github.com/stretchr/testify/require"
 )
 

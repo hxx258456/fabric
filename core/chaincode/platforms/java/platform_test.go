@@ -17,10 +17,10 @@ import (
 	"testing"
 	"time"
 
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/core/chaincode/platforms/java"
-	"github.com/hyperledger/fabric/core/chaincode/platforms/util"
-	"github.com/hyperledger/fabric/core/config/configtest"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/core/chaincode/platforms/java"
+	"github.com/hxx258456/fabric/core/chaincode/platforms/util"
+	"github.com/hxx258456/fabric/core/config/configtest"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/require"
 )

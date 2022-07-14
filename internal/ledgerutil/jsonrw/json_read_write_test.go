@@ -12,7 +12,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/hyperledger/fabric/internal/ledgerutil/models"
+	"github.com/hxx258456/fabric/internal/ledgerutil/models"
 	"github.com/stretchr/testify/require"
 )
 

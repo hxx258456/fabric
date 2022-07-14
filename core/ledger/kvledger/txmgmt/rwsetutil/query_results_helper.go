@@ -10,7 +10,7 @@ import (
 	"fmt"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-protos-go/ledger/rwset/kvrwset"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset/kvrwset"
 	"github.com/pkg/errors"
 )
 

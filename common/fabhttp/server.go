@@ -8,15 +8,15 @@ package fabhttp
 
 import (
 	"context"
-	"crypto/tls"
 	"net"
-	"net/http"
 	"os"
 	"time"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/middleware"
+	http "github.com/hxx258456/ccgo/gmhttp"
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/util"
+	"github.com/hxx258456/fabric/core/middleware"
 )
 
 //go:generate counterfeiter -o fakes/logger.go -fake-name Logger . Logger

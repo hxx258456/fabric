@@ -11,12 +11,12 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-protos-go/ledger/rwset"
-	"github.com/hyperledger/fabric-protos-go/ledger/rwset/kvrwset"
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/common/ledger/testutil"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset/kvrwset"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/common/ledger/testutil"
+	"github.com/hxx258456/fabric/core/ledger"
+	"github.com/hxx258456/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
 	"github.com/stretchr/testify/require"
 )
 

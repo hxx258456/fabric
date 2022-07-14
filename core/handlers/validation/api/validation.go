@@ -6,7 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 
 package validation
 
-import "github.com/hyperledger/fabric-protos-go/common"
+import "github.com/hxx258456/fabric-protos-go-cc/common"
 
 // Argument defines the argument for validation
 type Argument interface {

@@ -4,10 +4,10 @@ package mock
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/common/channelconfig"
-	"github.com/hyperledger/fabric/common/configtx"
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/msp"
+	"github.com/hxx258456/fabric/common/channelconfig"
+	"github.com/hxx258456/fabric/common/configtx"
+	"github.com/hxx258456/fabric/common/policies"
+	"github.com/hxx258456/fabric/msp"
 )
 
 type ChannelConfig struct {

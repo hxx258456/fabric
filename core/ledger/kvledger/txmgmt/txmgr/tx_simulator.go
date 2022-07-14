@@ -7,11 +7,11 @@ SPDX-License-Identifier: Apache-2.0
 package txmgr
 
 import (
-	commonledger "github.com/hyperledger/fabric/common/ledger"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statemetadata"
-	"github.com/hyperledger/fabric/core/ledger/util"
+	commonledger "github.com/hxx258456/fabric/common/ledger"
+	"github.com/hxx258456/fabric/core/ledger"
+	"github.com/hxx258456/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
+	"github.com/hxx258456/fabric/core/ledger/kvledger/txmgmt/statemetadata"
+	"github.com/hxx258456/fabric/core/ledger/util"
 	"github.com/pkg/errors"
 )
 

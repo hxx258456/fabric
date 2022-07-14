@@ -4,7 +4,7 @@ package mocks
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/msp"
+	"github.com/hxx258456/fabric/msp"
 )
 
 type OrdererOrg struct {

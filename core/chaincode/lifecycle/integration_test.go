@@ -7,16 +7,16 @@ SPDX-License-Identifier: Apache-2.0
 package lifecycle_test
 
 import (
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/queryresult"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	lb "github.com/hxx258456/fabric-protos-go-cc/peer/lifecycle"
+	"github.com/hxx258456/fabric/common/channelconfig"
+	"github.com/hxx258456/fabric/common/util"
+	"github.com/hxx258456/fabric/core/chaincode/lifecycle"
+	"github.com/hxx258456/fabric/core/chaincode/lifecycle/mock"
+	"github.com/hxx258456/fabric/core/dispatcher"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/hyperledger/fabric-chaincode-go/shim"
-	"github.com/hyperledger/fabric-protos-go/ledger/queryresult"
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	lb "github.com/hyperledger/fabric-protos-go/peer/lifecycle"
-	"github.com/hyperledger/fabric/common/channelconfig"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/chaincode/lifecycle"
-	"github.com/hyperledger/fabric/core/chaincode/lifecycle/mock"
-	"github.com/hyperledger/fabric/core/dispatcher"
-	"github.com/hyperledger/fabric/protoutil"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"

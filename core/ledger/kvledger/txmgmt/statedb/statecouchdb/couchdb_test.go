@@ -16,8 +16,8 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"github.com/hyperledger/fabric/common/metrics/disabled"
-	"github.com/hyperledger/fabric/core/ledger"
+	"github.com/hxx258456/fabric/common/metrics/disabled"
+	"github.com/hxx258456/fabric/core/ledger"
 	"github.com/stretchr/testify/require"
 )
 

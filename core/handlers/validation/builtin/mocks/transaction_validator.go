@@ -3,8 +3,8 @@
 package mocks
 
 import (
-	common "github.com/hyperledger/fabric-protos-go/common"
-	errors "github.com/hyperledger/fabric/common/errors"
+	common "github.com/hxx258456/fabric-protos-go-cc/common"
+	errors "github.com/hxx258456/fabric/common/errors"
 
 	mock "github.com/stretchr/testify/mock"
 )

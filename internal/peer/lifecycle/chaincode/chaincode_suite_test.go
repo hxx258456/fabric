@@ -11,11 +11,11 @@ import (
 	"os"
 	"testing"
 
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/internal/peer/common"
-	"github.com/hyperledger/fabric/internal/peer/lifecycle/chaincode"
-	msptesttools "github.com/hyperledger/fabric/msp/mgmt/testtools"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/internal/peer/common"
+	"github.com/hxx258456/fabric/internal/peer/lifecycle/chaincode"
+	msptesttools "github.com/hxx258456/fabric/msp/mgmt/testtools"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )

@@ -9,7 +9,7 @@ package rwsetutil
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric-protos-go/ledger/rwset/kvrwset"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset/kvrwset"
 	"github.com/stretchr/testify/require"
 )
 

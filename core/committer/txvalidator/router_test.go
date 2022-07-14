@@ -10,8 +10,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/hyperledger/fabric/core/committer/txvalidator"
-	"github.com/hyperledger/fabric/core/committer/txvalidator/mocks"
+	"github.com/hxx258456/fabric/core/committer/txvalidator"
+	"github.com/hxx258456/fabric/core/committer/txvalidator/mocks"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 )

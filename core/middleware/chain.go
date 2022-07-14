@@ -7,9 +7,9 @@ SPDX-License-Identifier: Apache-2.0
 package middleware
 
 import (
-	"net/http"
+	http "github.com/hxx258456/ccgo/gmhttp"
 
-	"github.com/hyperledger/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/flogging"
 )
 
 var logger = flogging.MustGetLogger("middleware")

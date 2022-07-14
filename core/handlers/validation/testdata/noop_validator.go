@@ -7,8 +7,8 @@ SPDX-License-Identifier: Apache-2.0
 package main
 
 import (
-	"github.com/hyperledger/fabric-protos-go/common"
-	validation "github.com/hyperledger/fabric/core/handlers/validation/api"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
+	validation "github.com/hxx258456/fabric/core/handlers/validation/api"
 )
 
 // NoOpValidator is used to test validation plugin infrastructure

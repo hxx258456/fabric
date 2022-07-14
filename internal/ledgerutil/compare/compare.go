@@ -19,10 +19,10 @@ import (
 	"strings"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/ledger/util"
-	"github.com/hyperledger/fabric/core/ledger/kvledger"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/privacyenabledstate"
-	"github.com/hyperledger/fabric/internal/fileutil"
+	"github.com/hxx258456/fabric/common/ledger/util"
+	"github.com/hxx258456/fabric/core/ledger/kvledger"
+	"github.com/hxx258456/fabric/core/ledger/kvledger/txmgmt/privacyenabledstate"
+	"github.com/hxx258456/fabric/internal/fileutil"
 	"github.com/pkg/errors"
 )
 

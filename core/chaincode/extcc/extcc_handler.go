@@ -9,13 +9,12 @@ package extcc
 import (
 	"context"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/core/container/ccintf"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/core/container/ccintf"
 	"github.com/pkg/errors"
 
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-
-	"google.golang.org/grpc"
+	"github.com/hxx258456/ccgo/grpc"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
 )
 
 var extccLogger = flogging.MustGetLogger("extcc")

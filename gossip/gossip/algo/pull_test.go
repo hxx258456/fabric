@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hyperledger/fabric/gossip/util"
+	"github.com/hxx258456/fabric/gossip/util"
 	"github.com/stretchr/testify/require"
 )
 

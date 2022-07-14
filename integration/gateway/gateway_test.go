@@ -16,13 +16,13 @@ import (
 
 	docker "github.com/fsouza/go-dockerclient"
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric-protos-go/gateway"
-	"github.com/hyperledger/fabric-protos-go/orderer"
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric-protos-go/peer/lifecycle"
-	"github.com/hyperledger/fabric/integration/nwo"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
+	gateway "github.com/hxx258456/fabric-protos-go-cc/gateway"
+	orderer "github.com/hxx258456/fabric-protos-go-cc/orderer"
+	peer "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric-protos-go-cc/peer/lifecycle"
+	"github.com/hxx258456/fabric/integration/nwo"
+	"github.com/hxx258456/fabric/protoutil"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/tedsuo/ifrit"
@@ -121,7 +121,7 @@ var _ = Describe("GatewayService", func() {
 		chaincode := nwo.Chaincode{
 			Name:            "gatewaycc",
 			Version:         "0.0",
-			Path:            components.Build("github.com/hyperledger/fabric/integration/chaincode/simple/cmd"),
+			Path:            components.Build("github.com/hxx258456/fabric/integration/chaincode/simple/cmd"),
 			Lang:            "binary",
 			PackageFile:     filepath.Join(testDir, "gatewaycc.tar.gz"),
 			Ctor:            `{"Args":[]}`,

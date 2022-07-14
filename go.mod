@@ -1,4 +1,4 @@
-module github.com/hyperledger/fabric
+module github.com/hxx258456/fabric
 
 go 1.17
 
@@ -20,8 +20,7 @@ require (
 	github.com/hashicorp/go-version v1.4.0
 	github.com/hyperledger/fabric-chaincode-go v0.0.0-20201119163726-f8ef75b17719
 	github.com/hyperledger/fabric-config v0.1.0
-	github.com/hyperledger/fabric-lib-go v1.0.0
-	github.com/hyperledger/fabric-protos-go v0.0.0-20220516090339-9685156fada6
+	github.com/hyperledger/fabric-protos-go v0.0.0-20220516090339-9685156fada6 // indirect
 	github.com/kr/pretty v0.3.0
 	github.com/miekg/pkcs11 v1.1.1
 	github.com/mitchellh/mapstructure v1.4.3
@@ -48,11 +47,18 @@ require (
 	gopkg.in/yaml.v2 v2.4.0
 )
 
-require github.com/hxx258456/ccgo v0.0.0-20220713014314-f372bff24eff
+require (
+	gitee.com/zhaochuninhefei/gmgo v0.0.17
+	gitee.com/zhaochuninhefei/saramagm v0.0.4
+	github.com/hxx258456/ccgo v0.0.0-20220713014314-f372bff24eff
+	github.com/hxx258456/fabric-protos-go-cc v0.0.0-20220714073103-d4d8369ba551
+	github.com/hyperledger/fabric-lib-go v1.0.0
+)
 
 require (
+	gitee.com/zhaochuninhefei/zcgolog v0.0.14 // indirect
 	github.com/Azure/go-ansiterm v0.0.0-20170929234023-d6e3b3328b78 // indirect
-	github.com/DataDog/zstd v1.4.5 // indirect
+	github.com/DataDog/zstd v1.5.0 // indirect
 	github.com/IBM/mathlib v0.0.0-20220112091634-0a7378db6912 // indirect
 	github.com/Microsoft/go-winio v0.5.0 // indirect
 	github.com/Microsoft/hcsshim v0.8.14 // indirect
@@ -71,12 +77,12 @@ require (
 	github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21 // indirect
 	github.com/eapache/queue v1.1.0 // indirect
 	github.com/felixge/httpsnoop v1.0.1 // indirect
-	github.com/frankban/quicktest v1.11.3 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/go-logfmt/logfmt v0.5.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/snappy v0.0.4 // indirect
+	github.com/google/go-cmp v0.5.7 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/hyperledger/fabric-amcl v0.0.0-20210603140002-2670f91851c8 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
@@ -84,7 +90,7 @@ require (
 	github.com/magiconair/properties v1.8.1 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
-	github.com/mattn/go-runewidth v0.0.4 // indirect
+	github.com/mattn/go-runewidth v0.0.12 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
 	github.com/mmcloughlin/addchain v0.4.0 // indirect
 	github.com/moby/sys/mount v0.2.0 // indirect
@@ -95,11 +101,12 @@ require (
 	github.com/opencontainers/image-spec v1.0.1 // indirect
 	github.com/opencontainers/runc v1.0.0-rc8 // indirect
 	github.com/pelletier/go-toml v1.8.0 // indirect
-	github.com/pierrec/lz4 v2.6.0+incompatible // indirect
+	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.34.0 // indirect
 	github.com/prometheus/procfs v0.7.3 // indirect
+	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/rogpeppe/go-internal v1.6.1 // indirect
 	github.com/rs/zerolog v1.27.0 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
@@ -111,14 +118,14 @@ require (
 	go.etcd.io/etcd/pkg/v3 v3.5.1 // indirect
 	go.opencensus.io v0.22.4 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
-	go.uber.org/multierr v1.6.0 // indirect
+	go.uber.org/multierr v1.7.0 // indirect
 	golang.org/x/mod v0.4.2 // indirect
 	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
 	golang.org/x/sys v0.0.0-20220310020820-b874c991c1a5 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
-	google.golang.org/genproto v0.0.0-20210602131652-f16073e35f0c // indirect
-	google.golang.org/protobuf v1.26.0 // indirect
+	google.golang.org/genproto v0.0.0-20210821163610-241b8fcbd6c8 // indirect
+	google.golang.org/protobuf v1.27.1 // indirect
 	gopkg.in/ini.v1 v1.51.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

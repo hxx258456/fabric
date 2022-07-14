@@ -11,12 +11,13 @@ import (
 	"strings"
 	"time"
 
+	"github.com/hxx258456/ccgo/grpc/peer"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/peer"
-	"google.golang.org/grpc/status"
+
+	grpc "github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/credentials"
+	status "github.com/hxx258456/ccgo/grpc/status"
 )
 
 // Leveler returns a zap level to use when logging from a grpc interceptor.

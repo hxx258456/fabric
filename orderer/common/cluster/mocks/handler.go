@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	orderer "github.com/hyperledger/fabric-protos-go/orderer"
+	orderer "github.com/hxx258456/fabric-protos-go-cc/orderer"
 	mock "github.com/stretchr/testify/mock"
 )
 

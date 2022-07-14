@@ -13,14 +13,14 @@ import (
 	"sync"
 	"time"
 
-	protosgossip "github.com/hyperledger/fabric-protos-go/gossip"
-	"github.com/hyperledger/fabric-protos-go/peer"
-	commonutil "github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/committer"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/gossip/metrics"
-	privdatacommon "github.com/hyperledger/fabric/gossip/privdata/common"
-	"github.com/hyperledger/fabric/gossip/util"
+	protosgossip "github.com/hxx258456/fabric-protos-go-cc/gossip"
+	peer "github.com/hxx258456/fabric-protos-go-cc/peer"
+	commonutil "github.com/hxx258456/fabric/common/util"
+	"github.com/hxx258456/fabric/core/committer"
+	"github.com/hxx258456/fabric/core/ledger"
+	"github.com/hxx258456/fabric/gossip/metrics"
+	privdatacommon "github.com/hxx258456/fabric/gossip/privdata/common"
+	"github.com/hxx258456/fabric/gossip/util"
 	"github.com/pkg/errors"
 )
 

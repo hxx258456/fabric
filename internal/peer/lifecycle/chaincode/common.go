@@ -13,10 +13,10 @@ import (
 	"io"
 
 	"github.com/golang/protobuf/proto"
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/common/policydsl"
-	"github.com/hyperledger/fabric/internal/peer/chaincode"
-	"github.com/hyperledger/fabric/protoutil"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/common/policydsl"
+	"github.com/hxx258456/fabric/internal/peer/chaincode"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
 )

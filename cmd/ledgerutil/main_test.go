@@ -56,7 +56,7 @@ func TestArguments(t *testing.T) {
 
 	// Build ledger binary
 	gt := gomega.NewWithT(t)
-	ledgerutil, err := gexec.Build("github.com/hyperledger/fabric/cmd/ledgerutil")
+	ledgerutil, err := gexec.Build("github.com/hxx258456/fabric/cmd/ledgerutil")
 	gt.Expect(err).NotTo(gomega.HaveOccurred())
 	defer gexec.CleanupBuildArtifacts()
 

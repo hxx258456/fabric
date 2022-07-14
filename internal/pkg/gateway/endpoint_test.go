@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hyperledger/fabric/common/crypto/tlsgen"
-	"github.com/hyperledger/fabric/gossip/common"
-	"github.com/hyperledger/fabric/internal/pkg/comm"
+	"github.com/hxx258456/fabric/common/crypto/tlsgen"
+	"github.com/hxx258456/fabric/gossip/common"
+	"github.com/hxx258456/fabric/internal/pkg/comm"
 	"github.com/stretchr/testify/require"
 )
 

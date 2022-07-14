@@ -15,12 +15,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric-protos-go/orderer"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/internal/pkg/identity"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
+	"github.com/hxx258456/fabric-protos-go-cc/orderer"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/util"
+	"github.com/hxx258456/fabric/internal/pkg/identity"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
 )

@@ -7,10 +7,10 @@ SPDX-License-Identifier: Apache-2.0
 package peer
 
 import (
-	"github.com/hyperledger/fabric/bccsp/sw"
-	"github.com/hyperledger/fabric/common/channelconfig"
-	configtxtest "github.com/hyperledger/fabric/common/configtx/test"
-	"github.com/hyperledger/fabric/core/ledger"
+	"github.com/hxx258456/fabric/bccsp/sw"
+	"github.com/hxx258456/fabric/common/channelconfig"
+	configtxtest "github.com/hxx258456/fabric/common/configtx/test"
+	"github.com/hxx258456/fabric/core/ledger"
 )
 
 func CreateMockChannel(p *Peer, cid string, resources channelconfig.Resources) error {

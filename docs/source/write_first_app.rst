@@ -123,7 +123,7 @@ If the chaincode package is successfully deployed, the end of the output in your
 
 Prepare the sample application
 ------------------------------
-Now, let's prepare the sample Asset Transfer `TypeScript application <https://github.com/hyperledger/fabric-samples/tree/main/asset-transfer-basic/application-gateway-typescript>`_
+Now, let's prepare the sample Asset Transfer `TypeScript application <https://github.com/hxx258456/fabric-samples/tree/main/asset-transfer-basic/application-gateway-typescript>`_
 that will be used to interact with the deployed smart contract.
 
 Open a new terminal, and navigate to the ``application-gateway-typescript`` directory.

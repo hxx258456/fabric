@@ -16,24 +16,24 @@ import (
 	"sync"
 
 	"github.com/golang/protobuf/proto"
-	cb "github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/common/channelconfig"
-	"github.com/hyperledger/fabric/common/configtx"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/ledger/blockledger"
-	"github.com/hyperledger/fabric/common/metrics"
-	"github.com/hyperledger/fabric/internal/pkg/identity"
-	"github.com/hyperledger/fabric/orderer/common/blockcutter"
-	"github.com/hyperledger/fabric/orderer/common/cluster"
-	"github.com/hyperledger/fabric/orderer/common/filerepo"
-	"github.com/hyperledger/fabric/orderer/common/follower"
-	"github.com/hyperledger/fabric/orderer/common/localconfig"
-	"github.com/hyperledger/fabric/orderer/common/msgprocessor"
-	"github.com/hyperledger/fabric/orderer/common/types"
-	"github.com/hyperledger/fabric/orderer/consensus"
-	"github.com/hyperledger/fabric/orderer/consensus/etcdraft"
-	"github.com/hyperledger/fabric/protoutil"
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
+	"github.com/hxx258456/fabric/bccsp"
+	"github.com/hxx258456/fabric/common/channelconfig"
+	"github.com/hxx258456/fabric/common/configtx"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/ledger/blockledger"
+	"github.com/hxx258456/fabric/common/metrics"
+	"github.com/hxx258456/fabric/internal/pkg/identity"
+	"github.com/hxx258456/fabric/orderer/common/blockcutter"
+	"github.com/hxx258456/fabric/orderer/common/cluster"
+	"github.com/hxx258456/fabric/orderer/common/filerepo"
+	"github.com/hxx258456/fabric/orderer/common/follower"
+	"github.com/hxx258456/fabric/orderer/common/localconfig"
+	"github.com/hxx258456/fabric/orderer/common/msgprocessor"
+	"github.com/hxx258456/fabric/orderer/common/types"
+	"github.com/hxx258456/fabric/orderer/consensus"
+	"github.com/hxx258456/fabric/orderer/consensus/etcdraft"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
 )
 
@@ -556,7 +556,7 @@ func (r *Registrar) newChain(configtx *cb.Envelope) {
 		return
 	}
 
-	// fixes https://github.com/hyperledger/fabric/issues/2931
+	// fixes https://github.com/hxx258456/fabric/issues/2931
 	if existingChain, exists := r.chains[channelName]; exists {
 		if _, isRaftChain := existingChain.Chain.(*etcdraft.Chain); isRaftChain {
 			logger.Infof("Channel %s already created, skipping its creation", channelName)

@@ -9,7 +9,7 @@ package deliver_test
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/common/deliver"
+	"github.com/hxx258456/fabric/common/deliver"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )

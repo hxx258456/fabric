@@ -26,9 +26,9 @@ import (
 	"time"
 
 	docker "github.com/fsouza/go-dockerclient"
-	"github.com/hyperledger/fabric/integration/nwo/commands"
-	"github.com/hyperledger/fabric/integration/nwo/fabricconfig"
-	"github.com/hyperledger/fabric/integration/nwo/runner"
+	"github.com/hxx258456/fabric/integration/nwo/commands"
+	"github.com/hxx258456/fabric/integration/nwo/fabricconfig"
+	"github.com/hxx258456/fabric/integration/nwo/runner"
 	ginkgo "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gexec"

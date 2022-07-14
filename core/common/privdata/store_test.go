@@ -9,11 +9,11 @@ package privdata
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/common/policydsl"
-	"github.com/hyperledger/fabric/core/common/privdata/mock"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/common/policydsl"
+	"github.com/hxx258456/fabric/core/common/privdata/mock"
+	"github.com/hxx258456/fabric/core/ledger"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
 )

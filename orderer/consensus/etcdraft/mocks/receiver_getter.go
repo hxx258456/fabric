@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	etcdraft "github.com/hyperledger/fabric/orderer/consensus/etcdraft"
+	etcdraft "github.com/hxx258456/fabric/orderer/consensus/etcdraft"
 	mock "github.com/stretchr/testify/mock"
 )
 

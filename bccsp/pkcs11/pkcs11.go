@@ -26,9 +26,9 @@ bccsp/pkcs11/pkcs11.go 国密对应后废弃
 // 	"sync"
 // 	"time"
 
-// 	"github.com/hyperledger/fabric/bccsp"
-// 	"github.com/hyperledger/fabric/bccsp/sw"
-// 	"github.com/hyperledger/fabric/common/flogging"
+// 	"github.com/hxx258456/fabric/bccsp"
+// 	"github.com/hxx258456/fabric/bccsp/sw"
+// 	"github.com/hxx258456/fabric/common/flogging"
 // 	"github.com/miekg/pkcs11"
 // 	"github.com/pkg/errors"
 // 	"go.uber.org/zap/zapcore"

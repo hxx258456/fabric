@@ -9,7 +9,7 @@ package etcdraft
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric-protos-go/orderer"
+	"github.com/hxx258456/fabric-protos-go-cc/orderer"
 )
 
 // Disseminator piggybacks cluster metadata, if any, to egress messages.

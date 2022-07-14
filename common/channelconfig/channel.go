@@ -10,11 +10,11 @@ import (
 	"fmt"
 	"math"
 
-	cb "github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/common/capabilities"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/msp"
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
+	"github.com/hxx258456/fabric/bccsp"
+	"github.com/hxx258456/fabric/common/capabilities"
+	"github.com/hxx258456/fabric/common/util"
+	"github.com/hxx258456/fabric/msp"
 	"github.com/pkg/errors"
 )
 
@@ -186,10 +186,12 @@ func (cc *ChannelConfig) Validate(channelCapabilities ChannelCapabilities) error
 
 func (cc *ChannelConfig) validateHashingAlgorithm() error {
 	switch cc.protos.HashingAlgorithm.Name {
-	case bccsp.SHA256:
-		cc.hashingAlgorithm = util.ComputeSHA256
-	case bccsp.SHA3_256:
-		cc.hashingAlgorithm = util.ComputeSHA3256
+	// case bccsp.SHA256:
+	// 	cc.hashingAlgorithm = util.ComputeSHA256
+	// case bccsp.SHA3_256:
+	// 	cc.hashingAlgorithm = util.ComputeSHA3256
+	case bccsp.SM3:
+		cc.hashingAlgorithm = util.ComputeSM3
 	default:
 		return fmt.Errorf("Unknown hashing algorithm type: %s", cc.protos.HashingAlgorithm.Name)
 	}

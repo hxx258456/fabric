@@ -28,7 +28,7 @@ bccsp/sw/ecdsakey.go 定义ecdsa公私钥结构体，并实现`bccsp.Key`(bccsp/
 // 	"errors"
 // 	"fmt"
 
-// 	"github.com/hyperledger/fabric/bccsp"
+// 	"github.com/hxx258456/fabric/bccsp"
 // )
 
 // type ECDSAPrivateKey struct {

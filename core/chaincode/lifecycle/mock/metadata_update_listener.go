@@ -4,7 +4,7 @@ package mock
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/common/chaincode"
+	"github.com/hxx258456/fabric/common/chaincode"
 )
 
 type MetadataUpdateListener struct {

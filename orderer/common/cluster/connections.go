@@ -10,8 +10,8 @@ import (
 	"crypto/x509"
 	"sync"
 
-	"github.com/hyperledger/fabric/common/crypto"
-	"github.com/hyperledger/fabric/common/metrics"
+	"github.com/hxx258456/fabric/common/crypto"
+	"github.com/hxx258456/fabric/common/metrics"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
 )

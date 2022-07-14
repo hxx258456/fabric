@@ -8,17 +8,17 @@ package tests
 
 import (
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric-protos-go/ledger/rwset"
-	"github.com/hyperledger/fabric-protos-go/msp"
-	protopeer "github.com/hyperledger/fabric-protos-go/peer"
-	configtxtest "github.com/hyperledger/fabric/common/configtx/test"
-	"github.com/hyperledger/fabric/common/crypto"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/policydsl"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/tests/fakes"
-	"github.com/hyperledger/fabric/internal/pkg/txflags"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset"
+	msp "github.com/hxx258456/fabric-protos-go-cc/msp"
+	protopeer "github.com/hxx258456/fabric-protos-go-cc/peer"
+	configtxtest "github.com/hxx258456/fabric/common/configtx/test"
+	"github.com/hxx258456/fabric/common/crypto"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/policydsl"
+	"github.com/hxx258456/fabric/core/ledger/kvledger/tests/fakes"
+	"github.com/hxx258456/fabric/internal/pkg/txflags"
+	"github.com/hxx258456/fabric/protoutil"
 )
 
 var logger = flogging.MustGetLogger("test2")

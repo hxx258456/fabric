@@ -16,9 +16,9 @@ bccsp/factory/pkcs11factory.go 国密对应后废弃
 // import (
 // 	"encoding/hex"
 
-// 	"github.com/hyperledger/fabric/bccsp"
-// 	"github.com/hyperledger/fabric/bccsp/pkcs11"
-// 	"github.com/hyperledger/fabric/bccsp/sw"
+// 	"github.com/hxx258456/fabric/bccsp"
+// 	"github.com/hxx258456/fabric/bccsp/pkcs11"
+// 	"github.com/hxx258456/fabric/bccsp/sw"
 // 	"github.com/pkg/errors"
 // )
 

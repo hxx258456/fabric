@@ -58,7 +58,7 @@ It is recommended that all development be done within your WSL2 Linux distributi
 Clone the Hyperledger Fabric source
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-First navigate to https://github.com/hyperledger/fabric and fork the fabric
+First navigate to https://github.com/hxx258456/fabric and fork the fabric
 repository using the fork button in the top-right corner. After forking, clone
 the repository.
 
@@ -164,7 +164,7 @@ few commands.
 
 If those commands completely successfully, you're ready to Go!
 
-If you plan to use the Hyperledger Fabric application SDKs then be sure to check out their prerequisites in the Node.js SDK `README <https://github.com/hyperledger/fabric-sdk-node#build-and-test>`__, Java SDK `README <https://github.com/hyperledger/fabric-gateway-java/blob/main/README.md>`__, and Go SDK `README <https://github.com/hyperledger/fabric-sdk-go/blob/main/README.md>`__.
+If you plan to use the Hyperledger Fabric application SDKs then be sure to check out their prerequisites in the Node.js SDK `README <https://github.com/hxx258456/fabric-sdk-node#build-and-test>`__, Java SDK `README <https://github.com/hxx258456/fabric-gateway-java/blob/main/README.md>`__, and Go SDK `README <https://github.com/hxx258456/fabric-sdk-go/blob/main/README.md>`__.
 
 .. Licensed under Creative Commons Attribution 4.0 International License
    https://creativecommons.org/licenses/by/4.0/

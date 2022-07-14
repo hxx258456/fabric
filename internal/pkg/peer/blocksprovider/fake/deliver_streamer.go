@@ -5,8 +5,8 @@ import (
 	"context"
 	"sync"
 
-	"github.com/hyperledger/fabric-protos-go/orderer"
-	"github.com/hyperledger/fabric/internal/pkg/peer/blocksprovider"
+	"github.com/hxx258456/fabric-protos-go-cc/orderer"
+	"github.com/hxx258456/fabric/internal/pkg/peer/blocksprovider"
 	"google.golang.org/grpc"
 )
 

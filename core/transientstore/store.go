@@ -10,12 +10,12 @@ import (
 	"path/filepath"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-protos-go/ledger/rwset"
-	"github.com/hyperledger/fabric-protos-go/transientstore"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/ledger/util/leveldbhelper"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/ledger"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset"
+	transientstore "github.com/hxx258456/fabric-protos-go-cc/transientstore"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/ledger/util/leveldbhelper"
+	"github.com/hxx258456/fabric/common/util"
+	"github.com/hxx258456/fabric/core/ledger"
 	"github.com/pkg/errors"
 	"github.com/syndtr/goleveldb/leveldb/iterator"
 )

@@ -10,10 +10,10 @@ import (
 	"fmt"
 
 	"github.com/golang/protobuf/proto"
-	mspprotos "github.com/hyperledger/fabric-protos-go/msp"
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/msp"
-	"github.com/hyperledger/fabric/msp/cache"
+	mspprotos "github.com/hxx258456/fabric-protos-go-cc/msp"
+	"github.com/hxx258456/fabric/bccsp"
+	"github.com/hxx258456/fabric/msp"
+	"github.com/hxx258456/fabric/msp/cache"
 	"github.com/pkg/errors"
 )
 

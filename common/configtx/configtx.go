@@ -7,7 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 package configtx
 
 import (
-	cb "github.com/hyperledger/fabric-protos-go/common"
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 )
 
 // Validator provides a mechanism to propose config updates, see the config update results

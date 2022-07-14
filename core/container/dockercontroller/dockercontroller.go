@@ -22,12 +22,12 @@ import (
 	"time"
 
 	docker "github.com/fsouza/go-dockerclient"
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/chaincode/persistence"
-	"github.com/hyperledger/fabric/core/container"
-	"github.com/hyperledger/fabric/core/container/ccintf"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/util"
+	"github.com/hxx258456/fabric/core/chaincode/persistence"
+	"github.com/hxx258456/fabric/core/container"
+	"github.com/hxx258456/fabric/core/container/ccintf"
 	"github.com/pkg/errors"
 )
 

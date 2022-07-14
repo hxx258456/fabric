@@ -4,11 +4,11 @@ package mocks
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric-protos-go/discovery"
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/gossip/api"
-	"github.com/hyperledger/fabric/gossip/common"
-	discoverya "github.com/hyperledger/fabric/gossip/discovery"
+	"github.com/hxx258456/fabric-protos-go-cc/discovery"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/gossip/api"
+	"github.com/hxx258456/fabric/gossip/common"
+	discoverya "github.com/hxx258456/fabric/gossip/discovery"
 )
 
 type Discovery struct {

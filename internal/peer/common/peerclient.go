@@ -12,8 +12,8 @@ import (
 	"io/ioutil"
 	"time"
 
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/internal/pkg/comm"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/internal/pkg/comm"
 	"github.com/pkg/errors"
 	"github.com/spf13/viper"
 )

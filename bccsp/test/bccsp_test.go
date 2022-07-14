@@ -11,9 +11,9 @@ import (
 
 	"github.com/hxx258456/ccgo/sm4"
 	gmx509 "github.com/hxx258456/ccgo/x509"
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/bccsp/factory"
-	"github.com/hyperledger/fabric/bccsp/sw"
+	"github.com/hxx258456/fabric/bccsp"
+	"github.com/hxx258456/fabric/bccsp/factory"
+	"github.com/hxx258456/fabric/bccsp/sw"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )

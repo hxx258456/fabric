@@ -7,9 +7,9 @@ SPDX-License-Identifier: Apache-2.0
 package pvtstatepurgemgmt
 
 import (
-	"github.com/hyperledger/fabric/core/ledger/internal/version"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/bookkeeping"
-	"github.com/hyperledger/fabric/core/ledger/pvtdatapolicy"
+	"github.com/hxx258456/fabric/core/ledger/internal/version"
+	"github.com/hxx258456/fabric/core/ledger/kvledger/bookkeeping"
+	"github.com/hxx258456/fabric/core/ledger/pvtdatapolicy"
 	"github.com/pkg/errors"
 )
 

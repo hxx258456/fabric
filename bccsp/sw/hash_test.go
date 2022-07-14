@@ -22,8 +22,8 @@ import (
 	"testing"
 
 	"github.com/hxx258456/ccgo/sm3"
-	mocks2 "github.com/hyperledger/fabric/bccsp/mocks"
-	"github.com/hyperledger/fabric/bccsp/sw/mocks"
+	mocks2 "github.com/hxx258456/fabric/bccsp/mocks"
+	"github.com/hxx258456/fabric/bccsp/sw/mocks"
 	"github.com/stretchr/testify/assert"
 )
 

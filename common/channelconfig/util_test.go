@@ -13,15 +13,15 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
+	mspprotos "github.com/hxx258456/fabric-protos-go-cc/msp"
+	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
+	"github.com/hxx258456/fabric-protos-go-cc/orderer/etcdraft"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/bccsp/sw"
+	"github.com/hxx258456/fabric/common/capabilities"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/hyperledger/fabric-config/protolator"
-	cb "github.com/hyperledger/fabric-protos-go/common"
-	mspprotos "github.com/hyperledger/fabric-protos-go/msp"
-	ab "github.com/hyperledger/fabric-protos-go/orderer"
-	"github.com/hyperledger/fabric-protos-go/orderer/etcdraft"
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/bccsp/sw"
-	"github.com/hyperledger/fabric/common/capabilities"
-	"github.com/hyperledger/fabric/protoutil"
 	"github.com/stretchr/testify/require"
 )
 

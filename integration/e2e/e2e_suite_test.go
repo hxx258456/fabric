@@ -14,8 +14,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/hyperledger/fabric/integration"
-	"github.com/hyperledger/fabric/integration/nwo"
+	"github.com/hxx258456/fabric/integration"
+	"github.com/hxx258456/fabric/integration/nwo"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gbytes"

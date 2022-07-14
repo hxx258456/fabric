@@ -14,10 +14,10 @@ import (
 	"io/ioutil"
 
 	docker "github.com/fsouza/go-dockerclient"
-	"github.com/hyperledger/fabric/common/metadata"
-	"github.com/hyperledger/fabric/core/chaincode/platforms"
-	"github.com/hyperledger/fabric/core/chaincode/platforms/mock"
-	"github.com/hyperledger/fabric/core/chaincode/platforms/util"
+	"github.com/hxx258456/fabric/common/metadata"
+	"github.com/hxx258456/fabric/core/chaincode/platforms"
+	"github.com/hxx258456/fabric/core/chaincode/platforms/mock"
+	"github.com/hxx258456/fabric/core/chaincode/platforms/util"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )

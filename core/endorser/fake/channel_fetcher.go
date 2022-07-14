@@ -4,7 +4,7 @@ package fake
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/core/endorser"
+	"github.com/hxx258456/fabric/core/endorser"
 )
 
 type ChannelFetcher struct {

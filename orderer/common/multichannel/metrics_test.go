@@ -7,8 +7,8 @@ SPDX-License-Identifier: Apache-2.0
 package multichannel
 
 import (
-	"github.com/hyperledger/fabric/common/metrics/metricsfakes"
-	"github.com/hyperledger/fabric/orderer/common/types"
+	"github.com/hxx258456/fabric/common/metrics/metricsfakes"
+	"github.com/hxx258456/fabric/orderer/common/types"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )

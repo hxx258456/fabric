@@ -7,7 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 package channelconfig
 
 import (
-	pb "github.com/hyperledger/fabric-protos-go/peer"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
 )
 
 // aclsProvider provides mappings for resource to policy names

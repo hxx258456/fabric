@@ -11,10 +11,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hyperledger/fabric/common/crypto/tlsgen"
-	"github.com/hyperledger/fabric/common/util"
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/peer"
+	"github.com/hxx258456/ccgo/grpc/credentials"
+	"github.com/hxx258456/ccgo/grpc/peer"
+	"github.com/hxx258456/fabric/common/crypto/tlsgen"
+	"github.com/hxx258456/fabric/common/util"
 )
 
 var ttl = time.Minute * 10
@@ -62,7 +62,7 @@ func (r *certMapper) genCert(name string) (*tlsgen.CertKeyPair, error) {
 	if err != nil {
 		return nil, err
 	}
-	hash := util.ComputeSHA256(keyPair.TLSCert.Raw)
+	hash := util.ComputeSM3(keyPair.TLSCert.Raw)
 	r.register(certHash(hash), name)
 	return keyPair, nil
 }
@@ -91,5 +91,5 @@ func extractCertificateHashFromContext(ctx context.Context) []byte {
 	if len(raw) == 0 {
 		return nil
 	}
-	return util.ComputeSHA256(raw)
+	return util.ComputeSM3(raw)
 }

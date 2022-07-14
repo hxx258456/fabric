@@ -24,9 +24,9 @@ import (
 
 	"github.com/hxx258456/ccgo/sm2"
 	gmx509 "github.com/hxx258456/ccgo/x509"
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/bccsp/mocks"
-	"github.com/hyperledger/fabric/bccsp/sw"
+	"github.com/hxx258456/fabric/bccsp"
+	"github.com/hxx258456/fabric/bccsp/mocks"
+	"github.com/hxx258456/fabric/bccsp/sw"
 	"github.com/stretchr/testify/assert"
 )
 

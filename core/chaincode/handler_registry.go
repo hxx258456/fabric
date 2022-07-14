@@ -9,7 +9,7 @@ package chaincode
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/core/ledger"
+	"github.com/hxx258456/fabric/core/ledger"
 	"github.com/pkg/errors"
 )
 

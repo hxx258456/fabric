@@ -9,7 +9,7 @@ package experiments
 import (
 	"flag"
 
-	"github.com/hyperledger/fabric/core/ledger/kvledger/benchmark/chainmgmt"
+	"github.com/hxx258456/fabric/core/ledger/kvledger/benchmark/chainmgmt"
 )
 
 // txConf captures the transaction related configurations

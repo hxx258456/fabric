@@ -9,8 +9,8 @@ package chaincode
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric-protos-go/gossip"
-	"github.com/hyperledger/fabric-protos-go/peer"
+	"github.com/hxx258456/fabric-protos-go-cc/gossip"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
 )
 
 // InstalledChaincode defines metadata about an installed chaincode

@@ -7,8 +7,8 @@ SPDX-License-Identifier: Apache-2.0
 package endorsement
 
 import (
-	"github.com/hyperledger/fabric-protos-go/ledger/rwset"
-	endorsement "github.com/hyperledger/fabric/core/handlers/endorsement/api"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset"
+	endorsement "github.com/hxx258456/fabric/core/handlers/endorsement/api"
 )
 
 // State defines interaction with the world state

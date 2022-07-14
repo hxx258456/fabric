@@ -4,7 +4,7 @@ package mocks
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/common/ledger"
+	"github.com/hxx258456/fabric/common/ledger"
 )
 
 type ResultsIterator struct {

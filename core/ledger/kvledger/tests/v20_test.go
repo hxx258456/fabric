@@ -10,9 +10,9 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/hyperledger/fabric/common/ledger/testutil"
-	"github.com/hyperledger/fabric/core/chaincode/implicitcollection"
-	"github.com/hyperledger/fabric/core/ledger/kvledger"
+	"github.com/hxx258456/fabric/common/ledger/testutil"
+	"github.com/hxx258456/fabric/core/chaincode/implicitcollection"
+	"github.com/hxx258456/fabric/core/ledger/kvledger"
 	"github.com/stretchr/testify/require"
 )
 

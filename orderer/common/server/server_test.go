@@ -14,11 +14,11 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
-	cb "github.com/hyperledger/fabric-protos-go/common"
-	ab "github.com/hyperledger/fabric-protos-go/orderer"
-	localconfig "github.com/hyperledger/fabric/orderer/common/localconfig"
-	"github.com/hyperledger/fabric/orderer/common/multichannel"
-	"github.com/hyperledger/fabric/protoutil"
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
+	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
+	localconfig "github.com/hxx258456/fabric/orderer/common/localconfig"
+	"github.com/hxx258456/fabric/orderer/common/multichannel"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
 )

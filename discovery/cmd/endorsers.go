@@ -13,15 +13,15 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/hyperledger/fabric-protos-go/peer"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-protos-go/discovery"
-	"github.com/hyperledger/fabric-protos-go/gossip"
-	"github.com/hyperledger/fabric-protos-go/msp"
-	"github.com/hyperledger/fabric/cmd/common"
-	discoveryclient "github.com/hyperledger/fabric/discovery/client"
-	"github.com/hyperledger/fabric/gossip/protoext"
+	discovery "github.com/hxx258456/fabric-protos-go-cc/discovery"
+	gossip "github.com/hxx258456/fabric-protos-go-cc/gossip"
+	msp "github.com/hxx258456/fabric-protos-go-cc/msp"
+	"github.com/hxx258456/fabric/cmd/common"
+	discoveryclient "github.com/hxx258456/fabric/discovery/client"
+	"github.com/hxx258456/fabric/gossip/protoext"
 	"github.com/pkg/errors"
 )
 

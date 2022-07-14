@@ -9,7 +9,7 @@ package grpcmetrics_test
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/common/grpcmetrics/testpb"
+	"github.com/hxx258456/fabric/common/grpcmetrics/testpb"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )

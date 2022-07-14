@@ -11,5 +11,7 @@ var (
 	Version         = "latest"
 	CommitSHA       = "development build"
 	BaseDockerLabel = "org.hyperledger.fabric"
-	DockerNamespace = "hyperledger"
+
+	// hyperledger -> gcbaas-gm
+	DockerNamespace = "gcbaas-gm"
 )

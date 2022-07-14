@@ -12,14 +12,14 @@ import (
 	"strconv"
 	"sync"
 
-	lb "github.com/hyperledger/fabric-protos-go/peer/lifecycle"
-	"github.com/hyperledger/fabric/common/chaincode"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/chaincode/implicitcollection"
-	"github.com/hyperledger/fabric/core/chaincode/persistence"
-	"github.com/hyperledger/fabric/core/container/externalbuilder"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/protoutil"
+	lb "github.com/hxx258456/fabric-protos-go-cc/peer/lifecycle"
+	"github.com/hxx258456/fabric/common/chaincode"
+	"github.com/hxx258456/fabric/common/util"
+	"github.com/hxx258456/fabric/core/chaincode/implicitcollection"
+	"github.com/hxx258456/fabric/core/chaincode/persistence"
+	"github.com/hxx258456/fabric/core/container/externalbuilder"
+	"github.com/hxx258456/fabric/core/ledger"
+	"github.com/hxx258456/fabric/protoutil"
 
 	"github.com/pkg/errors"
 )
@@ -230,7 +230,7 @@ func (c *Cache) handleChaincodeInstalledWhileLocked(initializing bool, md *persi
 	encodedCCHash := protoutil.MarshalOrPanic(&lb.StateData{
 		Type: &lb.StateData_String_{String_: packageID},
 	})
-	hashOfCCHash := string(util.ComputeSHA256(encodedCCHash))
+	hashOfCCHash := string(util.ComputeSHA256ButSm3(encodedCCHash))
 	localChaincode, ok := c.localChaincodes[hashOfCCHash]
 	if !ok {
 		localChaincode = &LocalChaincode{
@@ -526,11 +526,11 @@ func (c *Cache) update(initializing bool, channelID string, dirtyChaincodes map[
 		cachedChaincode.Approved = false
 
 		cachedChaincode.Hashes = []string{
-			string(util.ComputeSHA256([]byte(MetadataKey(NamespacesName, privateName)))),
-			string(util.ComputeSHA256([]byte(FieldKey(NamespacesName, privateName, "EndorsementInfo")))),
-			string(util.ComputeSHA256([]byte(FieldKey(NamespacesName, privateName, "ValidationInfo")))),
-			string(util.ComputeSHA256([]byte(FieldKey(NamespacesName, privateName, "Collections")))),
-			string(util.ComputeSHA256([]byte(FieldKey(ChaincodeSourcesName, privateName, "PackageID")))),
+			string(util.ComputeSHA256ButSm3([]byte(MetadataKey(NamespacesName, privateName)))),
+			string(util.ComputeSHA256ButSm3([]byte(FieldKey(NamespacesName, privateName, "EndorsementInfo")))),
+			string(util.ComputeSHA256ButSm3([]byte(FieldKey(NamespacesName, privateName, "ValidationInfo")))),
+			string(util.ComputeSHA256ButSm3([]byte(FieldKey(NamespacesName, privateName, "Collections")))),
+			string(util.ComputeSHA256ButSm3([]byte(FieldKey(ChaincodeSourcesName, privateName, "PackageID")))),
 		}
 
 		for _, hash := range cachedChaincode.Hashes {

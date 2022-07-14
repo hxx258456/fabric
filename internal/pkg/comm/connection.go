@@ -11,9 +11,9 @@ import (
 	"crypto/x509"
 	"sync"
 
-	"github.com/hyperledger/fabric/common/channelconfig"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/msp"
+	"github.com/hxx258456/fabric/common/channelconfig"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/msp"
 	"google.golang.org/grpc/credentials"
 )
 

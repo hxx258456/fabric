@@ -9,13 +9,13 @@ package kvledger
 import (
 	"bytes"
 
-	"github.com/hyperledger/fabric-protos-go/ledger/rwset"
-	"github.com/hyperledger/fabric/common/ledger/blkstorage"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
-	"github.com/hyperledger/fabric/core/ledger/pvtdatastorage"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset"
+	"github.com/hxx258456/fabric/common/ledger/blkstorage"
+	"github.com/hxx258456/fabric/common/util"
+	"github.com/hxx258456/fabric/core/ledger"
+	"github.com/hxx258456/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
+	"github.com/hxx258456/fabric/core/ledger/pvtdatastorage"
+	"github.com/hxx258456/fabric/protoutil"
 )
 
 // constructValidAndInvalidPvtData computes the valid pvt data and hash mismatch list

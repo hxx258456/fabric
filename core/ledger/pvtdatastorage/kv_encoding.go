@@ -13,8 +13,8 @@ import (
 
 	"github.com/bits-and-blooms/bitset"
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-protos-go/ledger/rwset"
-	"github.com/hyperledger/fabric/core/ledger/internal/version"
+	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset"
+	"github.com/hxx258456/fabric/core/ledger/internal/version"
 	"github.com/pkg/errors"
 )
 

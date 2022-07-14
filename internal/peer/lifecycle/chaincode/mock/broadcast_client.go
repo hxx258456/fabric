@@ -4,7 +4,7 @@ package mock
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric-protos-go/common"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
 )
 
 type BroadcastClient struct {

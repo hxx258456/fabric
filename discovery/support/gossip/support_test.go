@@ -9,12 +9,12 @@ package gossip_test
 import (
 	"testing"
 
-	gp "github.com/hyperledger/fabric-protos-go/gossip"
-	"github.com/hyperledger/fabric/discovery/support/gossip"
-	"github.com/hyperledger/fabric/discovery/support/gossip/mocks"
-	"github.com/hyperledger/fabric/gossip/common"
-	"github.com/hyperledger/fabric/gossip/discovery"
-	"github.com/hyperledger/fabric/gossip/protoext"
+	gp "github.com/hxx258456/fabric-protos-go-cc/gossip"
+	"github.com/hxx258456/fabric/discovery/support/gossip"
+	"github.com/hxx258456/fabric/discovery/support/gossip/mocks"
+	"github.com/hxx258456/fabric/gossip/common"
+	"github.com/hxx258456/fabric/gossip/discovery"
+	"github.com/hxx258456/fabric/gossip/protoext"
 	"github.com/stretchr/testify/require"
 )
 

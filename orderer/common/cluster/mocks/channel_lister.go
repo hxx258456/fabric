@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	cluster "github.com/hyperledger/fabric/orderer/common/cluster"
+	cluster "github.com/hxx258456/fabric/orderer/common/cluster"
 	mock "github.com/stretchr/testify/mock"
 )
 

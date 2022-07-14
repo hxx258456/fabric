@@ -24,7 +24,7 @@ import (
 	"io"
 
 	"github.com/hxx258456/ccgo/sm4"
-	"github.com/hyperledger/fabric/bccsp"
+	"github.com/hxx258456/fabric/bccsp"
 )
 
 /*

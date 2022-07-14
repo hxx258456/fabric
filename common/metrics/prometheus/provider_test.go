@@ -9,15 +9,15 @@ package prometheus_test
 import (
 	"fmt"
 	"io/ioutil"
-	"net/http"
-	"net/http/httptest"
 
-	commonmetrics "github.com/hyperledger/fabric/common/metrics"
-	"github.com/hyperledger/fabric/common/metrics/prometheus"
+	http "github.com/hxx258456/ccgo/gmhttp"
+	"github.com/hxx258456/ccgo/gmhttp/httptest"
+	"github.com/hxx258456/ccgo/prometheus/promhttp"
+	commonmetrics "github.com/hxx258456/fabric/common/metrics"
+	"github.com/hxx258456/fabric/common/metrics/prometheus"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	prom "github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 var _ = Describe("Provider", func() {

@@ -10,9 +10,9 @@ import (
 	"bytes"
 	"encoding/gob"
 
-	"github.com/hyperledger/fabric/common/ledger/util/leveldbhelper"
-	"github.com/hyperledger/fabric/core/ledger/internal/version"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb"
+	"github.com/hxx258456/fabric/common/ledger/util/leveldbhelper"
+	"github.com/hxx258456/fabric/core/ledger/internal/version"
+	"github.com/hxx258456/fabric/core/ledger/kvledger/txmgmt/statedb"
 )
 
 var redoLogKey = []byte{byte(0)}

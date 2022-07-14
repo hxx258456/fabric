@@ -5,8 +5,8 @@ import (
 	"io"
 	"sync"
 
-	"github.com/hyperledger/fabric/core/chaincode/persistence"
-	"github.com/hyperledger/fabric/core/container"
+	"github.com/hxx258456/fabric/core/chaincode/persistence"
+	"github.com/hxx258456/fabric/core/container"
 )
 
 type DockerBuilder struct {

@@ -309,24 +309,24 @@ The release notes provide more details for users moving to the new release.
 Specifically, take a look at the changes and deprecations
 announced in each of the v2.x releases.
 
-* `Fabric v2.0.0 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.0.0>`_.
-* `Fabric v2.0.1 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.0.1>`_.
-* `Fabric v2.1.0 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.1.0>`_.
-* `Fabric v2.1.1 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.1.1>`_.
-* `Fabric v2.2.0 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.2.0>`_.
-* `Fabric v2.2.1 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.2.1>`_.
-* `Fabric v2.2.2 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.2.2>`_.
-* `Fabric v2.2.3 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.2.3>`_.
-* `Fabric v2.2.4 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.2.4>`_.
-* `Fabric v2.3.0 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.3.0>`_.
-* `Fabric v2.3.1 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.3.1>`_.
-* `Fabric v2.3.2 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.3.2>`_.
-* `Fabric v2.3.3 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.3.3>`_.
-* `Fabric v2.4.0 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.4.0>`_.
-* `Fabric v2.4.1 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.4.1>`_.
-* `Fabric v2.4.2 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.4.2>`_.
-* `Fabric v2.4.3 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.4.3>`_.
-* `Fabric v2.4.4 release notes <https://github.com/hyperledger/fabric/releases/tag/v2.4.4>`_.
+* `Fabric v2.0.0 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.0.0>`_.
+* `Fabric v2.0.1 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.0.1>`_.
+* `Fabric v2.1.0 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.1.0>`_.
+* `Fabric v2.1.1 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.1.1>`_.
+* `Fabric v2.2.0 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.2.0>`_.
+* `Fabric v2.2.1 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.2.1>`_.
+* `Fabric v2.2.2 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.2.2>`_.
+* `Fabric v2.2.3 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.2.3>`_.
+* `Fabric v2.2.4 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.2.4>`_.
+* `Fabric v2.3.0 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.3.0>`_.
+* `Fabric v2.3.1 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.3.1>`_.
+* `Fabric v2.3.2 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.3.2>`_.
+* `Fabric v2.3.3 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.3.3>`_.
+* `Fabric v2.4.0 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.4.0>`_.
+* `Fabric v2.4.1 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.4.1>`_.
+* `Fabric v2.4.2 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.4.2>`_.
+* `Fabric v2.4.3 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.4.3>`_.
+* `Fabric v2.4.4 release notes <https://github.com/hxx258456/fabric/releases/tag/v2.4.4>`_.
 
 .. Licensed under Creative Commons Attribution 4.0 International License
    https://creativecommons.org/licenses/by/4.0/

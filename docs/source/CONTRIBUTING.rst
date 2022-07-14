@@ -45,13 +45,13 @@ Jump to `Contributing documentation`_ to get started on your journey.
 As a developer:
 
 - If you only have a little time, consider picking up a
-  `"good first issue" <https://github.com/hyperledger/fabric/labels/good%20first%20issue>`_ task,
+  `"good first issue" <https://github.com/hxx258456/fabric/labels/good%20first%20issue>`_ task,
   see `Fixing issues and working stories`_.
 - If you can commit to full-time development, either propose a new feature
   (see `Making Feature/Enhancement Proposals`_) and
   bring a team to implement it, or join one of the teams working on an existing Epic.
   If you see an Epic that interests you on the
-  `GitHub epic backlog <https://github.com/hyperledger/fabric/labels/Epic>`_,
+  `GitHub epic backlog <https://github.com/hxx258456/fabric/labels/Epic>`_,
   contact the Epic assignee via the GitHub issue.
 
 Contributing documentation
@@ -83,7 +83,7 @@ approved.
 Maintainers
 ~~~~~~~~~~~
 
-The Fabric project is lead by the project's top level `maintainers <https://github.com/hyperledger/fabric/blob/main/MAINTAINERS.md>`__.
+The Fabric project is lead by the project's top level `maintainers <https://github.com/hxx258456/fabric/blob/main/MAINTAINERS.md>`__.
 The maintainers are responsible for reviewing and merging all patches submitted
 for review, and they guide the overall technical direction of the project within
 the guidelines established by the Hyperledger Technical Steering Committee (TSC).
@@ -99,7 +99,7 @@ adding a maintainer, based on the following criteria:
 - Demonstrated shepherding of project work and contributors
 
 An existing maintainer can submit a pull request to the
-`maintainers <https://github.com/hyperledger/fabric/blob/main/MAINTAINERS.md>`__ file.
+`maintainers <https://github.com/hxx258456/fabric/blob/main/MAINTAINERS.md>`__ file.
 A nominated Contributor may become a Maintainer by a majority approval of the proposal
 by the existing Maintainers. Once approved, the change set is then merged
 and the individual is added to the maintainers group.
@@ -117,13 +117,13 @@ Releases
 ~~~~~~~~
 
 Fabric provides a release approximately once every four months with new features and improvements.
-New feature work is merged to the Fabric main branch on `GitHub <https://github.com/hyperledger/fabric>`__.
+New feature work is merged to the Fabric main branch on `GitHub <https://github.com/hxx258456/fabric>`__.
 Releases branches are created prior to each release so that the code can stabilize while
 new features continue to get merged to the main branch.
 Important fixes will also be backported to the most recent LTS (long-term support) release branch,
 and to the prior LTS release branch during periods of LTS release overlap.
 
-See `releases <https://github.com/hyperledger/fabric#releases>`__ for more details.
+See `releases <https://github.com/hxx258456/fabric#releases>`__ for more details.
 
 Making Feature/Enhancement Proposals
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -133,7 +133,7 @@ Minor improvements can be implemented and reviewed via the normal `GitHub pull r
 This process is intended to provide a consistent and controlled path for major changes to Fabric and other official project components, so that all stakeholders can be confident about the direction in which Fabric is evolving.
 
 To propose a new feature, first, check the
-`GitHub issues backlog <https://github.com/hyperledger/fabric/issues>`__ and the `Fabric RFC repository <https://github.com/hyperledger/fabric-rfcs/>`__ to be sure that there isn't already an open (or recently closed) proposal for the same functionality. If there isn't, follow `the RFC process <https://github.com/hyperledger/fabric-rfcs/blob/main/README.md>`__ to make a proposal.
+`GitHub issues backlog <https://github.com/hxx258456/fabric/issues>`__ and the `Fabric RFC repository <https://github.com/hxx258456/fabric-rfcs/>`__ to be sure that there isn't already an open (or recently closed) proposal for the same functionality. If there isn't, follow `the RFC process <https://github.com/hxx258456/fabric-rfcs/blob/main/README.md>`__ to make a proposal.
 
 Contributor meeting
 ~~~~~~~~~~~~~~~~~~~
@@ -154,7 +154,7 @@ Release roadmap
 ~~~~~~~~~~~~~~~
 
 The Fabric release roadmap is managed as a list of
-`GitHub issues with Epic label <https://github.com/hyperledger/fabric/labels/Epic>`__.
+`GitHub issues with Epic label <https://github.com/hxx258456/fabric/labels/Epic>`__.
 
 Communications and Getting Help
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -190,7 +190,7 @@ Reporting bugs
 ~~~~~~~~~~~~~~
 
 If you are a user and you have found a bug, please submit an issue using
-`GitHub Issues <https://github.com/hyperledger/fabric/issues>`__.
+`GitHub Issues <https://github.com/hxx258456/fabric/issues>`__.
 Before you create a new GitHub issue, please try to search the existing issues to
 be sure no one else has previously reported it. If it has been previously
 reported, then you might add a comment that you also are interested in seeing
@@ -221,10 +221,10 @@ for a detailed workflow.
 Fixing issues and working stories
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Fabric issues and bugs are managed in `GitHub issues <https://github.com/hyperledger/fabric/issues>`__.
+Fabric issues and bugs are managed in `GitHub issues <https://github.com/hxx258456/fabric/issues>`__.
 Review the list of issues and find
 something that interests you. You could also check the
-`"good first issue" <https://github.com/hyperledger/fabric/labels/good%20first%20issue>`__
+`"good first issue" <https://github.com/hxx258456/fabric/labels/good%20first%20issue>`__
 list. It is wise to start with something relatively straight forward and
 achievable, and that no one is already assigned. If no one is assigned,
 then assign the issue to yourself. Please be considerate and rescind the
@@ -234,7 +234,7 @@ little more time.
 
 While GitHub issues tracks a backlog of known issues that could be worked in the future,
 if you intend to immediately work on a change that does not yet have a corresponding issue,
-you can submit a pull request to `Github <https://github.com/hyperledger/fabric>`__ without linking to an existing issue.
+you can submit a pull request to `Github <https://github.com/hxx258456/fabric>`__ without linking to an existing issue.
 
 Reviewing submitted Pull Requests (PRs)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -253,7 +253,7 @@ result, maintainers will be able to process PRs faster and everybody
 will gain from it.
 
 Just browse through `the open PRs on GitHub
-<https://github.com/hyperledger/fabric/pulls>`__ to get started.
+<https://github.com/hxx258456/fabric/pulls>`__ to get started.
 
 PR Aging
 ~~~~~~~~
@@ -368,12 +368,12 @@ Legal stuff
 
 **Note:** Each source file must include a license header for the Apache
 Software License 2.0. See the template of the `license header
-<https://github.com/hyperledger/fabric/blob/main/docs/source/dev-setup/headers.txt>`__.
+<https://github.com/hxx258456/fabric/blob/main/docs/source/dev-setup/headers.txt>`__.
 
 We have tried to make it as easy as possible to make contributions. This
 applies to how we handle the legal aspects of contribution. We use the
 same approach—the `Developer's Certificate of Origin 1.1
-(DCO) <https://github.com/hyperledger/fabric/blob/main/docs/source/DCO1.1.txt>`__—that the Linux® Kernel
+(DCO) <https://github.com/hxx258456/fabric/blob/main/docs/source/DCO1.1.txt>`__—that the Linux® Kernel
 `community <https://elinux.org/Developer_Certificate_Of_Origin>`__ uses
 to manage code contributions.
 

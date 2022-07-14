@@ -14,8 +14,8 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/internal/pkg/peer/orderers"
+	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/fabric/internal/pkg/peer/orderers"
 )
 
 type comparableEndpoint struct {

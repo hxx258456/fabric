@@ -7,8 +7,8 @@ SPDX-License-Identifier: Apache-2.0
 package decorator
 
 import (
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/core/handlers/decoration"
+	"github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/core/handlers/decoration"
 )
 
 // NewDecorator creates a new decorator

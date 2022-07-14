@@ -10,15 +10,15 @@ import (
 	"math"
 	"os"
 
+	cb "github.com/hxx258456/fabric-protos-go-cc/common"
+	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
+	"github.com/hxx258456/fabric/bccsp/factory"
+	"github.com/hxx258456/fabric/internal/pkg/identity"
+	"github.com/hxx258456/fabric/msp"
+	mspmgmt "github.com/hxx258456/fabric/msp/mgmt"
+	"github.com/hxx258456/fabric/orderer/common/localconfig"
+	"github.com/hxx258456/fabric/protoutil"
 	"github.com/hyperledger/fabric-config/protolator"
-	cb "github.com/hyperledger/fabric-protos-go/common"
-	ab "github.com/hyperledger/fabric-protos-go/orderer"
-	"github.com/hyperledger/fabric/bccsp/factory"
-	"github.com/hyperledger/fabric/internal/pkg/identity"
-	"github.com/hyperledger/fabric/msp"
-	mspmgmt "github.com/hyperledger/fabric/msp/mgmt"
-	"github.com/hyperledger/fabric/orderer/common/localconfig"
-	"github.com/hyperledger/fabric/protoutil"
 	"google.golang.org/grpc"
 )
 

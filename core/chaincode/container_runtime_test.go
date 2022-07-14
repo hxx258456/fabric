@@ -9,11 +9,11 @@ package chaincode_test
 import (
 	"testing"
 
-	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/core/chaincode"
-	"github.com/hyperledger/fabric/core/chaincode/mock"
-	"github.com/hyperledger/fabric/core/container"
-	"github.com/hyperledger/fabric/core/container/ccintf"
+	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/core/chaincode"
+	"github.com/hxx258456/fabric/core/chaincode/mock"
+	"github.com/hxx258456/fabric/core/container"
+	"github.com/hxx258456/fabric/core/container/ccintf"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
 )

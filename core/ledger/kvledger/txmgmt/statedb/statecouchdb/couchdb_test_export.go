@@ -9,9 +9,9 @@ package statecouchdb
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/common/metrics/disabled"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/integration/nwo/runner"
+	"github.com/hxx258456/fabric/common/metrics/disabled"
+	"github.com/hxx258456/fabric/core/ledger"
+	"github.com/hxx258456/fabric/integration/nwo/runner"
 	"github.com/stretchr/testify/require"
 )
 

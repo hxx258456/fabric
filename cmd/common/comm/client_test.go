@@ -15,7 +15,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hyperledger/fabric/internal/pkg/comm"
+	"github.com/hxx258456/fabric/internal/pkg/comm"
 	"github.com/stretchr/testify/require"
 )
 

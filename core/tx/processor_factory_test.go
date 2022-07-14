@@ -9,11 +9,11 @@ package tx_test
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric-protos-go/common"
-	"github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/hyperledger/fabric/core/tx"
-	pkgtx "github.com/hyperledger/fabric/pkg/tx"
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric-protos-go-cc/common"
+	peer "github.com/hxx258456/fabric-protos-go-cc/peer"
+	"github.com/hxx258456/fabric/core/tx"
+	pkgtx "github.com/hxx258456/fabric/pkg/tx"
+	"github.com/hxx258456/fabric/protoutil"
 
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"

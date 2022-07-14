@@ -4,7 +4,7 @@ package mocks
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/protoutil"
+	"github.com/hxx258456/fabric/protoutil"
 )
 
 type Verifier struct {

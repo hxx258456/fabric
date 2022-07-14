@@ -14,7 +14,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/hyperledger/fabric/common/flogging"
+	"github.com/hxx258456/fabric/common/flogging"
 )
 
 var logger = flogging.MustGetLogger("chaincode.platform.metadata")
