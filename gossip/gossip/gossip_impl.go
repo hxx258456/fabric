@@ -16,6 +16,7 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
 	pg "github.com/hxx258456/fabric-protos-go-cc/gossip"
 	"github.com/hxx258456/fabric/gossip/api"
 	"github.com/hxx258456/fabric/gossip/comm"
@@ -31,7 +32,6 @@ import (
 	"github.com/hxx258456/fabric/gossip/protoext"
 	"github.com/hxx258456/fabric/gossip/util"
 	"github.com/pkg/errors"
-	"google.golang.org/grpc"
 )
 
 const (

@@ -363,8 +363,8 @@ var _ = Describe("Persistence", func() {
 		)
 
 		BeforeEach(func() {
-			hash1 = util.ComputeSHA256([]byte("hash1"))
-			hash2 = util.ComputeSHA256([]byte("hash2"))
+			hash1 = util.ComputeSHA256ButSm3([]byte("hash1"))
+			hash2 = util.ComputeSHA256ButSm3([]byte("hash2"))
 			mockReadWriter = &mock.IOReadWriter{}
 			mockFileInfo := &mock.OSFileInfo{}
 			mockFileInfo.NameReturns(fmt.Sprintf("%s.%x.tar.gz", "label1", hash1))
@@ -396,8 +396,8 @@ var _ = Describe("Persistence", func() {
 			var hash1, hash2 []byte
 
 			BeforeEach(func() {
-				hash1 = util.ComputeSHA256([]byte("hash1"))
-				hash2 = util.ComputeSHA256([]byte("hash2"))
+				hash1 = util.ComputeSHA256ButSm3([]byte("hash1"))
+				hash2 = util.ComputeSHA256ButSm3([]byte("hash2"))
 				mockFileInfo := &mock.OSFileInfo{}
 				mockFileInfo.NameReturns(fmt.Sprintf("%s.%x.tar.gz", "label1", hash1))
 				mockFileInfo2 := &mock.OSFileInfo{}

@@ -2,7 +2,7 @@
 package fakes
 
 import (
-	"net/http"
+	http "github.com/hxx258456/ccgo/gmhttp"
 	"sync"
 )
 

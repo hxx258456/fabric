@@ -16,6 +16,8 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc/metadata"
+	peer2 "github.com/hxx258456/ccgo/grpc/peer"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	orderer "github.com/hxx258456/fabric-protos-go-cc/orderer"
 	peer "github.com/hxx258456/fabric-protos-go-cc/peer"
@@ -30,8 +32,6 @@ import (
 	"github.com/hxx258456/fabric/protoutil"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc/metadata"
-	peer2 "google.golang.org/grpc/peer"
 )
 
 // defaultPolicyCheckerProvider policy checker provider used by default,

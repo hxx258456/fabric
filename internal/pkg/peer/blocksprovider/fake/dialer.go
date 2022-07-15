@@ -5,7 +5,7 @@ import (
 	"sync"
 
 	"github.com/hxx258456/fabric/internal/pkg/peer/blocksprovider"
-	"google.golang.org/grpc"
+	"github.com/hxx258456/ccgo/grpc"
 )
 
 type Dialer struct {

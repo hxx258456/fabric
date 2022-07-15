@@ -7,6 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 package lifecycle_test
 
 import (
+	"github.com/hxx258456/fabric-chaincode-go-cc/shim"
 	"github.com/hxx258456/fabric-protos-go-cc/ledger/queryresult"
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
 	lb "github.com/hxx258456/fabric-protos-go-cc/peer/lifecycle"
@@ -16,7 +17,6 @@ import (
 	"github.com/hxx258456/fabric/core/chaincode/lifecycle/mock"
 	"github.com/hxx258456/fabric/core/dispatcher"
 	"github.com/hxx258456/fabric/protoutil"
-	"github.com/hyperledger/fabric-chaincode-go/shim"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
@@ -131,7 +131,7 @@ var _ = Describe("Integration", func() {
 		}
 
 		fakeStub.GetPrivateDataHashStub = func(collection, key string) ([]byte, error) {
-			return util.ComputeSHA256(fakeOrgKVStore[key]), nil
+			return util.ComputeSHA256ButSm3(fakeOrgKVStore[key]), nil
 		}
 	})
 

@@ -6,7 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 
 package fakes
 
-import "net/http"
+import http "github.com/hxx258456/ccgo/gmhttp"
 
 type Handler struct {
 	Code int

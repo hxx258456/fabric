@@ -5,7 +5,7 @@ import (
 	"sync"
 
 	"github.com/golang/protobuf/ptypes/timestamp"
-	"github.com/hyperledger/fabric-chaincode-go/shim"
+	"github.com/hxx258456/fabric-chaincode-go-cc/shim"
 	"github.com/hxx258456/fabric-protos-go-cc/peer"
 )
 
@@ -2875,4 +2875,8 @@ func (fake *ChaincodeStub) recordInvocation(key string, args []interface{}) {
 		fake.invocations[key] = [][]interface{}{}
 	}
 	fake.invocations[key] = append(fake.invocations[key], args)
+}
+
+func (fake *ChaincodeStub) PurgePrivateData(collection string,key string ) error {
+	return nil
 }

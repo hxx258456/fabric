@@ -17,6 +17,8 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/fabric-chaincode-go-cc/shim"
+	"github.com/hxx258456/fabric-chaincode-go-cc/shimtest"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric-protos-go-cc/ledger/queryresult"
 	mb "github.com/hxx258456/fabric-protos-go-cc/msp"
@@ -40,8 +42,6 @@ import (
 	msptesttools "github.com/hxx258456/fabric/msp/mgmt/testtools"
 	mspmocks "github.com/hxx258456/fabric/msp/mocks"
 	"github.com/hxx258456/fabric/protoutil"
-	"github.com/hyperledger/fabric-chaincode-go/shim"
-	"github.com/hyperledger/fabric-chaincode-go/shimtest"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
 )

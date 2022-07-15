@@ -50,7 +50,9 @@ require (
 require (
 	gitee.com/zhaochuninhefei/gmgo v0.0.17
 	gitee.com/zhaochuninhefei/saramagm v0.0.4
-	github.com/hxx258456/ccgo v0.0.0-20220713014314-f372bff24eff
+	github.com/hxx258456/ccgo v0.0.0-20220714062303-6d08da58b00c
+	github.com/hxx258456/fabric-chaincode-go-cc v0.0.0-20220715081135-f47610c97a39
+	github.com/hxx258456/fabric-lib-go-cc v1.0.0
 	github.com/hxx258456/fabric-protos-go-cc v0.0.0-20220714073103-d4d8369ba551
 	github.com/hyperledger/fabric-lib-go v1.0.0
 )

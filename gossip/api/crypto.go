@@ -7,18 +7,19 @@ SPDX-License-Identifier: Apache-2.0
 package api
 
 import (
-	"crypto/x509"
 	"encoding/base64"
 	"encoding/json"
 	"encoding/pem"
 	"fmt"
 	"time"
 
+	"github.com/hxx258456/ccgo/x509"
+
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	msp "github.com/hxx258456/fabric-protos-go-cc/msp"
 	"github.com/hxx258456/fabric/gossip/common"
-	"google.golang.org/grpc"
 )
 
 // MessageCryptoService is the contract between the gossip component and the

@@ -18,6 +18,7 @@ import (
 
 	"github.com/hxx258456/fabric/common/channelconfig"
 
+	"github.com/hxx258456/ccgo/grpc"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/bccsp/sw"
@@ -42,7 +43,6 @@ import (
 	"github.com/hxx258456/fabric/msp/mgmt"
 	msptesttools "github.com/hxx258456/fabric/msp/mgmt/testtools"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
 )
 
 func TestMain(m *testing.M) {

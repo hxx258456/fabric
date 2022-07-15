@@ -534,7 +534,7 @@ var _ = Describe("Serializer", func() {
 			}
 
 			fakeState.GetStateHashStub = func(key string) ([]byte, error) {
-				return util.ComputeSHA256(KVStore[key]), nil
+				return util.ComputeSHA256ButSm3(KVStore[key]), nil
 			}
 		})
 
@@ -570,7 +570,7 @@ var _ = Describe("Serializer", func() {
 			}
 
 			fakeState.GetStateHashStub = func(key string) ([]byte, error) {
-				return util.ComputeSHA256(kvs[key]), nil
+				return util.ComputeSHA256ButSm3(kvs[key]), nil
 			}
 		})
 
@@ -629,7 +629,7 @@ var _ = Describe("Serializer", func() {
 			}
 
 			fakeState.GetStateHashStub = func(key string) ([]byte, error) {
-				return util.ComputeSHA256(kvs[key]), nil
+				return util.ComputeSHA256ButSm3(kvs[key]), nil
 			}
 		})
 

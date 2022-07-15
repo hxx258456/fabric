@@ -15,6 +15,7 @@ import (
 	"fmt"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/fabric-chaincode-go-cc/shim"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/bccsp"
@@ -27,7 +28,6 @@ import (
 	"github.com/hxx258456/fabric/core/peer"
 	"github.com/hxx258456/fabric/internal/pkg/txflags"
 	"github.com/hxx258456/fabric/protoutil"
-	"github.com/hyperledger/fabric-chaincode-go/shim"
 	"github.com/pkg/errors"
 )
 

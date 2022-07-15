@@ -7,10 +7,10 @@ SPDX-License-Identifier: Apache-2.0
 package scc
 
 import (
+	"github.com/hxx258456/fabric-chaincode-go-cc/shim"
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/common/flogging"
 	"github.com/hxx258456/fabric/core/container/ccintf"
-	"github.com/hyperledger/fabric-chaincode-go/shim"
 )
 
 // SysCCVersion is a constant used for the version field of system chaincodes.

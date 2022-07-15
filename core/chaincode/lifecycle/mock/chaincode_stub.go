@@ -5,7 +5,7 @@ import (
 	"sync"
 
 	"github.com/golang/protobuf/ptypes/timestamp"
-	"github.com/hyperledger/fabric-chaincode-go/shim"
+	"github.com/hxx258456/fabric-chaincode-go-cc/shim"
 	"github.com/hxx258456/fabric-protos-go-cc/peer"
 )
 
@@ -2781,6 +2781,7 @@ func (fake *ChaincodeStub) SplitCompositeKeyReturnsOnCall(i int, result1 string,
 	}{result1, result2, result3}
 }
 
+
 func (fake *ChaincodeStub) Invocations() map[string][][]interface{} {
 	fake.invocationsMutex.RLock()
 	defer fake.invocationsMutex.RUnlock()
@@ -2875,4 +2876,9 @@ func (fake *ChaincodeStub) recordInvocation(key string, args []interface{}) {
 		fake.invocations[key] = [][]interface{}{}
 	}
 	fake.invocations[key] = append(fake.invocations[key], args)
+}
+
+// 暂时解决未实现问题
+func (fake *ChaincodeStub) PurgePrivateData(collection string,key string) error {
+	return nil
 }

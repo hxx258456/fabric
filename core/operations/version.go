@@ -9,7 +9,8 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"net/http"
+
+	http "github.com/hxx258456/ccgo/gmhttp"
 
 	"github.com/hxx258456/fabric/common/flogging"
 )

@@ -17,6 +17,8 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/peer"
 	proto "github.com/hxx258456/fabric-protos-go-cc/gossip"
 	"github.com/hxx258456/fabric/gossip/api"
 	"github.com/hxx258456/fabric/gossip/common"
@@ -25,8 +27,6 @@ import (
 	"github.com/hxx258456/fabric/gossip/protoext"
 	"github.com/hxx258456/fabric/gossip/util"
 	"github.com/pkg/errors"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/peer"
 )
 
 const (

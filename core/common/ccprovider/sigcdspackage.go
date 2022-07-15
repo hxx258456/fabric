@@ -157,8 +157,9 @@ func (ccpack *SignedCDSPackage) getCDSData(scds *pb.SignedChaincodeDeploymentSpe
 		return nil, nil, nil, fmt.Errorf("Internal error, BCCSP could not be initialized : %s", err)
 	}
 
+	// TODO: 能否改为SM3，需要找到验证代码确保一起修改
 	// get the hash object
-	hash, err := ccpack.GetHasher.GetHash(&bccsp.SHAOpts{})
+	hash, err := ccpack.GetHasher.GetHash(&bccsp.SM3Opts{})
 	if err != nil {
 		return nil, nil, nil, err
 	}
@@ -210,6 +211,7 @@ func (ccpack *SignedCDSPackage) getCDSData(scds *pb.SignedChaincodeDeploymentSpe
 
 // ValidateCC returns error if the chaincode is not found or if its not a
 // ChaincodeDeploymentSpec
+// TODO: ValidateCC 没有对ccdata中的签名进行验证
 func (ccpack *SignedCDSPackage) ValidateCC(ccdata *ChaincodeData) error {
 	if ccpack.sDepSpec == nil {
 		return fmt.Errorf("uninitialized package")

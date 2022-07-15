@@ -25,8 +25,8 @@ import (
 	"github.com/hxx258456/fabric/protoutil"
 
 	"github.com/golang/protobuf/proto"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/connectivity"
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/connectivity"
 )
 
 var _ = Describe("Blocksprovider", func() {

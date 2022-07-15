@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"sync"
 
+	"github.com/hxx258456/ccgo/grpc"
 	gproto "github.com/hxx258456/fabric-protos-go-cc/gossip"
 	tspb "github.com/hxx258456/fabric-protos-go-cc/transientstore"
 	"github.com/hxx258456/fabric/common/flogging"
@@ -36,7 +37,6 @@ import (
 	"github.com/hxx258456/fabric/internal/pkg/peer/orderers"
 	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
-	"google.golang.org/grpc"
 )
 
 // gossipSvc is the interface of the gossip component.

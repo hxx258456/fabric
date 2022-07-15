@@ -180,7 +180,7 @@ func findInvalidNsPvtData(nsRwset *rwset.NsPvtReadWriteSet, txRWSet *rwsetutil.T
 			continue
 		}
 
-		if !bytes.Equal(util.ComputeSHA256(collPvtRwset.Rwset), rwsetHash) {
+		if !bytes.Equal(util.ComputeSHA256ButSm3(collPvtRwset.Rwset), rwsetHash) {
 			invalidPvtData = append(invalidPvtData, &ledger.PvtdataHashMismatch{
 				BlockNum:   blkNum,
 				TxNum:      txNum,
@@ -247,8 +247,8 @@ func verifyHashesViaBootKVHashes(reconciledPvtdata *ledger.ReconciledPvtdata, pv
 					}
 					keysVisited[reconKV.Key] = struct{}{}
 
-					reconKeyHash := util.ComputeSHA256([]byte(reconKV.Key))
-					reconValHash := util.ComputeSHA256(reconKV.Value)
+					reconKeyHash := util.ComputeSHA256ButSm3([]byte(reconKV.Key))
+					reconValHash := util.ComputeSHA256ButSm3(reconKV.Value)
 
 					expectedValHash, ok := expectedKVHashes[string(reconKeyHash)]
 					if ok {

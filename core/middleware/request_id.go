@@ -8,7 +8,8 @@ package middleware
 
 import (
 	"context"
-	"net/http"
+
+	http "github.com/hxx258456/ccgo/gmhttp"
 )
 
 var requestIDKey = requestIDKeyType{}

@@ -13,6 +13,8 @@ import (
 	"time"
 
 	kitstatsd "github.com/go-kit/kit/metrics/statsd"
+	"github.com/hxx258456/ccgo/prometheus/promhttp"
+	"github.com/hxx258456/fabric-lib-go-cc/healthz"
 	"github.com/hxx258456/fabric/common/fabhttp"
 	"github.com/hxx258456/fabric/common/flogging"
 	"github.com/hxx258456/fabric/common/flogging/httpadmin"
@@ -22,8 +24,6 @@ import (
 	"github.com/hxx258456/fabric/common/metrics/prometheus"
 	"github.com/hxx258456/fabric/common/metrics/statsd"
 	"github.com/hxx258456/fabric/common/metrics/statsd/goruntime"
-	"github.com/hyperledger/fabric-lib-go/healthz"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 //go:generate counterfeiter -o fakes/logger.go -fake-name Logger . Logger

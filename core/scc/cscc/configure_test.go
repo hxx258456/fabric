@@ -15,6 +15,8 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/fabric-chaincode-go-cc/shim"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/bccsp/sw"
@@ -42,10 +44,8 @@ import (
 	"github.com/hxx258456/fabric/msp/mgmt"
 	msptesttools "github.com/hxx258456/fabric/msp/mgmt/testtools"
 	"github.com/hxx258456/fabric/protoutil"
-	"github.com/hyperledger/fabric-chaincode-go/shim"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
 )
 
 //go:generate counterfeiter -o mocks/acl_provider.go --fake-name ACLProvider . aclProvider

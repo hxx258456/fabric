@@ -7,12 +7,13 @@ SPDX-License-Identifier: Apache-2.0
 package operations_test
 
 import (
-	"crypto/tls"
-	"crypto/x509"
 	"io/ioutil"
-	"net/http"
 	"path/filepath"
 	"testing"
+
+	http "github.com/hxx258456/ccgo/gmhttp"
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
 
 	"github.com/hxx258456/fabric/common/crypto/tlsgen"
 	"github.com/hyperledger/fabric-lib-go/healthz"

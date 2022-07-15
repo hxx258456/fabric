@@ -230,7 +230,7 @@ func (s *Store) GetChaincodeInstallPath() string {
 
 // PackageID returns the package ID with the label and hash of the chaincode install package
 func PackageID(label string, ccInstallPkg []byte) string {
-	hash := util.ComputeSHA256(ccInstallPkg)
+	hash := util.ComputeSHA256ButSm3(ccInstallPkg)
 	return packageID(label, hash)
 }
 

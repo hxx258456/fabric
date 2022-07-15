@@ -21,8 +21,8 @@ import (
 	"github.com/hxx258456/fabric/protoutil"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
 	"github.com/pkg/errors"
-	"google.golang.org/grpc"
 )
 
 type sleeper struct {

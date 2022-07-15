@@ -7,7 +7,7 @@ import (
 
 	"github.com/hxx258456/fabric-protos-go-cc/orderer"
 	"github.com/hxx258456/fabric/internal/pkg/peer/blocksprovider"
-	"google.golang.org/grpc"
+	"github.com/hxx258456/ccgo/grpc"
 )
 
 type DeliverStreamer struct {

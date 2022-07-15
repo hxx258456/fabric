@@ -882,7 +882,7 @@ func verifySnapshotOutput(
 	for _, f := range o.expectedBinaryFiles {
 		c, err := ioutil.ReadFile(filepath.Join(snapshotDir, f))
 		require.NoError(t, err)
-		filesAndHashes[f] = hex.EncodeToString(util.ComputeSHA256(c))
+		filesAndHashes[f] = hex.EncodeToString(util.ComputeSHA256ButSm3(c))
 	}
 
 	// verify the contents of the file snapshot_metadata.json
@@ -914,7 +914,7 @@ func verifySnapshotOutput(
 	require.NoError(t, json.Unmarshal(mhJSON, mh))
 	require.Equal(t,
 		&snapshotAdditionalMetadata{
-			SnapshotHashInHex:        hex.EncodeToString(util.ComputeSHA256(mJSON)),
+			SnapshotHashInHex:        hex.EncodeToString(util.ComputeSHA256ButSm3(mJSON)),
 			LastBlockCommitHashInHex: hex.EncodeToString(o.lastCommitHash),
 		},
 		mh,

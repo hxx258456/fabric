@@ -361,8 +361,13 @@ github.com/hashicorp/memberlist v0.1.3/go.mod h1:ajVTdAv/9Im8oMAAj5G31PhhMCZJV2p
 github.com/hashicorp/serf v0.8.2/go.mod h1:6hOLApaqBFA1NXqRQAsxw9QxuDEvNxSQRwA/JwenrHc=
 github.com/hpcloud/tail v1.0.0/go.mod h1:ab1qPbhIpdTxEkNHXyeSf5vhxWSCs/tWer42PpOxQnU=
 github.com/hudl/fargo v1.3.0/go.mod h1:y3CKSmjA+wD2gak7sUSXTAoopbhU08POFhmITJgmKTg=
-github.com/hxx258456/ccgo v0.0.0-20220713014314-f372bff24eff h1:sNjkwYBRHlDQTdcgCN64AzJc5WCzrGF4roSd127nF5Y=
 github.com/hxx258456/ccgo v0.0.0-20220713014314-f372bff24eff/go.mod h1:c5Yem3zCkaO+avGDEgqJbnOJJQITGIJ9Cs6hAZKE6fg=
+github.com/hxx258456/ccgo v0.0.0-20220714062303-6d08da58b00c h1:WXT1utsQmCo+mDtvvz6yGMOAFrRFfAty3I38nfBCZWQ=
+github.com/hxx258456/ccgo v0.0.0-20220714062303-6d08da58b00c/go.mod h1:c5Yem3zCkaO+avGDEgqJbnOJJQITGIJ9Cs6hAZKE6fg=
+github.com/hxx258456/fabric-chaincode-go-cc v0.0.0-20220715081135-f47610c97a39 h1:QPReD4kNxn2WGpBgGdrwzL4oEm1i3Z2WgelWabfGwLA=
+github.com/hxx258456/fabric-chaincode-go-cc v0.0.0-20220715081135-f47610c97a39/go.mod h1:L1Ed8wQEt5vq3mVrZ4MSYKtPCmo9xdWfL8fzq+ZPCeM=
+github.com/hxx258456/fabric-lib-go-cc v1.0.0 h1:6IjCvk33ZtWmRGUYWHXT9aFGdu7PIDWBy34VpU6GQnw=
+github.com/hxx258456/fabric-lib-go-cc v1.0.0/go.mod h1:MazWcwadADKHn4TCqBI54STyrsrSDz474hq/pXOPKB8=
 github.com/hxx258456/fabric-protos-go-cc v0.0.0-20220714073103-d4d8369ba551 h1:LiDtxKz/oW5lH+7LsH32B5mkUTyp8D01dG8n+/vLSDY=
 github.com/hxx258456/fabric-protos-go-cc v0.0.0-20220714073103-d4d8369ba551/go.mod h1:V+hPuc0EQMcMduKthyd1Km8ddZcyIs2x1ajHGb8hsw0=
 github.com/hyperledger/fabric-amcl v0.0.0-20210603140002-2670f91851c8 h1:BCR8ZlOZ+deUbWxyY6fpoY8LbB7PR5wGGwCTvWQOU2g=

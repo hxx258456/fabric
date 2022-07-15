@@ -10,13 +10,13 @@ import (
 	"context"
 	"sync"
 
+	"github.com/hxx258456/ccgo/grpc"
 	proto "github.com/hxx258456/fabric-protos-go-cc/gossip"
 	"github.com/hxx258456/fabric/gossip/common"
 	"github.com/hxx258456/fabric/gossip/metrics"
 	"github.com/hxx258456/fabric/gossip/protoext"
 	"github.com/hxx258456/fabric/gossip/util"
 	"github.com/pkg/errors"
-	"google.golang.org/grpc"
 )
 
 type handler func(message *protoext.SignedGossipMessage)

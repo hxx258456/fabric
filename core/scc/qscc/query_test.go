@@ -12,6 +12,8 @@ import (
 	"os"
 	"testing"
 
+	"github.com/hxx258456/fabric-chaincode-go-cc/shim"
+	"github.com/hxx258456/fabric-chaincode-go-cc/shimtest"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	peer2 "github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/bccsp/sw"
@@ -24,8 +26,6 @@ import (
 	"github.com/hxx258456/fabric/core/ledger/ledgermgmt/ledgermgmttest"
 	"github.com/hxx258456/fabric/core/peer"
 	"github.com/hxx258456/fabric/protoutil"
-	"github.com/hyperledger/fabric-chaincode-go/shim"
-	"github.com/hyperledger/fabric-chaincode-go/shimtest"
 	"github.com/pkg/errors"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/require"

@@ -13,6 +13,7 @@ import (
 	"sync"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/fabric-chaincode-go-cc/shim"
 	mb "github.com/hxx258456/fabric-protos-go-cc/msp"
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/bccsp"
@@ -36,7 +37,6 @@ import (
 	"github.com/hxx258456/fabric/internal/ccmetadata"
 	"github.com/hxx258456/fabric/msp"
 	"github.com/hxx258456/fabric/protoutil"
-	"github.com/hyperledger/fabric-chaincode-go/shim"
 	"github.com/pkg/errors"
 )
 

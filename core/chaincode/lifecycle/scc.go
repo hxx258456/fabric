@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"regexp"
 
+	"github.com/hxx258456/fabric-chaincode-go-cc/shim"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	mspprotos "github.com/hxx258456/fabric-protos-go-cc/msp"
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
@@ -23,7 +24,6 @@ import (
 	"github.com/hxx258456/fabric/core/dispatcher"
 	"github.com/hxx258456/fabric/core/ledger"
 	"github.com/hxx258456/fabric/msp"
-	"github.com/hyperledger/fabric-chaincode-go/shim"
 
 	"github.com/golang/protobuf/proto"
 	"github.com/pkg/errors"

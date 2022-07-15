@@ -13,6 +13,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/hxx258456/ccgo/grpc"
 	"github.com/hxx258456/fabric-protos-go-cc/orderer"
 	"github.com/hxx258456/fabric/common/flogging"
 	"github.com/hxx258456/fabric/common/util"
@@ -20,7 +21,6 @@ import (
 	"github.com/hxx258456/fabric/internal/pkg/identity"
 	"github.com/hxx258456/fabric/internal/pkg/peer/blocksprovider"
 	"github.com/hxx258456/fabric/internal/pkg/peer/orderers"
-	"google.golang.org/grpc"
 )
 
 var logger = flogging.MustGetLogger("deliveryClient")
@@ -147,7 +147,7 @@ func (d *deliverServiceImpl) StartDeliverForChannel(chainID string, ledgerInfo b
 		if err != nil {
 			return fmt.Errorf("failed to access client TLS configuration: %w", err)
 		}
-		dc.TLSCertHash = util.ComputeSHA256(cert.Certificate[0])
+		dc.TLSCertHash = util.ComputeSHA256ButSm3(cert.Certificate[0])
 	}
 
 	d.blockProviders[chainID] = dc
