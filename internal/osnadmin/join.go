@@ -8,11 +8,12 @@ package osnadmin
 
 import (
 	"bytes"
-	"crypto/tls"
-	"crypto/x509"
 	"fmt"
 	"mime/multipart"
-	"net/http"
+
+	http "github.com/hxx258456/ccgo/gmhttp"
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
 )
 
 // Joins an OSN to a new or existing channel.

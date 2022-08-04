@@ -11,12 +11,12 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/connectivity"
 	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
 	"github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/gossip/common"
 	"github.com/hxx258456/fabric/internal/pkg/comm"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/connectivity"
 )
 
 type endorser struct {

@@ -8,8 +8,6 @@ package discovery
 
 import (
 	"context"
-	"crypto/tls"
-	"crypto/x509"
 	"fmt"
 	"io/ioutil"
 	"net"
@@ -18,7 +16,12 @@ import (
 	"testing"
 	"time"
 
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
+
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/credentials"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	discovery "github.com/hxx258456/fabric-protos-go-cc/discovery"
 	gossip "github.com/hxx258456/fabric-protos-go-cc/gossip"
@@ -39,8 +42,6 @@ import (
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 )
 
 const (
@@ -386,7 +387,7 @@ func TestClient(t *testing.T) {
 	}
 	authInfo := &discovery.AuthInfo{
 		ClientIdentity:    []byte{1, 2, 3},
-		ClientTlsCertHash: util.ComputeSHA256(clientTLSCert.Certificate[0]),
+		ClientTlsCertHash: util.ComputeSHA256ButSm3(clientTLSCert.Certificate[0]),
 	}
 	cl := NewClient(connect, signer, signerCacheSize)
 

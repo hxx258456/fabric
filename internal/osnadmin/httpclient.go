@@ -7,9 +7,9 @@ SPDX-License-Identifier: Apache-2.0
 package osnadmin
 
 import (
-	"crypto/tls"
-	"crypto/x509"
-	"net/http"
+	http "github.com/hxx258456/ccgo/gmhttp"
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
 )
 
 func httpClient(caCertPool *x509.CertPool, tlsClientCert tls.Certificate) *http.Client {

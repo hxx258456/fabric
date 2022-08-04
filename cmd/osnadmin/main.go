@@ -8,14 +8,15 @@ package main
 
 import (
 	"bytes"
-	"crypto/tls"
-	"crypto/x509"
 	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
-	"net/http"
 	"os"
+
+	http "github.com/hxx258456/ccgo/gmhttp"
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
 
 	"github.com/golang/protobuf/proto"
 	"github.com/hxx258456/fabric-protos-go-cc/common"

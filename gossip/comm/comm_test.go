@@ -11,7 +11,6 @@ import (
 	"context"
 	"crypto/hmac"
 	"crypto/sha256"
-	"crypto/tls"
 	"errors"
 	"fmt"
 	"io"
@@ -23,6 +22,10 @@ import (
 	"testing"
 	"time"
 
+	tls "github.com/hxx258456/ccgo/gmtls"
+
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/credentials"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	proto "github.com/hxx258456/fabric-protos-go-cc/gossip"
 	"github.com/hxx258456/fabric/bccsp/factory"
@@ -39,8 +42,6 @@ import (
 	"github.com/hxx258456/fabric/internal/pkg/comm"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 )
 
 func init() {

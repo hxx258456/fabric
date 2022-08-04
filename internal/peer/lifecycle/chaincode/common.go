@@ -13,12 +13,12 @@ import (
 	"io"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/common/policydsl"
 	"github.com/hxx258456/fabric/internal/peer/chaincode"
 	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
-	"google.golang.org/grpc"
 )
 
 // EndorserClient defines the interface for sending a proposal

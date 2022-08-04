@@ -7,19 +7,20 @@ SPDX-License-Identifier: Apache-2.0
 package util
 
 import (
-	"crypto/tls"
-	"crypto/x509"
 	"fmt"
 	"net"
 	"strconv"
 	"time"
 
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
+
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/credentials"
 	"github.com/hxx258456/fabric/common/crypto/tlsgen"
 	"github.com/hxx258456/fabric/gossip/api"
 	"github.com/hxx258456/fabric/gossip/common"
 	"github.com/hxx258456/fabric/internal/pkg/comm"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 )
 
 // CA that generates TLS key-pairs

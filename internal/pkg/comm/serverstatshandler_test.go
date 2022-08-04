@@ -12,13 +12,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/stats"
 	"github.com/hxx258456/fabric/common/metrics"
 	"github.com/hxx258456/fabric/common/metrics/metricsfakes"
 	"github.com/hxx258456/fabric/internal/pkg/comm"
 	"github.com/hxx258456/fabric/internal/pkg/comm/testpb"
 	. "github.com/onsi/gomega"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/stats"
 )
 
 func TestConnectionCounters(t *testing.T) {

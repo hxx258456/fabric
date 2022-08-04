@@ -18,6 +18,7 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/hxx258456/fabric-config-cc/protolator"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric/bccsp"
 	"github.com/hxx258456/fabric/common/channelconfig"
@@ -27,7 +28,6 @@ import (
 	"github.com/hxx258456/fabric/common/util"
 	"github.com/hxx258456/fabric/internal/pkg/comm"
 	"github.com/hxx258456/fabric/protoutil"
-	"github.com/hyperledger/fabric-config/protolator"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
 )

@@ -1,10 +1,11 @@
+//go:build ignore
+// +build ignore
+
 /*
 Copyright IBM Corp. All Rights Reserved.
 
 SPDX-License-Identifier: Apache-2.0
 */
-
-// +build ignore
 
 //go:generate -command gencerts go run ./generate.go
 //go:generate gencerts -orgs 2 -child-orgs 2 -servers 2 -clients 2
@@ -15,7 +16,6 @@ import (
 	"crypto/ecdsa"
 	"crypto/elliptic"
 	"crypto/rand"
-	"crypto/x509"
 	"crypto/x509/pkix"
 	"encoding/pem"
 	"flag"
@@ -24,6 +24,8 @@ import (
 	"net"
 	"os"
 	"time"
+
+	"github.com/hxx258456/ccgo/x509"
 )
 
 // command line flags

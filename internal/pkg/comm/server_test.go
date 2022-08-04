@@ -9,8 +9,6 @@ package comm_test
 import (
 	"bytes"
 	"context"
-	"crypto/tls"
-	"crypto/x509"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -21,15 +19,18 @@ import (
 	"testing"
 	"time"
 
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
+
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/codes"
+	"github.com/hxx258456/ccgo/grpc/credentials"
+	"github.com/hxx258456/ccgo/grpc/status"
 	"github.com/hxx258456/fabric/common/crypto/tlsgen"
 	"github.com/hxx258456/fabric/internal/pkg/comm"
 	"github.com/hxx258456/fabric/internal/pkg/comm/testpb"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/status"
 )
 
 // Embedded certificates for testing

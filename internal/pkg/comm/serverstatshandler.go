@@ -9,8 +9,8 @@ package comm
 import (
 	"context"
 
+	"github.com/hxx258456/ccgo/grpc/stats"
 	"github.com/hxx258456/fabric/common/metrics"
-	"google.golang.org/grpc/stats"
 )
 
 type ServerStatsHandler struct {

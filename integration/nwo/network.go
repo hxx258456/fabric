@@ -26,6 +26,8 @@ import (
 	"time"
 
 	docker "github.com/fsouza/go-dockerclient"
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/credentials"
 	"github.com/hxx258456/fabric/integration/nwo/commands"
 	"github.com/hxx258456/fabric/integration/nwo/fabricconfig"
 	"github.com/hxx258456/fabric/integration/nwo/runner"
@@ -37,8 +39,6 @@ import (
 	"github.com/tedsuo/ifrit"
 	ginkgomon "github.com/tedsuo/ifrit/ginkgomon_v2"
 	"github.com/tedsuo/ifrit/grouper"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 	"gopkg.in/yaml.v2"
 )
 

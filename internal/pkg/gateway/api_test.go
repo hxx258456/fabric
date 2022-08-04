@@ -16,6 +16,9 @@ import (
 
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/timestamp"
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/codes"
+	"github.com/hxx258456/ccgo/grpc/status"
 	cp "github.com/hxx258456/fabric-protos-go-cc/common"
 	dp "github.com/hxx258456/fabric-protos-go-cc/discovery"
 	pb "github.com/hxx258456/fabric-protos-go-cc/gateway"
@@ -41,9 +44,6 @@ import (
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap/zapcore"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
 // The following private interfaces are here purely to prevent counterfeiter creating an import cycle in the unit test

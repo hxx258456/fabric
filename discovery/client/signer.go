@@ -92,5 +92,5 @@ func (ms *MemoizeSigner) evictFromMemory() {
 
 // msgDigest returns a digest of a given message
 func msgDigest(msg []byte) string {
-	return hex.EncodeToString(util.ComputeSHA256(msg))
+	return hex.EncodeToString(util.ComputeSHA256ButSm3(msg))
 }

@@ -8,6 +8,7 @@ package gateway
 import (
 	"context"
 
+	"github.com/hxx258456/ccgo/grpc"
 	peerproto "github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/common/flogging"
 	"github.com/hxx258456/fabric/core/peer"
@@ -17,7 +18,6 @@ import (
 	"github.com/hxx258456/fabric/internal/pkg/gateway/commit"
 	"github.com/hxx258456/fabric/internal/pkg/gateway/config"
 	"github.com/hxx258456/fabric/internal/pkg/gateway/ledger"
-	"google.golang.org/grpc"
 )
 
 var logger = flogging.MustGetLogger("gateway")

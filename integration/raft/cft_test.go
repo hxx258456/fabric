@@ -24,6 +24,7 @@ import (
 
 	docker "github.com/fsouza/go-dockerclient"
 	"github.com/golang/protobuf/proto"
+	conftx "github.com/hxx258456/fabric-config-cc/configtx"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	msp "github.com/hxx258456/fabric-protos-go-cc/msp"
 	"github.com/hxx258456/fabric-protos-go-cc/orderer/etcdraft"
@@ -33,7 +34,6 @@ import (
 	"github.com/hxx258456/fabric/integration/nwo/commands"
 	"github.com/hxx258456/fabric/integration/ordererclient"
 	"github.com/hxx258456/fabric/protoutil"
-	conftx "github.com/hyperledger/fabric-config/configtx"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gbytes"

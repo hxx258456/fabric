@@ -12,7 +12,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net"
-	"net/http"
 	_ "net/http/pprof" // This is essentially the main package for the orderer
 	"os"
 	"os/signal"
@@ -20,7 +19,11 @@ import (
 	"syscall"
 	"time"
 
+	http "github.com/hxx258456/ccgo/gmhttp"
+
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/fabric-lib-go-cc/healthz"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
 	"github.com/hxx258456/fabric/bccsp"
@@ -51,9 +54,7 @@ import (
 	"github.com/hxx258456/fabric/orderer/consensus/kafka"
 	"github.com/hxx258456/fabric/orderer/consensus/solo"
 	"github.com/hxx258456/fabric/protoutil"
-	"github.com/hyperledger/fabric-lib-go/healthz"
 	"go.uber.org/zap/zapcore"
-	"google.golang.org/grpc"
 	"gopkg.in/alecthomas/kingpin.v2"
 )
 

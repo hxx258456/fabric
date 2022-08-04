@@ -10,6 +10,7 @@ import (
 	"math"
 	"os"
 
+	"github.com/hxx258456/fabric-config-cc/protolator"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
 	"github.com/hxx258456/fabric/bccsp/factory"
@@ -18,7 +19,6 @@ import (
 	mspmgmt "github.com/hxx258456/fabric/msp/mgmt"
 	"github.com/hxx258456/fabric/orderer/common/localconfig"
 	"github.com/hxx258456/fabric/protoutil"
-	"github.com/hyperledger/fabric-config/protolator"
 	"google.golang.org/grpc"
 )
 

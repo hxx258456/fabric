@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/fabric-config-cc/protolator"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric/bccsp"
 	"github.com/hxx258456/fabric/common/channelconfig"
@@ -23,7 +24,6 @@ import (
 	"github.com/hxx258456/fabric/orderer/common/localconfig"
 	"github.com/hxx258456/fabric/orderer/consensus/etcdraft"
 	"github.com/hxx258456/fabric/protoutil"
-	"github.com/hyperledger/fabric-config/protolator"
 	"github.com/pkg/errors"
 )
 

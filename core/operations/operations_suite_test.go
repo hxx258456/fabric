@@ -15,8 +15,8 @@ import (
 	tls "github.com/hxx258456/ccgo/gmtls"
 	"github.com/hxx258456/ccgo/x509"
 
+	"github.com/hxx258456/fabric-lib-go-cc/healthz"
 	"github.com/hxx258456/fabric/common/crypto/tlsgen"
-	"github.com/hyperledger/fabric-lib-go/healthz"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )

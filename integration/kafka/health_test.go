@@ -15,8 +15,8 @@ import (
 	"syscall"
 
 	docker "github.com/fsouza/go-dockerclient"
+	"github.com/hxx258456/fabric-lib-go-cc/healthz"
 	"github.com/hxx258456/fabric/integration/nwo"
-	"github.com/hyperledger/fabric-lib-go/healthz"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/tedsuo/ifrit"

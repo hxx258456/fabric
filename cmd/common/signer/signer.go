@@ -7,16 +7,17 @@ SPDX-License-Identifier: Apache-2.0
 package signer
 
 import (
-	"crypto/ecdsa"
 	"crypto/rand"
-	"crypto/x509"
 	"encoding/pem"
 	"io/ioutil"
 	"strings"
 
-	"gitee.com/zhaochuninhefei/gmgo/sm2"
+	"github.com/hxx258456/ccgo/x509"
+
+	"github.com/hxx258456/ccgo/sm2"
 	"github.com/hxx258456/fabric-protos-go-cc/msp"
 	"github.com/hxx258456/fabric/bccsp/sw"
+	"github.com/hxx258456/fabric/bccsp/utils"
 	"github.com/hxx258456/fabric/common/util"
 	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
@@ -29,9 +30,11 @@ cmd/common/signer/signer.go 貌似是MSP的签名器
 // Config holds the configuration for
 // creation of a Signer
 type Config struct {
-	MSPID        string
+	MSPID string
+	// 证书, 当前msp的证书?
 	IdentityPath string
-	KeyPath      string
+	// 私钥 当前msp的私钥?
+	KeyPath string
 }
 
 // Signer signs messages.
@@ -39,7 +42,7 @@ type Config struct {
 // initialize an MSP without a CA cert that signs the signing identity,
 // this will do for now.
 type Signer struct {
-	key     *ecdsa.PrivateKey
+	key     *sm2.PrivateKey
 	Creator []byte
 }
 
@@ -49,20 +52,24 @@ func (si *Signer) Serialize() ([]byte, error) {
 
 // NewSigner creates a new Signer out of the given configuration
 func NewSigner(conf Config) (*Signer, error) {
+	// 序列化客户端mspid
 	sId, err := serializeIdentity(conf.IdentityPath, conf.MSPID)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
+	// 读取私钥
 	key, err := loadPrivateKey(conf.KeyPath)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
+	// 创建 Signer TODO: 在 Signer埋入 序列化客户端mspid 的目的是啥？
 	return &Signer{
 		Creator: sId,
 		key:     key,
 	}, nil
 }
 
+// 将客户端证书及MSPID组装为 protof格式的字节流
 func serializeIdentity(clientCert string, mspID string) ([]byte, error) {
 	b, err := ioutil.ReadFile(clientCert)
 	if err != nil {
@@ -95,25 +102,25 @@ func validateEnrollmentCertificate(b []byte) error {
 }
 
 func (si *Signer) Sign(msg []byte) ([]byte, error) {
-	digest := util.ComputeSHA256(msg)
-	return signECDSA(si.key, digest)
+	digest := util.ComputeSM3(msg)
+	return signSM2(si.key, digest)
 }
 
 // 将未加密的pem文件转为sm2私钥
-func loadPrivateKey(file string) (*ecdsa.PrivateKey, error) {
+func loadPrivateKey(file string) (*sm2.PrivateKey, error) {
 	b, err := ioutil.ReadFile(file)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
-	bl, _ := pem.Decode(b)
-	if bl == nil {
-		return nil, errors.Errorf("failed to decode PEM block from %s", file)
-	}
-	key, err := parsePrivateKey(bl.Bytes)
+	// bl, _ := pem.Decode(b)
+	// if bl == nil {
+	// 	return nil, errors.Errorf("failed to decode PEM block from %s", file)
+	// }
+	key, err := utils.PEMToSm2PrivateKey(b, nil)
 	if err != nil {
 		return nil, err
 	}
-	return key.(*ecdsa.PrivateKey), nil
+	return key, nil
 }
 
 func signSM2(k *sm2.PrivateKey, digest []byte) (signature []byte, err error) {

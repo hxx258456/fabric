@@ -22,6 +22,8 @@ import (
 	"time"
 
 	protoG "github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/connectivity"
 	proto "github.com/hxx258456/fabric-protos-go-cc/gossip"
 	"github.com/hxx258456/fabric/common/flogging"
 	"github.com/hxx258456/fabric/gossip/common"
@@ -33,8 +35,6 @@ import (
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/connectivity"
 )
 
 var timeout = time.Second * time.Duration(15)

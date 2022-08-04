@@ -6,7 +6,7 @@ import (
 	"sync"
 
 	"github.com/hxx258456/fabric-protos-go-cc/gateway"
-	"google.golang.org/grpc/metadata"
+	"github.com/hxx258456/ccgo/grpc/metadata"
 )
 
 type ChaincodeEventsServer struct {

@@ -8,7 +8,6 @@ package chaincode
 
 import (
 	"context"
-	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -16,7 +15,10 @@ import (
 	"strings"
 	"sync"
 
+	tls "github.com/hxx258456/ccgo/gmtls"
+
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/fabric-chaincode-go-cc/shim"
 	pcommon "github.com/hxx258456/fabric-protos-go-cc/common"
 	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
@@ -26,7 +28,6 @@ import (
 	"github.com/hxx258456/fabric/internal/peer/common"
 	"github.com/hxx258456/fabric/internal/pkg/identity"
 	"github.com/hxx258456/fabric/protoutil"
-	"github.com/hyperledger/fabric-chaincode-go/shim"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -849,7 +850,7 @@ func createDeliverEnvelope(
 	var tlsCertHash []byte
 	// check for client certificate and create hash if present
 	if len(certificate.Certificate) > 0 {
-		tlsCertHash = util.ComputeSHA256(certificate.Certificate[0])
+		tlsCertHash = util.ComputeSHA256ButSm3(certificate.Certificate[0])
 	}
 
 	start := &ab.SeekPosition{

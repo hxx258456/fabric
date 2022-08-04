@@ -7,17 +7,18 @@ SPDX-License-Identifier: Apache-2.0
 package comm
 
 import (
-	"crypto/tls"
-	"crypto/x509"
 	"io/ioutil"
 	"path/filepath"
 	"testing"
 	"time"
 
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
+
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/keepalive"
 	"github.com/hxx258456/fabric/common/crypto/tlsgen"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/keepalive"
 )
 
 func TestServerKeepaliveOptions(t *testing.T) {

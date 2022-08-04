@@ -7,20 +7,21 @@ SPDX-License-Identifier: Apache-2.0
 package signer
 
 import (
-	"crypto/ecdsa"
-	"crypto/x509"
 	"encoding/pem"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
 
-	"github.com/hxx258456/fabric/bccsp/utils"
+	"github.com/hxx258456/ccgo/sm2"
+	"github.com/hxx258456/ccgo/x509"
+	"github.com/hxx258456/fabric/bccsp/sw"
 	"github.com/hxx258456/fabric/common/util"
 	"github.com/stretchr/testify/require"
 )
 
 func TestSigner(t *testing.T) {
+	// TODO: 需要将testdata/signer下的相关文件替换为sm2相关文件
 	conf := Config{
 		MSPID:        "SampleOrg",
 		IdentityPath: filepath.Join("testdata", "signer", "cert.pem"),
@@ -34,9 +35,9 @@ func TestSigner(t *testing.T) {
 	sig, err := signer.Sign(msg)
 	require.NoError(t, err)
 
-	r, s, err := utils.UnmarshalECDSASignature(sig)
+	r, s, err := sw.UnmarshalSM2Signature(sig)
 	require.NoError(t, err)
-	ecdsa.Verify(&signer.key.PublicKey, util.ComputeSHA256(msg), r, s)
+	sm2.Sm2Verify(&signer.key.PublicKey, util.ComputeSM3(msg), nil, r, s)
 }
 
 func TestSignerDifferentFormats(t *testing.T) {

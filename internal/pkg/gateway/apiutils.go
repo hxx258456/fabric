@@ -12,13 +12,13 @@ import (
 	"fmt"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc/codes"
+	"github.com/hxx258456/ccgo/grpc/status"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	gp "github.com/hxx258456/fabric-protos-go-cc/gateway"
 	"github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
 func getChannelAndChaincodeFromSignedProposal(signedProposal *peer.SignedProposal) (string, string, bool, error) {

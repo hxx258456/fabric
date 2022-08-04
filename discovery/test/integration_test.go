@@ -9,11 +9,8 @@ package test
 import (
 	"bytes"
 	"context"
-	"crypto/ecdsa"
 	"crypto/rand"
-	"crypto/x509"
 	"encoding/hex"
-	"encoding/pem"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -23,15 +20,18 @@ import (
 	"testing"
 	"time"
 
+	"github.com/hxx258456/ccgo/sm2"
+
 	discovery_protos "github.com/hxx258456/fabric-protos-go-cc/discovery"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
 	common "github.com/hxx258456/fabric-protos-go-cc/common"
 	gossip "github.com/hxx258456/fabric-protos-go-cc/gossip"
 	msprotos "github.com/hxx258456/fabric-protos-go-cc/msp"
 	. "github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/bccsp/sw"
-	bccsp "github.com/hxx258456/fabric/bccsp/utils"
+	"github.com/hxx258456/fabric/bccsp/utils"
 	"github.com/hxx258456/fabric/common/cauthdsl"
 	"github.com/hxx258456/fabric/common/configtx"
 	"github.com/hxx258456/fabric/common/crypto/tlsgen"
@@ -61,7 +61,6 @@ import (
 	"github.com/onsi/gomega/gexec"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
 )
 
 var (
@@ -506,7 +505,7 @@ func createClientAndService(t *testing.T, testdir string) (*client, *client, *se
 	userSigner := createUserSigner(t)
 	wrapperUserClient := &client{AuthInfo: &discovery_protos.AuthInfo{
 		ClientIdentity:    userSigner.Creator,
-		ClientTlsCertHash: util.ComputeSHA256(clientKeyPair.TLSCert.Raw),
+		ClientTlsCertHash: util.ComputeSHA256ButSm3(clientKeyPair.TLSCert.Raw),
 	}, conn: conn}
 	var signerCacheSize uint = 10
 	wrapperUserClient.Client = disc.NewClient(wrapperUserClient.newConnection, userSigner.Sign, signerCacheSize)
@@ -514,7 +513,7 @@ func createClientAndService(t *testing.T, testdir string) (*client, *client, *se
 	adminSigner := createAdminSigner(t)
 	wrapperAdminClient := &client{AuthInfo: &discovery_protos.AuthInfo{
 		ClientIdentity:    adminSigner.Creator,
-		ClientTlsCertHash: util.ComputeSHA256(clientKeyPair.TLSCert.Raw),
+		ClientTlsCertHash: util.ComputeSHA256ButSm3(clientKeyPair.TLSCert.Raw),
 	}, conn: conn}
 	wrapperAdminClient.Client = disc.NewClient(wrapperAdminClient.newConnection, adminSigner.Sign, signerCacheSize)
 
@@ -780,7 +779,7 @@ func (ps testPeerSet) Contains(peer *testPeer) bool {
 func peersToTestPeers(peers []*disc.Peer) testPeerSet {
 	var res testPeerSet
 	for _, p := range peers {
-		pkiID := gcommon.PKIidType(hex.EncodeToString(util.ComputeSHA256(p.Identity)))
+		pkiID := gcommon.PKIidType(hex.EncodeToString(util.ComputeSHA256ButSm3(p.Identity)))
 		var stateInfoMember gdisc.NetworkMember
 		if p.StateInfoMessage != nil {
 			stateInfo, _ := protoext.EnvelopeToGossipMessage(p.StateInfoMessage.Envelope)
@@ -819,7 +818,7 @@ func newPeer(dir, mspID string, org, id int) *testPeer {
 		IdBytes: certBytes,
 	}
 	identityBytes := protoutil.MarshalOrPanic(sID)
-	pkiID := gcommon.PKIidType(hex.EncodeToString(util.ComputeSHA256(identityBytes)))
+	pkiID := gcommon.PKIidType(hex.EncodeToString(util.ComputeSHA256ButSm3(identityBytes)))
 	return &testPeer{
 		mspID:        mspID,
 		identity:     identityBytes,
@@ -922,7 +921,7 @@ func policyFromString(s string) *common.SignaturePolicyEnvelope {
 }
 
 type signer struct {
-	key     *ecdsa.PrivateKey
+	key     *sm2.PrivateKey
 	Creator []byte
 }
 
@@ -954,32 +953,41 @@ func serializeIdentity(clientCert string, mspID string) ([]byte, error) {
 }
 
 func (si *signer) Sign(msg []byte) ([]byte, error) {
-	digest := util.ComputeSHA256(msg)
-	return signECDSA(si.key, digest)
+	digest := util.ComputeSHA256ButSm3(msg)
+	return signSm2(si.key, digest)
 }
 
-func loadPrivateKey(file string) (*ecdsa.PrivateKey, error) {
+func loadPrivateKey(file string) (*sm2.PrivateKey, error) {
 	b, err := ioutil.ReadFile(file)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
-	bl, _ := pem.Decode(b)
-	key, err := x509.ParsePKCS8PrivateKey(bl.Bytes)
+	// bl, _ := pem.Decode(b)
+	// key, err := x509.ParsePKCS8PrivateKey(bl.Bytes)
+	key, err := utils.PEMToSm2PrivateKey(b, nil)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
-	return key.(*ecdsa.PrivateKey), nil
+	return key, nil
 }
 
-func signECDSA(k *ecdsa.PrivateKey, digest []byte) (signature []byte, err error) {
-	r, s, err := ecdsa.Sign(rand.Reader, k, digest)
-	if err != nil {
-		return nil, err
-	}
+// func signECDSA(k *ecdsa.PrivateKey, digest []byte) (signature []byte, err error) {
+// 	r, s, err := ecdsa.Sign(rand.Reader, k, digest)
+// 	if err != nil {
+// 		return nil, err
+// 	}
 
-	s, err = bccsp.ToLowS(&k.PublicKey, s)
+// 	s, err = bccsp.ToLowS(&k.PublicKey, s)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+// 	return bccsp.MarshalECDSASignature(r, s)
+// }
+
+func signSm2(k *sm2.PrivateKey, digest []byte) (signature []byte, err error) {
+	r, s, err := sm2.Sm2Sign(k, digest, nil, rand.Reader)
 	if err != nil {
 		return nil, err
 	}
-	return bccsp.MarshalECDSASignature(r, s)
+	return sw.MarshalSM2Signature(r, s)
 }

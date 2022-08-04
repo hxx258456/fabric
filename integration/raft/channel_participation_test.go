@@ -8,7 +8,6 @@ package raft
 
 import (
 	"crypto"
-	"crypto/x509"
 	"encoding/json"
 	"encoding/pem"
 	"fmt"
@@ -19,8 +18,12 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/hxx258456/ccgo/x509"
+
 	docker "github.com/fsouza/go-dockerclient"
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/fabric-config-cc/configtx"
+	"github.com/hxx258456/fabric-config-cc/configtx/orderer"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric/common/ledger/blockledger/fileledger"
 	"github.com/hxx258456/fabric/common/metrics/disabled"
@@ -29,8 +32,6 @@ import (
 	"github.com/hxx258456/fabric/integration/nwo"
 	"github.com/hxx258456/fabric/integration/nwo/commands"
 	"github.com/hxx258456/fabric/integration/ordererclient"
-	"github.com/hyperledger/fabric-config/configtx"
-	"github.com/hyperledger/fabric-config/configtx/orderer"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gbytes"

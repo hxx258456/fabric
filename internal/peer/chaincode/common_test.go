@@ -9,13 +9,14 @@ package chaincode
 
 import (
 	"context"
-	"crypto/tls"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"sort"
 	"testing"
 	"time"
+
+	tls "github.com/hxx258456/ccgo/gmtls"
 
 	"github.com/golang/protobuf/proto"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"

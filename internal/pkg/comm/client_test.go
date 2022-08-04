@@ -9,19 +9,20 @@ package comm_test
 import (
 	"bytes"
 	"context"
-	"crypto/tls"
-	"crypto/x509"
 	"net"
 	"testing"
 	"time"
 
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
+
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/credentials"
 	"github.com/hxx258456/fabric/internal/pkg/comm"
 	"github.com/hxx258456/fabric/internal/pkg/comm/testpb"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 )
 
 const testTimeout = 1 * time.Second // conservative

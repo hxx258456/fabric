@@ -10,6 +10,7 @@ import (
 	"encoding/base64"
 	"strings"
 
+	"github.com/hxx258456/fabric-lib-go-cc/healthz"
 	"github.com/hxx258456/fabric/common/flogging"
 	"github.com/hxx258456/fabric/common/metrics"
 	"github.com/hxx258456/fabric/core/common/ccprovider"
@@ -21,7 +22,6 @@ import (
 	"github.com/hxx258456/fabric/core/ledger/kvledger/txmgmt/statedb/statecouchdb"
 	"github.com/hxx258456/fabric/core/ledger/kvledger/txmgmt/statedb/stateleveldb"
 	"github.com/hxx258456/fabric/core/ledger/util"
-	"github.com/hyperledger/fabric-lib-go/healthz"
 	"github.com/pkg/errors"
 )
 

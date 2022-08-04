@@ -9,16 +9,16 @@ package comm
 import (
 	"context"
 
+	"github.com/hxx258456/ccgo/grpc/credentials"
+	"github.com/hxx258456/ccgo/grpc/peer"
 	"github.com/hxx258456/fabric/common/util"
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/peer"
 )
 
 func certHashFromRawCert(rawCert []byte) []byte {
 	if len(rawCert) == 0 {
 		return nil
 	}
-	return util.ComputeSHA256(rawCert)
+	return util.ComputeSM3(rawCert)
 }
 
 // ExtractCertificateHash extracts the hash of the certificate from the stream

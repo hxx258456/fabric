@@ -8,13 +8,14 @@ package comm_test
 
 import (
 	"context"
-	"crypto/tls"
-	"crypto/x509"
 	"io/ioutil"
 	"net"
 	"path/filepath"
 	"sync"
 	"testing"
+
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
 
 	"github.com/hxx258456/fabric/common/flogging/floggingtest"
 	"github.com/hxx258456/fabric/internal/pkg/comm"

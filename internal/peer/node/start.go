@@ -12,7 +12,6 @@ import (
 	"io"
 	"io/ioutil"
 	"net"
-	"net/http"
 	"os"
 	"os/signal"
 	"path/filepath"
@@ -20,8 +19,11 @@ import (
 	"syscall"
 	"time"
 
+	http "github.com/hxx258456/ccgo/gmhttp"
+
 	docker "github.com/fsouza/go-dockerclient"
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	discprotos "github.com/hxx258456/fabric-protos-go-cc/discovery"
 	gatewayprotos "github.com/hxx258456/fabric-protos-go-cc/gateway"
@@ -99,7 +101,6 @@ import (
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"google.golang.org/grpc"
 )
 
 const (

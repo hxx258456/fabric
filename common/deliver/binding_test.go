@@ -9,21 +9,22 @@ package deliver
 import (
 	"context"
 	"crypto/sha256"
-	"crypto/tls"
-	"crypto/x509"
 	"net"
 	"sync/atomic"
 	"testing"
 	"time"
 
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
+
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/credentials"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric/internal/pkg/comm"
 	"github.com/hxx258456/fabric/internal/pkg/comm/testpb"
 	"github.com/hxx258456/fabric/protoutil"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 )
 
 func TestBindingInspectorBadInit(t *testing.T) {

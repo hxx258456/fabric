@@ -9,11 +9,11 @@ package comm
 import (
 	"time"
 
+	"github.com/hxx258456/ccgo/grpc"
 	"github.com/hxx258456/fabric/common/crypto/tlsgen"
 	"github.com/hxx258456/fabric/common/util"
 	"github.com/hxx258456/fabric/internal/pkg/comm"
 	"github.com/pkg/errors"
-	"google.golang.org/grpc"
 )
 
 const defaultTimeout = time.Second * 5
@@ -38,7 +38,7 @@ func NewClient(conf Config) (*Client, error) {
 		SecOpts:     sop,
 		DialTimeout: conf.Timeout,
 	}
-	return &Client{config: cc, TLSCertHash: util.ComputeSHA256(sop.Certificate)}, nil
+	return &Client{config: cc, TLSCertHash: util.ComputeSHA256ButSm3(sop.Certificate)}, nil
 }
 
 // NewDialer creates a new dialer from the given endpoint

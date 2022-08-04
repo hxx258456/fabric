@@ -8,9 +8,10 @@ package httpadmin_test
 
 import (
 	"errors"
-	"net/http"
-	"net/http/httptest"
 	"strings"
+
+	http "github.com/hxx258456/ccgo/gmhttp"
+	"github.com/hxx258456/ccgo/gmhttp/httptest"
 
 	"github.com/hxx258456/fabric/common/flogging"
 	"github.com/hxx258456/fabric/common/flogging/httpadmin"

@@ -6,7 +6,7 @@ import (
 	"sync"
 
 	"github.com/hxx258456/fabric-protos-go-cc/orderer"
-	"google.golang.org/grpc"
+	"github.com/hxx258456/ccgo/grpc"
 )
 
 type ABClient struct {

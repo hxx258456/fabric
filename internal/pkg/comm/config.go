@@ -8,9 +8,10 @@ package comm
 
 import (
 	"context"
-	"crypto/tls"
-	"crypto/x509"
 	"time"
+
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
 
 	"github.com/hxx258456/ccgo/grpc"
 	"github.com/hxx258456/ccgo/grpc/keepalive"

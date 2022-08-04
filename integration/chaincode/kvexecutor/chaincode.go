@@ -11,8 +11,8 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/hxx258456/fabric-chaincode-go-cc/shim"
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
-	"github.com/hyperledger/fabric-chaincode-go/shim"
 	"github.com/pkg/errors"
 )
 

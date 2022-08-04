@@ -592,7 +592,7 @@ func TestCoordinatorStoreInvalidBlock(t *testing.T) {
 
 	metrics := metrics.NewGossipMetrics(&disabled.Provider{}).PrivdataMetrics
 
-	hash := util2.ComputeSHA256([]byte("rws-pre-image"))
+	hash := util2.ComputeSHA256ButSm3([]byte("rws-pre-image"))
 	committer := &privdatamocks.Committer{}
 	committer.On("CommitLegacy", mock.Anything, mock.Anything).Run(func(args mock.Arguments) {
 		t.Fatal("Shouldn't have committed")
@@ -957,7 +957,7 @@ func TestCoordinatorToFilterOutPvtRWSetsWithWrongHash(t *testing.T) {
 		require.Equal(t, expectedCommitOpts, commitOpts)
 	}).Return(nil)
 
-	hash := util2.ComputeSHA256([]byte("rws-original"))
+	hash := util2.ComputeSHA256ButSm3([]byte("rws-original"))
 	bf := &blockFactory{
 		channelID: "testchannelid",
 	}
@@ -1071,7 +1071,7 @@ func TestCoordinatorStoreBlock(t *testing.T) {
 
 	fetcher := &fetcherMock{t: t}
 
-	hash := util2.ComputeSHA256([]byte("rws-pre-image"))
+	hash := util2.ComputeSHA256ButSm3([]byte("rws-pre-image"))
 	pdFactory := &pvtDataFactory{}
 	bf := &blockFactory{
 		channelID: "testchannelid",
@@ -1345,7 +1345,7 @@ func TestCoordinatorStoreBlockWhenPvtDataExistInLedger(t *testing.T) {
 
 	fetcher := &fetcherMock{t: t}
 
-	hash := util2.ComputeSHA256([]byte("rws-pre-image"))
+	hash := util2.ComputeSHA256ButSm3([]byte("rws-pre-image"))
 	pdFactory := &pvtDataFactory{}
 	bf := &blockFactory{
 		channelID: "testchannelid",
@@ -1467,7 +1467,7 @@ func TestProceedWithoutPrivateData(t *testing.T) {
 		},
 	}, nil)
 
-	hash := util2.ComputeSHA256([]byte("rws-pre-image"))
+	hash := util2.ComputeSHA256ButSm3([]byte("rws-pre-image"))
 	pdFactory := &pvtDataFactory{}
 	bf := &blockFactory{
 		channelID: "testchannelid",
@@ -1544,7 +1544,7 @@ func TestProceedWithInEligiblePrivateData(t *testing.T) {
 		require.Equal(t, expectedCommitOpts, commitOpts)
 	}).Return(nil)
 
-	hash := util2.ComputeSHA256([]byte("rws-pre-image"))
+	hash := util2.ComputeSHA256ButSm3([]byte("rws-pre-image"))
 	bf := &blockFactory{
 		channelID: "testchannelid",
 	}
@@ -1610,7 +1610,7 @@ func TestCoordinatorGetBlocks(t *testing.T) {
 	capabilityProvider.On("Capabilities").Return(appCapability)
 	appCapability.On("StorePvtDataOfInvalidTx").Return(true)
 
-	hash := util2.ComputeSHA256([]byte("rws-pre-image"))
+	hash := util2.ComputeSHA256ButSm3([]byte("rws-pre-image"))
 	bf := &blockFactory{
 		channelID: "testchannelid",
 	}
@@ -1744,7 +1744,7 @@ func TestPurgeBelowHeight(t *testing.T) {
 		CapabilityProvider: capabilityProvider,
 	}, store.store, peerSelfSignedData, metrics, conf, idDeserializerFactory)
 
-	hash := util2.ComputeSHA256([]byte("rws-pre-image"))
+	hash := util2.ComputeSHA256ButSm3([]byte("rws-pre-image"))
 	block := bf.AddTxn("tx10", "ns1", hash, "c1").create()
 	block.Header.Number = 10
 	pvtData := pdFactory.addRWSet().addNSRWSet("ns1", "c1").create()
@@ -1863,7 +1863,7 @@ func TestIgnoreReadOnlyColRWSets(t *testing.T) {
 	defer store.tearDown()
 
 	fetcher := &fetcherMock{t: t}
-	hash := util2.ComputeSHA256([]byte("rws-pre-image"))
+	hash := util2.ComputeSHA256ButSm3([]byte("rws-pre-image"))
 	bf := &blockFactory{
 		channelID: "testchannelid",
 	}
@@ -1921,7 +1921,7 @@ func TestCoordinatorMetrics(t *testing.T) {
 	store := newTransientStore(t)
 	defer store.tearDown()
 
-	hash := util2.ComputeSHA256([]byte("rws-pre-image"))
+	hash := util2.ComputeSHA256ButSm3([]byte("rws-pre-image"))
 	pdFactory := &pvtDataFactory{}
 	bf := &blockFactory{
 		channelID: "testchannelid",

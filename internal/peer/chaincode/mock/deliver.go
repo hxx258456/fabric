@@ -7,7 +7,7 @@ import (
 
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric-protos-go-cc/peer"
-	"google.golang.org/grpc/metadata"
+	"github.com/hxx258456/ccgo/grpc/metadata"
 )
 
 type Deliver struct {

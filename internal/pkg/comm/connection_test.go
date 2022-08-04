@@ -7,11 +7,12 @@ SPDX-License-Identifier: Apache-2.0
 package comm
 
 import (
-	"crypto/tls"
 	"fmt"
 	"io/ioutil"
 	"path/filepath"
 	"testing"
+
+	tls "github.com/hxx258456/ccgo/gmtls"
 
 	"github.com/stretchr/testify/require"
 )

@@ -10,10 +10,10 @@ import (
 	"context"
 	"strings"
 
+	"github.com/hxx258456/ccgo/grpc"
 	"github.com/hxx258456/fabric/common/semaphore"
 	"github.com/hxx258456/fabric/core/peer"
 	"github.com/pkg/errors"
-	"google.golang.org/grpc"
 )
 
 func initGrpcSemaphores(config *peer.Config) map[string]semaphore.Semaphore {

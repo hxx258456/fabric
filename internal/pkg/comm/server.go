@@ -7,19 +7,20 @@ SPDX-License-Identifier: Apache-2.0
 package comm
 
 import (
-	"crypto/tls"
-	"crypto/x509"
 	"encoding/pem"
 	"net"
 	"sync"
 	"sync/atomic"
 	"time"
 
-	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
+
+	grpc_middleware "github.com/hxx258456/ccgo/go-grpc-middleware"
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/health"
+	healthpb "github.com/hxx258456/ccgo/grpc/health/grpc_health_v1"
 	"github.com/pkg/errors"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/health"
-	healthpb "google.golang.org/grpc/health/grpc_health_v1"
 )
 
 type GRPCServer struct {

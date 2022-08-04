@@ -13,8 +13,8 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/hxx258456/fabric-chaincode-go-cc/shim"
 	"github.com/hxx258456/fabric/integration/chaincode/simple"
-	"github.com/hyperledger/fabric-chaincode-go/shim"
 )
 
 func handleSignals(handlers map[os.Signal]func()) {

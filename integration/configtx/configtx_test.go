@@ -8,20 +8,21 @@ package configtx
 
 import (
 	"crypto"
-	"crypto/x509"
 	"encoding/pem"
 	"io/ioutil"
 	"os"
 	"syscall"
 	"time"
 
+	"github.com/hxx258456/ccgo/x509"
+
 	docker "github.com/fsouza/go-dockerclient"
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/fabric-config-cc/configtx"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric/integration/nwo"
 	"github.com/hxx258456/fabric/integration/nwo/commands"
 	"github.com/hxx258456/fabric/integration/ordererclient"
-	"github.com/hyperledger/fabric-config/configtx"
 	"github.com/tedsuo/ifrit"
 
 	. "github.com/onsi/ginkgo/v2"

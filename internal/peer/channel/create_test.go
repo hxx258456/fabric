@@ -20,6 +20,7 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric-protos-go-cc/orderer"
 	"github.com/hxx258456/fabric/core/config/configtest"
@@ -30,7 +31,6 @@ import (
 	"github.com/hxx258456/fabric/protoutil"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
 )
 
 //go:generate counterfeiter -o mock/signer_serializer.go --fake-name SignerSerializer . signerSerializer

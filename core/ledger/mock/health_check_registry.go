@@ -4,7 +4,7 @@ package mock
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric-lib-go/healthz"
+	"github.com/hxx258456/fabric-lib-go-cc/healthz"
 	"github.com/hxx258456/fabric/core/ledger"
 )
 

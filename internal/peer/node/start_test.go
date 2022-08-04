@@ -14,6 +14,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/hxx258456/ccgo/grpc"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric/core/handlers/library"
 	"github.com/hxx258456/fabric/core/testutil"
@@ -23,7 +24,6 @@ import (
 	. "github.com/onsi/gomega"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
 )
 
 func TestStartCmd(t *testing.T) {

@@ -15,6 +15,7 @@ import (
 	"reflect"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/fabric-config-cc/protolator"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	_ "github.com/hxx258456/fabric-protos-go-cc/msp"
 	_ "github.com/hxx258456/fabric-protos-go-cc/orderer"
@@ -24,7 +25,6 @@ import (
 	"github.com/hxx258456/fabric/internal/configtxlator/metadata"
 	"github.com/hxx258456/fabric/internal/configtxlator/rest"
 	"github.com/hxx258456/fabric/internal/configtxlator/update"
-	"github.com/hyperledger/fabric-config/protolator"
 
 	"github.com/gorilla/handlers"
 	"github.com/pkg/errors"

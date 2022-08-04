@@ -8,16 +8,17 @@ package chaincode_test
 
 import (
 	"context"
-	"crypto/tls"
 	"time"
 
+	tls "github.com/hxx258456/ccgo/gmtls"
+
+	"github.com/hxx258456/ccgo/grpc"
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/bccsp/sw"
 	"github.com/hxx258456/fabric/internal/peer/lifecycle/chaincode"
 	"github.com/hxx258456/fabric/internal/peer/lifecycle/chaincode/mock"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
-	"google.golang.org/grpc"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"

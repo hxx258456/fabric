@@ -25,12 +25,12 @@ import (
 
 	docker "github.com/fsouza/go-dockerclient"
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/fabric-lib-go-cc/healthz"
 	"github.com/hxx258456/fabric-protos-go-cc/orderer/etcdraft"
 	"github.com/hxx258456/fabric/integration/channelparticipation"
 	"github.com/hxx258456/fabric/integration/nwo"
 	"github.com/hxx258456/fabric/integration/nwo/commands"
 	"github.com/hxx258456/fabric/integration/nwo/fabricconfig"
-	"github.com/hyperledger/fabric-lib-go/healthz"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gbytes"

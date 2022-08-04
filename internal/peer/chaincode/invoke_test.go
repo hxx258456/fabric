@@ -13,6 +13,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/hxx258456/ccgo/grpc"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/bccsp"
@@ -24,7 +25,6 @@ import (
 	"github.com/hxx258456/fabric/protoutil"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
 )
 
 func TestInvokeCmd(t *testing.T) {

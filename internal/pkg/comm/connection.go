@@ -7,14 +7,15 @@ SPDX-License-Identifier: Apache-2.0
 package comm
 
 import (
-	"crypto/tls"
-	"crypto/x509"
 	"sync"
 
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
+
+	"github.com/hxx258456/ccgo/grpc/credentials"
 	"github.com/hxx258456/fabric/common/channelconfig"
 	"github.com/hxx258456/fabric/common/flogging"
 	"github.com/hxx258456/fabric/msp"
-	"google.golang.org/grpc/credentials"
 )
 
 var commLogger = flogging.MustGetLogger("comm")

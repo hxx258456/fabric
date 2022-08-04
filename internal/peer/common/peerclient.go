@@ -8,9 +8,10 @@ package common
 
 import (
 	"context"
-	"crypto/tls"
 	"io/ioutil"
 	"time"
+
+	tls "github.com/hxx258456/ccgo/gmtls"
 
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/internal/pkg/comm"

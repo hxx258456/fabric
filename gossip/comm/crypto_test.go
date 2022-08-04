@@ -8,11 +8,7 @@ package comm
 
 import (
 	"context"
-	"crypto/ecdsa"
-	"crypto/elliptic"
 	"crypto/rand"
-	"crypto/tls"
-	"crypto/x509"
 	"encoding/pem"
 	"math/big"
 	"net"
@@ -20,11 +16,16 @@ import (
 	"testing"
 	"time"
 
+	"github.com/hxx258456/ccgo/sm2"
+
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
+
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/credentials"
 	proto "github.com/hxx258456/fabric-protos-go-cc/gossip"
 	"github.com/hxx258456/fabric/gossip/util"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 )
 
 type gossipTestServer struct {
@@ -117,7 +118,7 @@ func TestCertificateExtraction(t *testing.T) {
 // GenerateCertificatesOrPanic generates a a random pair of public and private keys
 // and return TLS certificate.
 func GenerateCertificatesOrPanic() tls.Certificate {
-	privateKey, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	privateKey, err := sm2.GenerateKey(rand.Reader)
 	if err != nil {
 		panic(err)
 	}

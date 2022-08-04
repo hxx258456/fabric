@@ -16,10 +16,8 @@ require (
 	github.com/golang/protobuf v1.5.2
 	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0
-	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
 	github.com/hashicorp/go-version v1.4.0
 	github.com/hyperledger/fabric-chaincode-go v0.0.0-20201119163726-f8ef75b17719
-	github.com/hyperledger/fabric-config v0.1.0
 	github.com/hyperledger/fabric-protos-go v0.0.0-20220516090339-9685156fada6 // indirect
 	github.com/kr/pretty v0.3.0
 	github.com/miekg/pkcs11 v1.1.1
@@ -48,16 +46,17 @@ require (
 )
 
 require (
-	gitee.com/zhaochuninhefei/gmgo v0.0.17
 	gitee.com/zhaochuninhefei/saramagm v0.0.4
 	github.com/hxx258456/ccgo v0.0.0-20220714062303-6d08da58b00c
 	github.com/hxx258456/fabric-chaincode-go-cc v0.0.0-20220715081135-f47610c97a39
-	github.com/hxx258456/fabric-lib-go-cc v1.0.0
+	github.com/hxx258456/fabric-config-cc v0.0.0-20220727070643-bae0c2e79be8
+	github.com/hxx258456/fabric-lib-go-cc v1.1.1
 	github.com/hxx258456/fabric-protos-go-cc v0.0.0-20220714073103-d4d8369ba551
 	github.com/hyperledger/fabric-lib-go v1.0.0
 )
 
 require (
+	gitee.com/zhaochuninhefei/gmgo v0.0.17 // indirect
 	gitee.com/zhaochuninhefei/zcgolog v0.0.14 // indirect
 	github.com/Azure/go-ansiterm v0.0.0-20170929234023-d6e3b3328b78 // indirect
 	github.com/DataDog/zstd v1.5.0 // indirect

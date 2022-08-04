@@ -15,6 +15,8 @@ import (
 	"strings"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/fabric-config-cc/protolator"
+	"github.com/hxx258456/fabric-config-cc/protolator/protoext/ordererext"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric/bccsp/factory"
 	"github.com/hxx258456/fabric/common/channelconfig"
@@ -24,8 +26,6 @@ import (
 	"github.com/hxx258456/fabric/internal/configtxgen/metadata"
 	"github.com/hxx258456/fabric/internal/configtxlator/update"
 	"github.com/hxx258456/fabric/protoutil"
-	"github.com/hyperledger/fabric-config/protolator"
-	"github.com/hyperledger/fabric-config/protolator/protoext/ordererext"
 	"github.com/pkg/errors"
 )
 

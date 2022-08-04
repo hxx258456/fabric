@@ -8,14 +8,16 @@ package common
 
 import (
 	"context"
-	"crypto/tls"
 	"fmt"
 	"io/ioutil"
 	"os"
 	"strings"
 	"time"
 
+	tls "github.com/hxx258456/ccgo/gmtls"
+
 	"github.com/golang/protobuf/proto"
+	grpc "github.com/hxx258456/ccgo/grpc"
 	pcommon "github.com/hxx258456/fabric-protos-go-cc/common"
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/bccsp"
@@ -31,7 +33,6 @@ import (
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	grpc "google.golang.org/grpc"
 )
 
 // UndefinedParamValue defines what undefined parameters in the command line will initialise to

@@ -15,6 +15,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/hxx258456/ccgo/grpc"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	peer "github.com/hxx258456/fabric-protos-go-cc/peer"
 	transientstore2 "github.com/hxx258456/fabric-protos-go-cc/transientstore"
@@ -47,7 +48,6 @@ import (
 	"github.com/hxx258456/fabric/msp/mgmt"
 	msptesttools "github.com/hxx258456/fabric/msp/mgmt/testtools"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
 )
 
 const TIMEOUT = 90 * time.Second

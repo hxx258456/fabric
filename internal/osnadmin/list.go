@@ -7,10 +7,11 @@ SPDX-License-Identifier: Apache-2.0
 package osnadmin
 
 import (
-	"crypto/tls"
-	"crypto/x509"
 	"fmt"
-	"net/http"
+
+	http "github.com/hxx258456/ccgo/gmhttp"
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
 )
 
 // Lists the channels an OSN is a member of.

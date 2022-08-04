@@ -7,6 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 package kvledger
 
 import (
+	"github.com/hxx258456/fabric-lib-go-cc/healthz"
 	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset/kvrwset"
 	peer "github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/common/ledger/blkstorage"
@@ -19,7 +20,6 @@ import (
 	"github.com/hxx258456/fabric/core/ledger/kvledger/msgs"
 	"github.com/hxx258456/fabric/core/ledger/kvledger/txmgmt/privacyenabledstate"
 	"github.com/hxx258456/fabric/core/ledger/pvtdatastorage"
-	"github.com/hyperledger/fabric-lib-go/healthz"
 	"github.com/pkg/errors"
 )
 

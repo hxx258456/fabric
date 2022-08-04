@@ -8,13 +8,17 @@ package peer_test
 
 import (
 	"context"
-	"crypto/tls"
-	"crypto/x509"
 	"errors"
 	"net"
 	"testing"
 	"time"
 
+	tls "github.com/hxx258456/ccgo/gmtls"
+
+	"github.com/hxx258456/ccgo/x509"
+
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/credentials"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	mspproto "github.com/hxx258456/fabric-protos-go-cc/msp"
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
@@ -28,8 +32,6 @@ import (
 	"github.com/hxx258456/fabric/msp"
 	"github.com/hxx258456/fabric/protoutil"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 )
 
 // test server to be registered with the GRPCServer

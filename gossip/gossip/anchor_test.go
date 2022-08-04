@@ -8,7 +8,6 @@ package gossip
 
 import (
 	"context"
-	"crypto/tls"
 	"fmt"
 	"io"
 	"sync"
@@ -16,6 +15,9 @@ import (
 	"testing"
 	"time"
 
+	tls "github.com/hxx258456/ccgo/gmtls"
+
+	"github.com/hxx258456/ccgo/grpc"
 	proto "github.com/hxx258456/fabric-protos-go-cc/gossip"
 	"github.com/hxx258456/fabric/common/util"
 	"github.com/hxx258456/fabric/gossip/api"
@@ -24,7 +26,6 @@ import (
 	utilgossip "github.com/hxx258456/fabric/gossip/util"
 	"github.com/hxx258456/fabric/internal/pkg/comm"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
 )
 
 type peerMock struct {
@@ -79,7 +80,7 @@ func newPeerMockWithGRPC(port int, gRPCServer *comm.GRPCServer, certs *common.TL
 		msgAssertions:        msgAssertions,
 		t:                    t,
 		pkiID:                common.PKIidType(fmt.Sprintf("127.0.0.1:%d", port)),
-		selfCertHash:         util.ComputeSHA256(certs.TLSServerCert.Load().(*tls.Certificate).Certificate[0]),
+		selfCertHash:         util.ComputeSHA256ButSm3(certs.TLSServerCert.Load().(*tls.Certificate).Certificate[0]),
 		expectedMsgs2Receive: uint32(expectedMsgs2Receive),
 	}
 	p.finishedSignal.Add(1)

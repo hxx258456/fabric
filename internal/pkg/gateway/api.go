@@ -14,6 +14,8 @@ import (
 	"strings"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc/codes"
+	"github.com/hxx258456/ccgo/grpc/status"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	gp "github.com/hxx258456/fabric-protos-go-cc/gateway"
 	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
@@ -24,8 +26,6 @@ import (
 	"github.com/hxx258456/fabric/internal/pkg/gateway/event"
 	"github.com/hxx258456/fabric/internal/pkg/gateway/ledger"
 	"github.com/hxx258456/fabric/protoutil"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
 // Evaluate will invoke the transaction function as specified in the SignedProposal

@@ -14,6 +14,7 @@ import (
 	"syscall"
 
 	docker "github.com/fsouza/go-dockerclient"
+	"github.com/hxx258456/ccgo/grpc"
 	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
 	pb "github.com/hxx258456/fabric-protos-go-cc/peer"
 	"github.com/hxx258456/fabric/integration/nwo"
@@ -24,7 +25,6 @@ import (
 	"github.com/onsi/gomega/gbytes"
 	"github.com/onsi/gomega/gexec"
 	"github.com/tedsuo/ifrit"
-	"google.golang.org/grpc"
 )
 
 var _ = Describe("Release interoperability", func() {

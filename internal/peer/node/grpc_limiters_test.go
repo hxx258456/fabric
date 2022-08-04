@@ -11,8 +11,8 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/hxx258456/ccgo/grpc"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
 
 	"github.com/hxx258456/fabric/core/peer"
 )

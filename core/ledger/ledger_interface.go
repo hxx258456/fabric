@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/fabric-lib-go-cc/healthz"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset"
 	"github.com/hxx258456/fabric-protos-go-cc/ledger/rwset/kvrwset"
@@ -19,7 +20,6 @@ import (
 	"github.com/hxx258456/fabric/bccsp"
 	commonledger "github.com/hxx258456/fabric/common/ledger"
 	"github.com/hxx258456/fabric/common/metrics"
-	"github.com/hyperledger/fabric-lib-go/healthz"
 )
 
 const (
