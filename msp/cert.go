@@ -24,7 +24,8 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/hxx258456/ccgo/x509"
+	// _ "github.com/hxx258456/fabric/bccsp/utils"
+	"gitee.com/zhaochuninhefei/gmgo/x509"
 
 	"github.com/pkg/errors"
 )
@@ -60,13 +61,13 @@ type tbsCertificate struct {
 	Extensions         []pkix.Extension `asn1:"optional,explicit,tag:3"`
 }
 
-// func isECDSASignedCert(cert *x509.Certificate) bool {
-// 	return cert.SignatureAlgorithm == x509.ECDSAWithSHA1 ||
-// 		cert.SignatureAlgorithm == x509.ECDSAWithSHA256 ||
-// 		cert.SignatureAlgorithm == x509.ECDSAWithSHA384 ||
-// 		cert.SignatureAlgorithm == x509.ECDSAWithSHA512
-// }
-
+/*func isSM2SignedCert(cert *x509.Certificate) bool {
+	return cert.SignatureAlgorithm == x509.ECDSAWithSHA1 ||
+		cert.SignatureAlgorithm == x509.ECDSAWithSHA256 ||
+		cert.SignatureAlgorithm == x509.ECDSAWithSHA384 ||
+		cert.SignatureAlgorithm == x509.ECDSAWithSHA512
+}
+*/
 //TODO
 func isSM2SignedCert(cert *x509.Certificate) bool {
 	return cert.SignatureAlgorithm == x509.SM2WithSM3
@@ -76,6 +77,7 @@ func isSM2SignedCert(cert *x509.Certificate) bool {
 // is in low-S. This is checked against the public key of parentCert.
 // If the signature is not in low-S, then a new certificate is generated
 // that is equals to cert but the signature that is in low-S.
+//func sanitizeECDSASignedCert(cert *x509.Certificate, parentCert *x509.Certificate) (*x509.Certificate, error) {
 // func sanitizeECDSASignedCert(cert *x509.Certificate, parentCert *x509.Certificate) (*x509.Certificate, error) {
 // 	if cert == nil {
 // 		return nil, errors.New("certificate must be different from nil")
@@ -84,6 +86,7 @@ func isSM2SignedCert(cert *x509.Certificate) bool {
 // 		return nil, errors.New("parent certificate must be different from nil")
 // 	}
 
+// 	// TODO sm2 是否需要 SignatureToLowS
 // 	expectedSig, err := utils.SignatureToLowS(parentCert.PublicKey.(*ecdsa.PublicKey), cert.Signature)
 // 	if err != nil {
 // 		return nil, err
@@ -99,7 +102,7 @@ func isSM2SignedCert(cert *x509.Certificate) bool {
 // 	//    the lower level interface that represent an x509 certificate
 // 	//    encoding
 // 	var newCert certificate
-// 	newCert, err = certFromX509Cert(cert)
+// 	newCert, err = certFromSM2Cert(cert)
 // 	if err != nil {
 // 		return nil, err
 // 	}
@@ -118,14 +121,7 @@ func isSM2SignedCert(cert *x509.Certificate) bool {
 // 	return x509.ParseCertificate(newRaw)
 // }
 
-// func certFromX509Cert(cert *x509.Certificate) (certificate, error) {
-// 	var newCert certificate
-// 	_, err := asn1.Unmarshal(cert.Raw, &newCert)
-// 	if err != nil {
-// 		return certificate{}, errors.Wrap(err, "unmarshalling of the certificate failed")
-// 	}
-// 	return newCert, nil
-// }
+//func certFromX509Cert(cert *x509.Certificate) (certificate, error) {
 func certFromSM2Cert(cert *x509.Certificate) (certificate, error) {
 	var newCert certificate
 	_, err := asn1.Unmarshal(cert.Raw, &newCert)

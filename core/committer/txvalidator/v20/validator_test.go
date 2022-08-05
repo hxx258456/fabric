@@ -387,6 +387,10 @@ type mockMSP struct {
 	MspID        string
 }
 
+func (fake *mockMSP) GetSigningIdentity(identifier *msp.IdentityIdentifier) (msp.SigningIdentity, error) {
+	return nil, nil
+}
+
 func (fake *mockMSP) DeserializeIdentity(serializedIdentity []byte) (msp.Identity, error) {
 	return fake.ID, nil
 }

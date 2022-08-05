@@ -349,7 +349,8 @@ func getMspConfig(dir string, ID string, sigid *msp.SigningIdentityInfo) (*msp.M
 
 	// Set FabricCryptoConfig
 	cryptoConfig := &msp.FabricCryptoConfig{
-		SignatureHashFamily:            bccsp.SM3,
+		SignatureHashFamily: bccsp.SM3,
+		// TODO IdentityIdentifierHashFunction 是否可以替换为SM3
 		IdentityIdentifierHashFunction: bccsp.SM3,
 	}
 
@@ -377,6 +378,7 @@ func getMspConfig(dir string, ID string, sigid *msp.SigningIdentityInfo) (*msp.M
 }
 
 func loadCertificateAt(dir, certificatePath string, ouType string) []byte {
+
 	if certificatePath == "" {
 		mspLogger.Debugf("Specific certificate for %s is not configured", ouType)
 		return nil

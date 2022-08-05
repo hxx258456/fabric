@@ -8,11 +8,8 @@ SPDX-License-Identifier: Apache-2.0
 package msp
 
 import (
-	"crypto/ecdsa"
 	"crypto/elliptic"
 	"crypto/rand"
-	"crypto/sha256"
-	"crypto/x509"
 	"crypto/x509/pkix"
 	"encoding/asn1"
 	"encoding/hex"
@@ -26,14 +23,17 @@ import (
 	"testing"
 	"time"
 
+	"gitee.com/zhaochuninhefei/gmgo/sm2"
+	"gitee.com/zhaochuninhefei/gmgo/sm3"
+	"gitee.com/zhaochuninhefei/gmgo/x509"
 	"github.com/golang/protobuf/proto"
 	"github.com/hxx258456/fabric-protos-go-cc/msp"
 	"github.com/hxx258456/fabric/bccsp"
 	"github.com/hxx258456/fabric/bccsp/factory"
 	"github.com/hxx258456/fabric/bccsp/sw"
-	"github.com/hxx258456/fabric/bccsp/utils"
 	"github.com/hxx258456/fabric/core/config/configtest"
 	"github.com/hxx258456/fabric/protoutil"
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
@@ -50,23 +50,23 @@ FRBbKkDnSpaVcZgjns+mLdHV2JkF0gk=
 
 func TestMSPParsers(t *testing.T) {
 	_, _, err := localMsp.(*bccspmsp).getIdentityFromConf(nil)
-	require.Error(t, err)
+	assert.Error(t, err)
 	_, _, err = localMsp.(*bccspmsp).getIdentityFromConf([]byte("barf"))
-	require.Error(t, err)
+	assert.Error(t, err)
 	_, _, err = localMsp.(*bccspmsp).getIdentityFromConf([]byte(notACert))
-	require.Error(t, err)
+	assert.Error(t, err)
 
 	_, err = localMsp.(*bccspmsp).getSigningIdentityFromConf(nil)
-	require.Error(t, err)
+	assert.Error(t, err)
 
 	sigid := &msp.SigningIdentityInfo{PublicSigner: []byte("barf"), PrivateSigner: nil}
 	_, err = localMsp.(*bccspmsp).getSigningIdentityFromConf(sigid)
-	require.Error(t, err)
+	assert.Error(t, err)
 
 	keyinfo := &msp.KeyInfo{KeyIdentifier: "PEER", KeyMaterial: nil}
 	sigid = &msp.SigningIdentityInfo{PublicSigner: []byte("barf"), PrivateSigner: keyinfo}
 	_, err = localMsp.(*bccspmsp).getSigningIdentityFromConf(sigid)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestGetSigningIdentityFromConfWithWrongPrivateCert(t *testing.T) {
@@ -90,7 +90,7 @@ func TestGetSigningIdentityFromConfWithWrongPrivateCert(t *testing.T) {
 	}
 	sigid := &msp.SigningIdentityInfo{PublicSigner: pem, PrivateSigner: keyinfo}
 	_, err := localMsp.(*bccspmsp).getSigningIdentityFromConf(sigid)
-	require.EqualError(t, err, "MyPrivateKey: wrong PEM encoding")
+	assert.EqualError(t, err, "MyPrivateKey: wrong PEM encoding")
 }
 
 func TestMSPSetupNoCryptoConf(t *testing.T) {
@@ -103,7 +103,7 @@ func TestMSPSetupNoCryptoConf(t *testing.T) {
 
 	mspconf := &msp.FabricMSPConfig{}
 	err = proto.Unmarshal(conf.Config, mspconf)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// here we test the case of an MSP configuration
 	// where the hash function to be used to obtain
@@ -111,12 +111,12 @@ func TestMSPSetupNoCryptoConf(t *testing.T) {
 	// sane default should be picked
 	mspconf.CryptoConfig.IdentityIdentifierHashFunction = ""
 	b, err := proto.Marshal(mspconf)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	conf.Config = b
 	newmsp, err := newBccspMsp(MSPv1_0, factory.GetDefault())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = newmsp.Setup(conf)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// here we test the case of an MSP configuration
 	// where the hash function to be used to compute
@@ -124,31 +124,31 @@ func TestMSPSetupNoCryptoConf(t *testing.T) {
 	// should be picked
 	mspconf.CryptoConfig.SignatureHashFamily = ""
 	b, err = proto.Marshal(mspconf)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	conf.Config = b
 	newmsp, err = newBccspMsp(MSPv1_0, factory.GetDefault())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = newmsp.Setup(conf)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// here we test the case of an MSP configuration
 	// that has NO crypto configuration specified;
 	// the code will use appropriate defaults
 	mspconf.CryptoConfig = nil
 	b, err = proto.Marshal(mspconf)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	conf.Config = b
 	newmsp, err = newBccspMsp(MSPv1_0, factory.GetDefault())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = newmsp.Setup(conf)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 }
 
 func TestGetters(t *testing.T) {
 	typ := localMsp.GetType()
-	require.Equal(t, typ, FABRIC)
-	require.NotNil(t, localMsp.GetTLSRootCerts())
-	require.NotNil(t, localMsp.GetTLSIntermediateCerts())
+	assert.Equal(t, typ, FABRIC)
+	assert.NotNil(t, localMsp.GetTLSRootCerts())
+	assert.NotNil(t, localMsp.GetTLSIntermediateCerts())
 }
 
 func TestMSPSetupBad(t *testing.T) {
@@ -160,15 +160,15 @@ func TestMSPSetupBad(t *testing.T) {
 
 	mgr := NewMSPManager()
 	err = mgr.Setup(nil)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = mgr.Setup([]MSP{})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 }
 
 func TestDoubleSetup(t *testing.T) {
 	// note that we've already called setup once on this
 	err := mspMgr.Setup(nil)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 }
 
 type bccspNoKeyLookupKS struct {
@@ -181,24 +181,24 @@ func (*bccspNoKeyLookupKS) GetKey(ski []byte) (k bccsp.Key, err error) {
 
 func TestNotFoundInBCCSP(t *testing.T) {
 	cryptoProvider, err := sw.NewDefaultSecurityLevelWithKeystore(sw.NewDummyKeyStore())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	dir := configtest.GetDevMspDir()
 	conf, err := GetLocalMspConfig(dir, nil, "SampleOrg")
 
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	thisMSP, err := newBccspMsp(MSPv1_0, cryptoProvider)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	ks, err := sw.NewFileBasedKeyStore(nil, filepath.Join(dir, "keystore"), true)
-	require.NoError(t, err)
-	csp, err := sw.NewWithParams(256, "SHA2", ks)
-	require.NoError(t, err)
+	assert.NoError(t, err)
+	csp, err := sw.NewWithParams(true, 256, "SHA2", ks)
+	assert.NoError(t, err)
 	thisMSP.(*bccspmsp).bccsp = &bccspNoKeyLookupKS{csp}
 
 	err = thisMSP.Setup(conf)
-	require.Error(t, err)
-	require.Contains(t, "KeyMaterial not found in SigningIdentityInfo", err.Error())
+	assert.Error(t, err)
+	assert.Contains(t, "KeyMaterial not found in SigningIdentityInfo", err.Error())
 }
 
 func TestGetIdentities(t *testing.T) {
@@ -211,24 +211,24 @@ func TestGetIdentities(t *testing.T) {
 
 func TestDeserializeIdentityFails(t *testing.T) {
 	_, err := localMsp.DeserializeIdentity([]byte("barf"))
-	require.Error(t, err)
+	assert.Error(t, err)
 
 	id := &msp.SerializedIdentity{Mspid: "SampleOrg", IdBytes: []byte("barfr")}
 	b, err := proto.Marshal(id)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	_, err = localMsp.DeserializeIdentity(b)
-	require.Error(t, err)
+	assert.Error(t, err)
 
 	id = &msp.SerializedIdentity{Mspid: "SampleOrg", IdBytes: []byte(notACert)}
 	b, err = proto.Marshal(id)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	_, err = localMsp.DeserializeIdentity(b)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestGetSigningIdentityFromVerifyingMSP(t *testing.T) {
 	cryptoProvider, err := sw.NewDefaultSecurityLevelWithKeystore(sw.NewDummyKeyStore())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	mspDir := configtest.GetDevMspDir()
 	conf, err = GetVerifyingMspConfig(mspDir, "SampleOrg", ProviderTypeToString(FABRIC))
@@ -238,26 +238,28 @@ func TestGetSigningIdentityFromVerifyingMSP(t *testing.T) {
 	}
 
 	newmsp, err := newBccspMsp(MSPv1_0, cryptoProvider)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = newmsp.Setup(conf)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	_, err = newmsp.GetDefaultSigningIdentity()
-	require.Error(t, err)
+	assert.Error(t, err)
+	_, err = newmsp.GetSigningIdentity(nil)
+	assert.Error(t, err)
 }
 
 func TestValidateDefaultSigningIdentity(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	err = localMsp.Validate(id.GetPublicVersion())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 }
 
 func TestSerializeIdentities(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
 	if err != nil {
-		t.Fatalf("GetDefaultSigningIdentity should have succeeded, got err %s", err)
+		t.Fatalf("GetSigningIdentity should have succeeded, got err %s", err)
 		return
 	}
 
@@ -285,9 +287,10 @@ func TestSerializeIdentities(t *testing.T) {
 	}
 }
 
-func computeSKI(key *ecdsa.PublicKey) []byte {
+// 国密改造后散列算法改为SM3
+func computeSKI(key *sm2.PublicKey) []byte {
 	raw := elliptic.Marshal(key.Curve, key.X, key.Y)
-	hash := sha256.Sum256(raw)
+	hash := sm3.Sm3Sum(raw)
 	return hash[:]
 }
 
@@ -326,23 +329,24 @@ func TestValidateCANameConstraintsMitigation(t *testing.T) {
 	//
 	// In Go 1.15, the behavior has changed and, by default, the same structure
 	// will validate. This test asserts on the old behavior.
-	caKey, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	caKey, err := sm2.GenerateKey(rand.Reader)
 	require.NoError(t, err)
-	leafKey, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	leafKey, err := sm2.GenerateKey(rand.Reader)
 	require.NoError(t, err)
 
 	caKeyUsage := x509.KeyUsageDigitalSignature | x509.KeyUsageKeyEncipherment | x509.KeyUsageCertSign | x509.KeyUsageCRLSign
 	caTemplate := x509.Certificate{
-		Subject:                     pkix.Name{CommonName: "TestCA"},
-		SerialNumber:                big.NewInt(1),
-		NotBefore:                   time.Now().Add(-1 * time.Hour),
-		NotAfter:                    time.Now().Add(2 * time.Hour),
-		ExcludedDNSDomains:          []string{"example.com"},
+		Subject:      pkix.Name{CommonName: "TestCA"},
+		SerialNumber: big.NewInt(1),
+		NotBefore:    time.Now().Add(-1 * time.Hour),
+		NotAfter:     time.Now().Add(2 * time.Hour),
+		// TODO gmgo的x509没有ExcludedDNSDomains
+		// ExcludedDNSDomains:          []string{"example.com"},
 		PermittedDNSDomainsCritical: true,
 		IsCA:                        true,
 		BasicConstraintsValid:       true,
 		KeyUsage:                    caKeyUsage,
-		SubjectKeyId:                computeSKI(caKey.Public().(*ecdsa.PublicKey)),
+		SubjectKeyId:                computeSKI(caKey.Public().(*sm2.PublicKey)),
 	}
 	caCertBytes, err := x509.CreateCertificate(rand.Reader, &caTemplate, &caTemplate, caKey.Public(), caKey)
 	require.NoError(t, err)
@@ -355,7 +359,7 @@ func TestValidateCANameConstraintsMitigation(t *testing.T) {
 		NotBefore:    time.Now().Add(-1 * time.Hour),
 		NotAfter:     time.Now().Add(2 * time.Hour),
 		KeyUsage:     x509.KeyUsageDigitalSignature,
-		SubjectKeyId: computeSKI(leafKey.Public().(*ecdsa.PublicKey)),
+		SubjectKeyId: computeSKI(leafKey.Public().(*sm2.PublicKey)),
 	}
 	leafCertBytes, err := x509.CreateCertificate(rand.Reader, &leafTemplate, ca, leafKey.Public(), caKey)
 	require.NoError(t, err)
@@ -446,7 +450,7 @@ func TestIsWellFormed(t *testing.T) {
 
 	id, err := localMsp.GetDefaultSigningIdentity()
 	if err != nil {
-		t.Fatalf("GetDefaultSigningIdentity should have succeeded, got err %s", err)
+		t.Fatalf("GetSigningIdentity should have succeeded, got err %s", err)
 		return
 	}
 
@@ -458,31 +462,31 @@ func TestIsWellFormed(t *testing.T) {
 
 	sId := &msp.SerializedIdentity{}
 	err = proto.Unmarshal(serializedID, sId)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// An MSP Manager without any MSPs should not recognize the identity since
 	// not providers are registered
 	err = mspMgr.IsWellFormed(sId)
-	require.Error(t, err)
-	require.Equal(t, "no MSP provider recognizes the identity", err.Error())
+	assert.Error(t, err)
+	assert.Equal(t, "no MSP provider recognizes the identity", err.Error())
 
 	// Add the MSP to the MSP Manager
 	mspMgr.Setup([]MSP{localMsp})
 
 	err = localMsp.IsWellFormed(sId)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = mspMgr.IsWellFormed(sId)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	bl, _ := pem.Decode(sId.IdBytes)
-	require.Equal(t, "CERTIFICATE", bl.Type)
+	assert.Equal(t, "CERTIFICATE", bl.Type)
 
 	// Now, strip off the type from the PEM block. It should still be valid
 	bl.Type = ""
 	sId.IdBytes = pem.EncodeToMemory(bl)
 
 	err = localMsp.IsWellFormed(sId)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// Now, corrupt the type of the PEM block.
 	// make sure it isn't considered well formed by both an MSP and an MSP Manager
@@ -490,32 +494,33 @@ func TestIsWellFormed(t *testing.T) {
 	sId.IdBytes = pem.EncodeToMemory(bl)
 	err = localMsp.IsWellFormed(sId)
 
-	require.Error(t, err)
-	require.Contains(t, err.Error(), "pem type is")
-	require.Contains(t, err.Error(), "should be 'CERTIFICATE' or missing")
+	assert.Error(t, err)
+	assert.Contains(t, err.Error(), "pem type is")
+	assert.Contains(t, err.Error(), "should be 'CERTIFICATE' or missing")
 
 	err = mspMgr.IsWellFormed(sId)
-	require.Error(t, err)
-	require.Equal(t, "no MSP provider recognizes the identity", err.Error())
+	assert.Error(t, err)
+	assert.Equal(t, "no MSP provider recognizes the identity", err.Error())
 
 	// Restore the identity to what it was
 	sId = &msp.SerializedIdentity{}
 	err = proto.Unmarshal(serializedID, sId)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// Append some trailing junk at the end
 	sId.IdBytes = append(sId.IdBytes, []byte{1, 2, 3}...)
 	// And ensure it is deemed invalid
 	err = localMsp.IsWellFormed(sId)
-	require.Error(t, err)
-	require.Contains(t, err.Error(), "for MSP SampleOrg has trailing bytes")
+	assert.Error(t, err)
+	assert.Contains(t, err.Error(), "for MSP SampleOrg has trailing bytes")
 
 	// Parse the certificate of the identity
 	cert, err := x509.ParseCertificate(bl.Bytes)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	// Obtain the ECDSA signature
-	r, s, err := utils.UnmarshalECDSASignature(cert.Signature)
-	require.NoError(t, err)
+	// r, s, err := utils.UnmarshalECDSASignature(cert.Signature)
+	r, s, err := sw.UnmarshalSM2Signature(cert.Signature)
+	assert.NoError(t, err)
 
 	// Modify it by appending some bytes to its end.
 	modifiedSig, err := asn1.Marshal(rst{
@@ -523,20 +528,20 @@ func TestIsWellFormed(t *testing.T) {
 		S: s,
 		T: big.NewInt(100),
 	})
-	require.NoError(t, err)
-	newCert, err := certFromX509Cert(cert)
-	require.NoError(t, err)
+	assert.NoError(t, err)
+	newCert, err := certFromSM2Cert(cert)
+	assert.NoError(t, err)
 	newCert.SignatureValue.Bytes = modifiedSig
 	newCert.SignatureValue.BitLength = len(newCert.SignatureValue.Bytes) * 8
 	newCert.Raw = nil
 	// Pour it back into the identity
 	rawCert, err := asn1.Marshal(newCert)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	sId.IdBytes = pem.EncodeToMemory(&pem.Block{Type: "CERTIFICATE", Bytes: rawCert})
 	// Ensure it is invalid now and the signature modification is detected
 	err = localMsp.IsWellFormed(sId)
-	require.Error(t, err)
-	require.Contains(t, err.Error(), "for MSP SampleOrg has a non canonical signature")
+	assert.Error(t, err)
+	assert.Contains(t, err.Error(), "for MSP SampleOrg has a non canonical signature")
 }
 
 type rst struct {
@@ -547,39 +552,39 @@ func TestValidateCAIdentity(t *testing.T) {
 	caID := getIdentity(t, cacerts)
 
 	err := localMsp.Validate(caID)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestBadAdminIdentity(t *testing.T) {
 	cryptoProvider, err := sw.NewDefaultSecurityLevelWithKeystore(sw.NewDummyKeyStore())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	conf, err := GetLocalMspConfig("testdata/badadmin", nil, "SampleOrg")
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	thisMSP, err := newBccspMsp(MSPv1_0, cryptoProvider)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	ks, err := sw.NewFileBasedKeyStore(nil, filepath.Join("testdata/badadmin", "keystore"), true)
-	require.NoError(t, err)
-	csp, err := sw.NewWithParams(256, "SHA2", ks)
-	require.NoError(t, err)
+	assert.NoError(t, err)
+	csp, err := sw.NewWithParams(true, 256, "SHA2", ks)
+	assert.NoError(t, err)
 	thisMSP.(*bccspmsp).bccsp = csp
 
 	err = thisMSP.Setup(conf)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestValidateAdminIdentity(t *testing.T) {
 	caID := getIdentity(t, admincerts)
 
 	err := localMsp.Validate(caID)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 }
 
 func TestSerializeIdentitiesWithWrongMSP(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
 	if err != nil {
-		t.Fatalf("GetDefaultSigningIdentity should have succeeded, got err %s", err)
+		t.Fatalf("GetSigningIdentity should have succeeded, got err %s", err)
 		return
 	}
 
@@ -591,21 +596,21 @@ func TestSerializeIdentitiesWithWrongMSP(t *testing.T) {
 
 	sid := &msp.SerializedIdentity{}
 	err = proto.Unmarshal(serializedID, sid)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	sid.Mspid += "BARF"
 
 	serializedID, err = proto.Marshal(sid)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	_, err = localMsp.DeserializeIdentity(serializedID)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestSerializeIdentitiesWithMSPManager(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
 	if err != nil {
-		t.Fatalf("GetDefaultSigningIdentity should have succeeded, got err %s", err)
+		t.Fatalf("GetSigningIdentity should have succeeded, got err %s", err)
 		return
 	}
 
@@ -616,44 +621,44 @@ func TestSerializeIdentitiesWithMSPManager(t *testing.T) {
 	}
 
 	_, err = mspMgr.DeserializeIdentity(serializedID)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	sid := &msp.SerializedIdentity{}
 	err = proto.Unmarshal(serializedID, sid)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	sid.Mspid += "BARF"
 
 	serializedID, err = proto.Marshal(sid)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	_, err = mspMgr.DeserializeIdentity(serializedID)
-	require.Error(t, err)
-	require.Contains(t, err.Error(), fmt.Sprintf("MSP %s is not defined on channel", sid.Mspid))
+	assert.Error(t, err)
+	assert.Contains(t, err.Error(), fmt.Sprintf("MSP %s is not defined on channel", sid.Mspid))
 
 	_, err = mspMgr.DeserializeIdentity([]byte("barf"))
-	require.Error(t, err)
-	require.Contains(t, err.Error(), "could not deserialize")
+	assert.Error(t, err)
+	assert.Contains(t, err.Error(), "could not deserialize")
 }
 
 func TestIdentitiesGetters(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
 	if err != nil {
-		t.Fatalf("GetDefaultSigningIdentity should have succeeded, got err %s", err)
+		t.Fatalf("GetSigningIdentity should have succeeded, got err %s", err)
 		return
 	}
 
 	idid := id.GetIdentifier()
-	require.NotNil(t, idid)
+	assert.NotNil(t, idid)
 	mspid := id.GetMSPIdentifier()
-	require.NotNil(t, mspid)
-	require.False(t, id.Anonymous())
+	assert.NotNil(t, mspid)
+	assert.False(t, id.Anonymous())
 }
 
 func TestSignAndVerify(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
 	if err != nil {
-		t.Fatalf("GetDefaultSigningIdentity should have succeeded")
+		t.Fatalf("GetSigningIdentity should have succeeded")
 		return
 	}
 
@@ -689,9 +694,9 @@ func TestSignAndVerify(t *testing.T) {
 	}
 
 	err = id.Verify(msg[1:], sig)
-	require.Error(t, err)
+	assert.Error(t, err)
 	err = id.Verify(msg, sig[1:])
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestSignAndVerifyFailures(t *testing.T) {
@@ -699,7 +704,7 @@ func TestSignAndVerifyFailures(t *testing.T) {
 
 	id, err := localMspBad.GetDefaultSigningIdentity()
 	if err != nil {
-		t.Fatalf("GetDefaultSigningIdentity should have succeeded")
+		t.Fatalf("GetSigningIdentity should have succeeded")
 		return
 	}
 
@@ -707,7 +712,7 @@ func TestSignAndVerifyFailures(t *testing.T) {
 	id.(*signingidentity).msp.cryptoConfig.SignatureHashFamily = "barf"
 
 	_, err = id.Sign(msg)
-	require.Error(t, err)
+	assert.Error(t, err)
 
 	id.(*signingidentity).msp.cryptoConfig.SignatureHashFamily = hash
 
@@ -720,7 +725,7 @@ func TestSignAndVerifyFailures(t *testing.T) {
 	id.(*signingidentity).msp.cryptoConfig.SignatureHashFamily = "barf"
 
 	err = id.Verify(msg, sig)
-	require.Error(t, err)
+	assert.Error(t, err)
 
 	id.(*signingidentity).msp.cryptoConfig.SignatureHashFamily = hash
 }
@@ -728,12 +733,12 @@ func TestSignAndVerifyFailures(t *testing.T) {
 func TestSignAndVerifyOtherHash(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
 	if err != nil {
-		t.Fatalf("GetDefaultSigningIdentity should have succeeded")
+		t.Fatalf("GetSigningIdentity should have succeeded")
 		return
 	}
 
 	hash := id.(*signingidentity).msp.cryptoConfig.SignatureHashFamily
-	id.(*signingidentity).msp.cryptoConfig.SignatureHashFamily = bccsp.SHA3
+	id.(*signingidentity).msp.cryptoConfig.SignatureHashFamily = bccsp.SM3
 
 	msg := []byte("foo")
 	sig, err := id.Sign(msg)
@@ -743,7 +748,7 @@ func TestSignAndVerifyOtherHash(t *testing.T) {
 	}
 
 	err = id.Verify(msg, sig)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	id.(*signingidentity).msp.cryptoConfig.SignatureHashFamily = hash
 }
@@ -751,7 +756,7 @@ func TestSignAndVerifyOtherHash(t *testing.T) {
 func TestSignAndVerify_longMessage(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
 	if err != nil {
-		t.Fatalf("GetDefaultSigningIdentity should have succeeded")
+		t.Fatalf("GetSigningIdentity should have succeeded")
 		return
 	}
 
@@ -790,64 +795,64 @@ func TestSignAndVerify_longMessage(t *testing.T) {
 func TestGetOU(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
 	if err != nil {
-		t.Fatalf("GetDefaultSigningIdentity should have succeeded")
+		t.Fatalf("GetSigningIdentity should have succeeded")
 		return
 	}
 
-	require.Equal(t, "COP", id.GetOrganizationalUnits()[0].OrganizationalUnitIdentifier)
+	assert.Equal(t, "COP", id.GetOrganizationalUnits()[0].OrganizationalUnitIdentifier)
 }
 
 func TestGetOUFail(t *testing.T) {
 	id, err := localMspBad.GetDefaultSigningIdentity()
 	if err != nil {
-		t.Fatalf("GetDefaultSigningIdentity should have succeeded")
+		t.Fatalf("GetSigningIdentity should have succeeded")
 		return
 	}
 
 	certTmp := id.(*signingidentity).cert
 	id.(*signingidentity).cert = nil
 	ou := id.GetOrganizationalUnits()
-	require.Nil(t, ou)
+	assert.Nil(t, ou)
 
 	id.(*signingidentity).cert = certTmp
 
 	opts := id.(*signingidentity).msp.opts
 	id.(*signingidentity).msp.opts = nil
 	ou = id.GetOrganizationalUnits()
-	require.Nil(t, ou)
+	assert.Nil(t, ou)
 
 	id.(*signingidentity).msp.opts = opts
 }
 
 func TestCertificationIdentifierComputation(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	chain, err := localMsp.(*bccspmsp).getCertificationChain(id.GetPublicVersion())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// Hash the chain
 	// Use the hash of the identity's certificate as id in the IdentityIdentifier
 	hashOpt, err := bccsp.GetHashOpt(localMsp.(*bccspmsp).cryptoConfig.IdentityIdentifierHashFunction)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	hf, err := localMsp.(*bccspmsp).bccsp.GetHash(hashOpt)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	// Skipping first cert because it belongs to the identity
 	for i := 1; i < len(chain); i++ {
 		hf.Write(chain[i].Raw)
 	}
 	sum := hf.Sum(nil)
 
-	require.Equal(t, sum, id.GetOrganizationalUnits()[0].CertifiersIdentifier)
+	assert.Equal(t, sum, id.GetOrganizationalUnits()[0].CertifiersIdentifier)
 }
 
 func TestOUPolicyPrincipal(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	cid, err := localMsp.(*bccspmsp).getCertificationChainIdentifier(id.GetPublicVersion())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	ou := &msp.OrganizationUnit{
 		OrganizationalUnitIdentifier: "COP",
@@ -855,7 +860,7 @@ func TestOUPolicyPrincipal(t *testing.T) {
 		CertifiersIdentifier:         cid,
 	}
 	bytes, err := proto.Marshal(ou)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ORGANIZATION_UNIT,
@@ -863,12 +868,12 @@ func TestOUPolicyPrincipal(t *testing.T) {
 	}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 }
 
 func TestOUPolicyPrincipalBadPrincipal(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ORGANIZATION_UNIT,
@@ -876,15 +881,15 @@ func TestOUPolicyPrincipalBadPrincipal(t *testing.T) {
 	}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestOUPolicyPrincipalBadMSPID(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	cid, err := localMsp.(*bccspmsp).getCertificationChainIdentifier(id.GetPublicVersion())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	ou := &msp.OrganizationUnit{
 		OrganizationalUnitIdentifier: "COP",
@@ -892,7 +897,7 @@ func TestOUPolicyPrincipalBadMSPID(t *testing.T) {
 		CertifiersIdentifier:         cid,
 	}
 	bytes, err := proto.Marshal(ou)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ORGANIZATION_UNIT,
@@ -900,12 +905,12 @@ func TestOUPolicyPrincipalBadMSPID(t *testing.T) {
 	}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestOUPolicyPrincipalBadPath(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	ou := &msp.OrganizationUnit{
 		OrganizationalUnitIdentifier: "COP",
@@ -913,7 +918,7 @@ func TestOUPolicyPrincipalBadPath(t *testing.T) {
 		CertifiersIdentifier:         nil,
 	}
 	bytes, err := proto.Marshal(ou)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ORGANIZATION_UNIT,
@@ -921,7 +926,7 @@ func TestOUPolicyPrincipalBadPath(t *testing.T) {
 	}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.Error(t, err)
+	assert.Error(t, err)
 
 	ou = &msp.OrganizationUnit{
 		OrganizationalUnitIdentifier: "COP",
@@ -929,7 +934,7 @@ func TestOUPolicyPrincipalBadPath(t *testing.T) {
 		CertifiersIdentifier:         []byte{0, 1, 2, 3, 4},
 	}
 	bytes, err = proto.Marshal(ou)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal = &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ORGANIZATION_UNIT,
@@ -937,87 +942,82 @@ func TestOUPolicyPrincipalBadPath(t *testing.T) {
 	}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestPolicyPrincipalBogusType(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principalBytes, err := proto.Marshal(&msp.MSPRole{Role: 35, MspIdentifier: "SampleOrg"})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: 35,
-		Principal:               principalBytes,
-	}
+		Principal:               principalBytes}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestPolicyPrincipalBogusRole(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principalBytes, err := proto.Marshal(&msp.MSPRole{Role: 35, MspIdentifier: "SampleOrg"})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ROLE,
-		Principal:               principalBytes,
-	}
+		Principal:               principalBytes}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestPolicyPrincipalWrongMSPID(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principalBytes, err := proto.Marshal(&msp.MSPRole{Role: msp.MSPRole_MEMBER, MspIdentifier: "SampleOrgBARFBARF"})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ROLE,
-		Principal:               principalBytes,
-	}
+		Principal:               principalBytes}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestMemberPolicyPrincipal(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principalBytes, err := proto.Marshal(&msp.MSPRole{Role: msp.MSPRole_MEMBER, MspIdentifier: "SampleOrg"})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ROLE,
-		Principal:               principalBytes,
-	}
+		Principal:               principalBytes}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 }
 
 func TestAdminPolicyPrincipal(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principalBytes, err := proto.Marshal(&msp.MSPRole{Role: msp.MSPRole_ADMIN, MspIdentifier: "SampleOrg"})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ROLE,
-		Principal:               principalBytes,
-	}
+		Principal:               principalBytes}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 }
 
 // Combine one or more MSPPrincipals into a MSPPrincipal of type
@@ -1038,173 +1038,166 @@ func createCombinedPrincipal(principals ...*msp.MSPPrincipal) (*msp.MSPPrincipal
 
 func TestMultilevelAdminAndMemberPolicyPrincipal(t *testing.T) {
 	id, err := localMspV13.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	adminPrincipalBytes, err := proto.Marshal(&msp.MSPRole{Role: msp.MSPRole_ADMIN, MspIdentifier: "SampleOrg"})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	memberPrincipalBytes, err := proto.Marshal(&msp.MSPRole{Role: msp.MSPRole_MEMBER, MspIdentifier: "SampleOrg"})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	adminPrincipal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ROLE,
-		Principal:               adminPrincipalBytes,
-	}
+		Principal:               adminPrincipalBytes}
 
 	memberPrincipal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ROLE,
-		Principal:               memberPrincipalBytes,
-	}
+		Principal:               memberPrincipalBytes}
 
 	// CombinedPrincipal with Admin and Member principals
 	levelOneCombinedPrincipal, err := createCombinedPrincipal(adminPrincipal, memberPrincipal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = id.SatisfiesPrincipal(levelOneCombinedPrincipal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// Nested CombinedPrincipal
 	levelTwoCombinedPrincipal, err := createCombinedPrincipal(levelOneCombinedPrincipal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = id.SatisfiesPrincipal(levelTwoCombinedPrincipal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// Double nested CombinedPrincipal
 	levelThreeCombinedPrincipal, err := createCombinedPrincipal(levelTwoCombinedPrincipal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = id.SatisfiesPrincipal(levelThreeCombinedPrincipal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 }
 
 func TestMultilevelAdminAndMemberPolicyPrincipalPreV12(t *testing.T) {
 	id, err := localMspV11.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	adminPrincipalBytes, err := proto.Marshal(&msp.MSPRole{Role: msp.MSPRole_ADMIN, MspIdentifier: "SampleOrg"})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	memberPrincipalBytes, err := proto.Marshal(&msp.MSPRole{Role: msp.MSPRole_MEMBER, MspIdentifier: "SampleOrg"})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	adminPrincipal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ROLE,
-		Principal:               adminPrincipalBytes,
-	}
+		Principal:               adminPrincipalBytes}
 
 	memberPrincipal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ROLE,
-		Principal:               memberPrincipalBytes,
-	}
+		Principal:               memberPrincipalBytes}
 
 	// CombinedPrincipal with Admin and Member principals
 	levelOneCombinedPrincipal, err := createCombinedPrincipal(adminPrincipal, memberPrincipal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = id.SatisfiesPrincipal(levelOneCombinedPrincipal)
-	require.Error(t, err)
+	assert.Error(t, err)
 
 	// Nested CombinedPrincipal
 	levelTwoCombinedPrincipal, err := createCombinedPrincipal(levelOneCombinedPrincipal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = id.SatisfiesPrincipal(levelTwoCombinedPrincipal)
-	require.Error(t, err)
+	assert.Error(t, err)
 
 	// Double nested CombinedPrincipal
 	levelThreeCombinedPrincipal, err := createCombinedPrincipal(levelTwoCombinedPrincipal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = id.SatisfiesPrincipal(levelThreeCombinedPrincipal)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestAdminPolicyPrincipalFails(t *testing.T) {
 	id, err := localMspV13.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principalBytes, err := proto.Marshal(&msp.MSPRole{Role: msp.MSPRole_ADMIN, MspIdentifier: "SampleOrg"})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ROLE,
-		Principal:               principalBytes,
-	}
+		Principal:               principalBytes}
 
 	// remove the admin so validation will fail
 	localMspV13.(*bccspmsp).admins = make([]Identity, 0)
 
 	err = id.SatisfiesPrincipal(principal)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestMultilevelAdminAndMemberPolicyPrincipalFails(t *testing.T) {
 	id, err := localMspV13.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	adminPrincipalBytes, err := proto.Marshal(&msp.MSPRole{Role: msp.MSPRole_ADMIN, MspIdentifier: "SampleOrg"})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	memberPrincipalBytes, err := proto.Marshal(&msp.MSPRole{Role: msp.MSPRole_MEMBER, MspIdentifier: "SampleOrg"})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	adminPrincipal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ROLE,
-		Principal:               adminPrincipalBytes,
-	}
+		Principal:               adminPrincipalBytes}
 
 	memberPrincipal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ROLE,
-		Principal:               memberPrincipalBytes,
-	}
+		Principal:               memberPrincipalBytes}
 
 	// remove the admin so validation will fail
 	localMspV13.(*bccspmsp).admins = make([]Identity, 0)
 
 	// CombinedPrincipal with Admin and Member principals
 	levelOneCombinedPrincipal, err := createCombinedPrincipal(adminPrincipal, memberPrincipal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = id.SatisfiesPrincipal(levelOneCombinedPrincipal)
-	require.Error(t, err)
+	assert.Error(t, err)
 
 	// Nested CombinedPrincipal
 	levelTwoCombinedPrincipal, err := createCombinedPrincipal(levelOneCombinedPrincipal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = id.SatisfiesPrincipal(levelTwoCombinedPrincipal)
-	require.Error(t, err)
+	assert.Error(t, err)
 
 	// Double nested CombinedPrincipal
 	levelThreeCombinedPrincipal, err := createCombinedPrincipal(levelTwoCombinedPrincipal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = id.SatisfiesPrincipal(levelThreeCombinedPrincipal)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestIdentityExpiresAt(t *testing.T) {
 	thisMSP := getLocalMSP(t, "testdata/expiration")
-	require.NotNil(t, thisMSP)
+	assert.NotNil(t, thisMSP)
 	si, err := thisMSP.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	expirationDate := si.GetPublicVersion().ExpiresAt()
-	require.Equal(t, time.Date(2027, 8, 17, 12, 19, 48, 0, time.UTC), expirationDate)
+	assert.Equal(t, time.Date(2027, 8, 17, 12, 19, 48, 0, time.UTC), expirationDate)
 }
 
 func TestIdentityExpired(t *testing.T) {
 	cryptoProvider, err := sw.NewDefaultSecurityLevelWithKeystore(sw.NewDummyKeyStore())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	expiredCertsDir := "testdata/expired"
 	conf, err := GetLocalMspConfig(expiredCertsDir, nil, "SampleOrg")
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	thisMSP, err := newBccspMsp(MSPv1_0, cryptoProvider)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	ks, err := sw.NewFileBasedKeyStore(nil, filepath.Join(expiredCertsDir, "keystore"), true)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
-	csp, err := sw.NewWithParams(256, "SHA2", ks)
-	require.NoError(t, err)
+	csp, err := sw.NewWithParams(true, 256, "SHA2", ks)
+	assert.NoError(t, err)
 	thisMSP.(*bccspmsp).bccsp = csp
 
 	err = thisMSP.Setup(conf)
 	if err != nil {
-		require.Contains(t, err.Error(), "signing identity expired")
+		assert.Contains(t, err.Error(), "signing identity expired")
 	} else {
 		t.Fatal("Should have failed when loading expired certs")
 	}
@@ -1212,31 +1205,29 @@ func TestIdentityExpired(t *testing.T) {
 
 func TestIdentityPolicyPrincipal(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	idSerialized, err := id.Serialize()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_IDENTITY,
-		Principal:               idSerialized,
-	}
+		Principal:               idSerialized}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 }
 
 func TestIdentityPolicyPrincipalBadBytes(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_IDENTITY,
-		Principal:               []byte("barf"),
-	}
+		Principal:               []byte("barf")}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestMSPOus(t *testing.T) {
@@ -1244,32 +1235,32 @@ func TestMSPOus(t *testing.T) {
 	backup := localMsp.(*bccspmsp).ouIdentifiers
 	defer func() { localMsp.(*bccspmsp).ouIdentifiers = backup }()
 	sid, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	sidBytes, err := sid.Serialize()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	id, err := localMsp.DeserializeIdentity(sidBytes)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	localMsp.(*bccspmsp).ouIdentifiers = map[string][][]byte{
 		"COP": {id.GetOrganizationalUnits()[0].CertifiersIdentifier},
 	}
-	require.NoError(t, localMsp.Validate(id))
+	assert.NoError(t, localMsp.Validate(id))
 
 	id, err = localMsp.DeserializeIdentity(sidBytes)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	localMsp.(*bccspmsp).ouIdentifiers = map[string][][]byte{
 		"COP2": {id.GetOrganizationalUnits()[0].CertifiersIdentifier},
 	}
-	require.Error(t, localMsp.Validate(id))
+	assert.Error(t, localMsp.Validate(id))
 
 	id, err = localMsp.DeserializeIdentity(sidBytes)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	localMsp.(*bccspmsp).ouIdentifiers = map[string][][]byte{
 		"COP": {{0, 1, 2, 3, 4}},
 	}
-	require.Error(t, localMsp.Validate(id))
+	assert.Error(t, localMsp.Validate(id))
 }
 
 const othercert = `-----BEGIN CERTIFICATE-----
@@ -1295,32 +1286,27 @@ HeamPGiDTQ==
 
 func TestIdentityPolicyPrincipalFails(t *testing.T) {
 	id, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	sid, err := NewSerializedIdentity("SampleOrg", []byte(othercert))
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_IDENTITY,
-		Principal:               sid,
-	}
+		Principal:               sid}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
-var (
-	conf        *msp.MSPConfig
-	localMsp    MSP
-	localMspV11 MSP
-	localMspV13 MSP
-)
+var conf *msp.MSPConfig
+var localMsp MSP
+var localMspV11 MSP
+var localMspV13 MSP
 
 // Required because deleting the cert or msp options from localMsp causes parallel tests to fail
-var (
-	localMspBad MSP
-	mspMgr      MSPManager
-)
+var localMspBad MSP
+var mspMgr MSPManager
 
 func TestMain(m *testing.M) {
 	var err error
@@ -1411,58 +1397,58 @@ func TestMain(m *testing.M) {
 func getIdentity(t *testing.T, path string) Identity {
 	mspDir := configtest.GetDevMspDir()
 	pems, err := getPemMaterialFromDir(filepath.Join(mspDir, path))
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	id, _, err := localMsp.(*bccspmsp).getIdentityFromConf(pems[0])
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	return id
 }
 
 func getLocalMSPWithVersionAndError(t *testing.T, dir string, version MSPVersion) (MSP, error) {
 	conf, err := GetLocalMspConfig(dir, nil, "SampleOrg")
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	ks, err := sw.NewFileBasedKeyStore(nil, filepath.Join(dir, "keystore"), true)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	cryptoProvider, err := sw.NewDefaultSecurityLevelWithKeystore(sw.NewDummyKeyStore())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	thisMSP, err := NewBccspMspWithKeyStore(version, ks, cryptoProvider)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	return thisMSP, thisMSP.Setup(conf)
 }
 
 func getLocalMSP(t *testing.T, dir string) MSP {
 	conf, err := GetLocalMspConfig(dir, nil, "SampleOrg")
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	ks, err := sw.NewFileBasedKeyStore(nil, filepath.Join(dir, "keystore"), true)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	cryptoProvider, err := sw.NewDefaultSecurityLevelWithKeystore(sw.NewDummyKeyStore())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	thisMSP, err := NewBccspMspWithKeyStore(MSPv1_0, ks, cryptoProvider)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = thisMSP.Setup(conf)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	return thisMSP
 }
 
 func getLocalMSPWithVersion(t *testing.T, dir string, version MSPVersion) MSP {
 	conf, err := GetLocalMspConfig(dir, nil, "SampleOrg")
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	ks, err := sw.NewFileBasedKeyStore(nil, filepath.Join(dir, "keystore"), true)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	cryptoProvider, err := sw.NewDefaultSecurityLevelWithKeystore(sw.NewDummyKeyStore())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	thisMSP, err := NewBccspMspWithKeyStore(version, ks, cryptoProvider)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	err = thisMSP.Setup(conf)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	return thisMSP
 }
@@ -1471,22 +1457,22 @@ func TestCollectEmptyCombinedPrincipal(t *testing.T) {
 	var principalsArray []*msp.MSPPrincipal
 	combinedPrincipal := &msp.CombinedPrincipal{Principals: principalsArray}
 	combinedPrincipalBytes, err := proto.Marshal(combinedPrincipal)
-	require.NoError(t, err, "Error marshalling empty combined principal")
+	assert.NoError(t, err, "Error marshalling empty combined principal")
 	principalsCombined := &msp.MSPPrincipal{PrincipalClassification: msp.MSPPrincipal_COMBINED, Principal: combinedPrincipalBytes}
 	_, err = collectPrincipals(principalsCombined, MSPv1_3)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestCollectPrincipalContainingEmptyCombinedPrincipal(t *testing.T) {
 	var principalsArray []*msp.MSPPrincipal
 	combinedPrincipal := &msp.CombinedPrincipal{Principals: principalsArray}
 	combinedPrincipalBytes, err := proto.Marshal(combinedPrincipal)
-	require.NoError(t, err, "Error marshalling empty combined principal")
+	assert.NoError(t, err, "Error marshalling empty combined principal")
 	emptyPrincipal := &msp.MSPPrincipal{PrincipalClassification: msp.MSPPrincipal_COMBINED, Principal: combinedPrincipalBytes}
 	levelOneCombinedPrincipal, err := createCombinedPrincipal(emptyPrincipal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	_, err = collectPrincipals(levelOneCombinedPrincipal, MSPv1_3)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestMSPIdentityIdentifier(t *testing.T) {
@@ -1495,115 +1481,114 @@ func TestMSPIdentityIdentifier(t *testing.T) {
 	thisMSP := getLocalMSP(t, "testdata/mspid")
 
 	id, err := thisMSP.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = id.Validate()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// Check that the identity identifier is computed with the respect to the lowS signature
 
 	idid := id.GetIdentifier()
-	require.NotNil(t, idid)
+	assert.NotNil(t, idid)
 
 	// Load and parse cacaert and signcert from folder
 	pems, err := getPemMaterialFromDir("testdata/mspid/cacerts")
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	bl, _ := pem.Decode(pems[0])
-	require.NotNil(t, bl)
-	caCertFromFile, err := x509.ParseCertificate(bl.Bytes)
-	require.NoError(t, err)
+	assert.NotNil(t, bl)
+	// caCertFromFile, err := x509.ParseCertificate(bl.Bytes)
+	assert.NoError(t, err)
 
 	pems, err = getPemMaterialFromDir("testdata/mspid/signcerts")
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	bl, _ = pem.Decode(pems[0])
-	require.NotNil(t, bl)
+	assert.NotNil(t, bl)
 	certFromFile, err := x509.ParseCertificate(bl.Bytes)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	// Check that the certificates' raws are different, meaning that the identity has been sanitised
-	require.NotEqual(t, certFromFile.Raw, id.(*signingidentity).cert)
+	assert.NotEqual(t, certFromFile.Raw, id.(*signingidentity).cert)
 
 	// Check that certFromFile is in HighS
-	_, S, err := utils.UnmarshalECDSASignature(certFromFile.Signature)
-	require.NoError(t, err)
-	lowS, err := utils.IsLowS(caCertFromFile.PublicKey.(*ecdsa.PublicKey), S)
-	require.NoError(t, err)
-	require.False(t, lowS)
+	// _, S, err := utils.UnmarshalECDSASignature(certFromFile.Signature)
+	_, _, err = sw.UnmarshalSM2Signature(certFromFile.Signature)
+	assert.NoError(t, err)
+	// lowS, err := utils.IsLowS(caCertFromFile.PublicKey.(*ecdsa.PublicKey), S)
+	// assert.NoError(t, err)
+	// assert.False(t, lowS)
 
 	// Check that id.(*signingidentity).cert is in LoswS
-	_, S, err = utils.UnmarshalECDSASignature(id.(*signingidentity).cert.Signature)
-	require.NoError(t, err)
-	lowS, err = utils.IsLowS(caCertFromFile.PublicKey.(*ecdsa.PublicKey), S)
-	require.NoError(t, err)
-	require.True(t, lowS)
+	// _, S, err = utils.UnmarshalECDSASignature(id.(*signingidentity).cert.Signature)
+	_, _, err = sw.UnmarshalSM2Signature(id.(*signingidentity).cert.Signature)
+	assert.NoError(t, err)
+	// lowS, err = utils.IsLowS(caCertFromFile.PublicKey.(*ecdsa.PublicKey), S)
+	// assert.NoError(t, err)
+	// assert.True(t, lowS)
 
 	// Compute the digest for certFromFile
 	thisBCCSPMsp := thisMSP.(*bccspmsp)
 	hashOpt, err := bccsp.GetHashOpt(thisBCCSPMsp.cryptoConfig.IdentityIdentifierHashFunction)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	digest, err := thisBCCSPMsp.bccsp.Hash(certFromFile.Raw, hashOpt)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// Compare with the digest computed from the sanitised cert
-	require.NotEqual(t, idid.Id, hex.EncodeToString(digest))
+	assert.NotEqual(t, idid.Id, hex.EncodeToString(digest))
 }
 
 func TestAnonymityIdentity(t *testing.T) {
 	id, err := localMspV13.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principalBytes, err := proto.Marshal(&msp.MSPIdentityAnonymity{AnonymityType: msp.MSPIdentityAnonymity_NOMINAL})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ANONYMITY,
-		Principal:               principalBytes,
-	}
+		Principal:               principalBytes}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 }
 
 func TestAnonymityIdentityPreV12Fail(t *testing.T) {
 	id, err := localMspV11.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principalBytes, err := proto.Marshal(&msp.MSPIdentityAnonymity{AnonymityType: msp.MSPIdentityAnonymity_NOMINAL})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ANONYMITY,
-		Principal:               principalBytes,
-	}
+		Principal:               principalBytes}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestAnonymityIdentityFail(t *testing.T) {
 	id, err := localMspV13.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principalBytes, err := proto.Marshal(&msp.MSPIdentityAnonymity{AnonymityType: msp.MSPIdentityAnonymity_ANONYMOUS})
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	principal := &msp.MSPPrincipal{
 		PrincipalClassification: msp.MSPPrincipal_ANONYMITY,
-		Principal:               principalBytes,
-	}
+		Principal:               principalBytes}
 
 	err = id.SatisfiesPrincipal(principal)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestProviderTypeToString(t *testing.T) {
 	// Check that the provider type is found for FABRIC
 	pt := ProviderTypeToString(FABRIC)
-	require.Equal(t, "bccsp", pt)
+	assert.Equal(t, "bccsp", pt)
 
 	// Check that the provider type is found for IDEMIX
 	pt = ProviderTypeToString(IDEMIX)
-	require.Equal(t, "idemix", pt)
+	assert.Equal(t, "idemix", pt)
 
 	// Check that the provider type is not found
 	pt = ProviderTypeToString(OTHER)
-	require.Equal(t, "", pt)
+	assert.Equal(t, "", pt)
 }

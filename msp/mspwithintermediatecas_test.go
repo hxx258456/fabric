@@ -20,7 +20,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestMSPWithIntermediateCAs(t *testing.T) {
@@ -34,30 +34,30 @@ func TestMSPWithIntermediateCAs(t *testing.T) {
 	// This MSP will trust any cert signed by the CA directly OR by the intermediate
 
 	sid, err := thisMSP.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	sidBytes, err := sid.Serialize()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	id, err := thisMSP.DeserializeIdentity(sidBytes)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// ensure that we validate correctly the identity
 	err = thisMSP.Validate(id)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	id, err = thisMSP.DeserializeIdentity(sidBytes)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// ensure that validation of an identity of the MSP with intermediate CAs
 	// fails with the local MSP
 	err = localMsp.Validate(id)
-	require.Error(t, err)
+	assert.Error(t, err)
 
 	// ensure that validation of an identity of the local MSP
 	// fails with the MSP with intermediate CAs
 	localMSPID, err := localMsp.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = thisMSP.Validate(localMSPID)
-	require.Error(t, err)
+	assert.Error(t, err)
 }
 
 func TestMSPWithExternalIntermediateCAs(t *testing.T) {
@@ -75,11 +75,11 @@ func TestMSPWithExternalIntermediateCAs(t *testing.T) {
 	// This MSP will trust any cert signed only by the intermediate
 
 	id, err := thisMSP.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// ensure that we validate correctly the identity
 	err = thisMSP.Validate(id.GetPublicVersion())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 }
 
 func TestIntermediateCAIdentityValidity(t *testing.T) {
@@ -91,7 +91,7 @@ func TestIntermediateCAIdentityValidity(t *testing.T) {
 	thisMSP := getLocalMSP(t, "testdata/intermediate")
 
 	id := thisMSP.(*bccspmsp).intermediateCerts[0]
-	require.Error(t, id.Validate())
+	assert.Error(t, id.Validate())
 }
 
 func TestMSPWithIntermediateCAs2(t *testing.T) {
@@ -107,16 +107,16 @@ func TestMSPWithIntermediateCAs2(t *testing.T) {
 	// the default signing identity is signed by the intermediate CA,
 	// the validation should return no error
 	id, err := thisMSP.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = thisMSP.Validate(id.GetPublicVersion())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// user2-cert has been signed by the root CA, validation must fail
 	pem, err := readPemFile(filepath.Join("testdata", "intermediate2", "users", "user2-cert.pem"))
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	id2, _, err := thisMSP.(*bccspmsp).getIdentityFromConf(pem)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	err = thisMSP.Validate(id2)
-	require.Error(t, err)
-	require.Contains(t, err.Error(), "invalid validation chain. Parent certificate should be a leaf of the certification tree ")
+	assert.Error(t, err)
+	assert.Contains(t, err.Error(), "invalid validation chain. Parent certificate should be a leaf of the certification tree ")
 }

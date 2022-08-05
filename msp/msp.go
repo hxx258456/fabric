@@ -12,7 +12,7 @@ import (
 	"github.com/hxx258456/fabric-protos-go-cc/msp"
 )
 
-// IdentityDeserializer is implemented by both MSPManger and MSP
+// IdentityDeserializer is implemented by both MSPManger and MSPW
 type IdentityDeserializer interface {
 	// DeserializeIdentity deserializes an identity.
 	// Deserialization will fail if the identity is associated to
@@ -73,6 +73,9 @@ type MSP interface {
 
 	// GetIdentifier returns the provider identifier
 	GetIdentifier() (string, error)
+
+	// GetSigningIdentity returns a signing identity corresponding to the provided identifier
+	GetSigningIdentity(identifier *IdentityIdentifier) (SigningIdentity, error)
 
 	// GetDefaultSigningIdentity returns the default signing identity
 	GetDefaultSigningIdentity() (SigningIdentity, error)

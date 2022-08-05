@@ -17,7 +17,6 @@ limitations under the License.
 package msp
 
 import (
-	"crypto/elliptic"
 	"crypto/rand"
 	"crypto/x509/pkix"
 	"encoding/asn1"
@@ -26,79 +25,79 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hxx258456/ccgo/sm2"
-	"github.com/hxx258456/ccgo/x509"
+	"gitee.com/zhaochuninhefei/gmgo/sm2"
+	"gitee.com/zhaochuninhefei/gmgo/x509"
 
 	"github.com/hxx258456/fabric/bccsp/sw"
-	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSanitizeCertWithRSA(t *testing.T) {
 	cert := &x509.Certificate{}
 	cert.SignatureAlgorithm = x509.SM2WithSM3
 	result := isSM2SignedCert(cert)
-	require.False(t, result)
+	assert.False(t, result)
 
 	cert.SignatureAlgorithm = x509.SM2WithSM3
 	result = isSM2SignedCert(cert)
-	require.True(t, result)
+	assert.True(t, result)
 }
 
 // func TestSanitizeCertInvalidInput(t *testing.T) {
 // 	_, err := sanitizeECDSASignedCert(nil, nil)
-// 	require.Error(t, err)
-// 	require.Contains(t, err.Error(), "certificate must be different from nil")
+// 	assert.Error(t, err)
+// 	assert.Contains(t, err.Error(), "certificate must be different from nil")
 
 // 	_, err = sanitizeECDSASignedCert(&x509.Certificate{}, nil)
-// 	require.Error(t, err)
-// 	require.Contains(t, err.Error(), "parent certificate must be different from nil")
+// 	assert.Error(t, err)
+// 	assert.Contains(t, err.Error(), "parent certificate must be different from nil")
 
-// 	k, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
-// 	require.NoError(t, err)
+// 	k, err := sm2.GenerateKey(rand.Reader)
+// 	assert.NoError(t, err)
 // 	cert := &x509.Certificate{}
 // 	cert.PublicKey = &k.PublicKey
 // 	sigma, err := utils.MarshalECDSASignature(big.NewInt(1), elliptic.P256().Params().N)
-// 	require.NoError(t, err)
+// 	assert.NoError(t, err)
 // 	cert.Signature = sigma
 // 	cert.PublicKeyAlgorithm = x509.ECDSA
 // 	cert.Raw = []byte{0, 1}
 // 	_, err = sanitizeECDSASignedCert(cert, cert)
-// 	require.Error(t, err)
-// 	require.Contains(t, err.Error(), "asn1: structure error: tags don't match")
+// 	assert.Error(t, err)
+// 	assert.Contains(t, err.Error(), "asn1: structure error: tags don't match")
 // }
 
-// func TestSanitizeCert(t *testing.T) {
-// 	var k *ecdsa.PrivateKey
-// 	var cert *x509.Certificate
-// 	for {
-// 		k, cert = generateSelfSignedCert(t, time.Now())
+/*func TestSanitizeCert(t *testing.T) {
+	var k *ecdsa.PrivateKey
+	var cert *x509.Certificate
+	for {
+		k, cert = generateSelfSignedCert(t, time.Now())
 
-// 		_, s, err := utils.UnmarshalECDSASignature(cert.Signature)
-// 		require.NoError(t, err)
+		_, s, err := utils.UnmarshalECDSASignature(cert.Signature)
+		assert.NoError(t, err)
 
-// 		lowS, err := utils.IsLowS(&k.PublicKey, s)
-// 		require.NoError(t, err)
+		lowS, err := utils.IsLowS(&k.PublicKey, s)
+		assert.NoError(t, err)
 
-// 		if !lowS {
-// 			break
-// 		}
-// 	}
+		if !lowS {
+			break
+		}
+	}
 
-// 	sanitizedCert, err := sanitizeECDSASignedCert(cert, cert)
-// 	require.NoError(t, err)
-// 	require.NotEqual(t, cert.Signature, sanitizedCert.Signature)
+	sanitizedCert, err := sanitizeECDSASignedCert(cert, cert)
+	assert.NoError(t, err)
+	assert.NotEqual(t, cert.Signature, sanitizedCert.Signature)
 
-// 	_, s, err := utils.UnmarshalECDSASignature(sanitizedCert.Signature)
-// 	require.NoError(t, err)
+	_, s, err := utils.UnmarshalECDSASignature(sanitizedCert.Signature)
+	assert.NoError(t, err)
 
-// 	lowS, err := utils.IsLowS(&k.PublicKey, s)
-// 	require.NoError(t, err)
-// 	require.True(t, lowS)
-// }
+	lowS, err := utils.IsLowS(&k.PublicKey, s)
+	assert.NoError(t, err)
+	assert.True(t, lowS)
+}*/
 
 func TestCertExpiration(t *testing.T) {
 	cryptoProvider, err := sw.NewDefaultSecurityLevelWithKeystore(sw.NewDummyKeyStore())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 	msp := &bccspmsp{bccsp: cryptoProvider}
 	msp.opts = &x509.VerifyOptions{}
 	msp.opts.DNSName = "test.example.com"
@@ -108,26 +107,26 @@ func TestCertExpiration(t *testing.T) {
 	msp.opts.Roots = x509.NewCertPool()
 	msp.opts.Roots.AddCert(cert)
 	_, err = msp.getUniqueValidationChain(cert, msp.getValidityOptsForCert(cert))
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// Certificate is in the past
 	_, cert = generateSelfSignedCert(t, time.Now().Add(-24*time.Hour))
 	msp.opts.Roots = x509.NewCertPool()
 	msp.opts.Roots.AddCert(cert)
 	_, err = msp.getUniqueValidationChain(cert, msp.getValidityOptsForCert(cert))
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	// Certificate is in the middle
 	_, cert = generateSelfSignedCert(t, time.Now())
 	msp.opts.Roots = x509.NewCertPool()
 	msp.opts.Roots.AddCert(cert)
 	_, err = msp.getUniqueValidationChain(cert, msp.getValidityOptsForCert(cert))
-	require.NoError(t, err)
+	assert.NoError(t, err)
 }
 
 func generateSelfSignedCert(t *testing.T, now time.Time) (*sm2.PrivateKey, *x509.Certificate) {
-	k, err := sm2.GenerateKey(elliptic.P256(), rand.Reader)
-	require.NoError(t, err)
+	k, err := sm2.GenerateKey(rand.Reader)
+	assert.NoError(t, err)
 
 	// Generate a self-signed certificate
 	testExtKeyUsage := []x509.ExtKeyUsage{x509.ExtKeyUsageClientAuth, x509.ExtKeyUsageServerAuth}
@@ -139,7 +138,7 @@ func generateSelfSignedCert(t *testing.T, now time.Time) (*sm2.PrivateKey, *x509
 		Subject: pkix.Name{
 			CommonName:   commonName,
 			Organization: []string{"Σ Acme Co"},
-			Country:      []string{"US"},
+			Country:      []string{"CN"},
 			ExtraNames: []pkix.AttributeTypeAndValue{
 				{
 					Type:  []int{2, 5, 4, 42},
@@ -154,7 +153,7 @@ func generateSelfSignedCert(t *testing.T, now time.Time) (*sm2.PrivateKey, *x509
 		},
 		NotBefore:             now.Add(-1 * time.Hour),
 		NotAfter:              now.Add(1 * time.Hour),
-		SignatureAlgorithm:    x509.ECDSAWithSHA256,
+		SignatureAlgorithm:    x509.SM2WithSM3,
 		SubjectKeyId:          []byte{1, 2, 3, 4},
 		KeyUsage:              x509.KeyUsageCertSign,
 		ExtKeyUsage:           testExtKeyUsage,
@@ -177,10 +176,10 @@ func generateSelfSignedCert(t *testing.T, now time.Time) (*sm2.PrivateKey, *x509
 		},
 	}
 	certRaw, err := x509.CreateCertificate(rand.Reader, &template, &template, &k.PublicKey, k)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	cert, err := x509.ParseCertificate(certRaw)
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	return k, cert
 }

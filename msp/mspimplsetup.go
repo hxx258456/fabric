@@ -8,16 +8,15 @@ package msp
 
 import (
 	"bytes"
-	"crypto/x509"
 	"crypto/x509/pkix"
 	"encoding/asn1"
 	"fmt"
 	"time"
 
+	"gitee.com/zhaochuninhefei/gmgo/x509"
 	"github.com/golang/protobuf/proto"
 	m "github.com/hxx258456/fabric-protos-go-cc/msp"
 	"github.com/hxx258456/fabric/bccsp"
-	"github.com/hxx258456/fabric/bccsp/utils"
 	errors "github.com/pkg/errors"
 )
 
@@ -77,24 +76,26 @@ func (msp *bccspmsp) getCertifiersIdentifier(certRaw []byte) ([]byte, error) {
 	}
 
 	return certifiersIdentifier, nil
+
 }
 
 func (msp *bccspmsp) setupCrypto(conf *m.FabricMSPConfig) error {
+	// TODO: 调查 IdentityIdentifierHashFunction 的作用，确定是否可以修改为 SM3
 	msp.cryptoConfig = conf.CryptoConfig
 	if msp.cryptoConfig == nil {
 		// Move to defaults
 		msp.cryptoConfig = &m.FabricCryptoConfig{
-			SignatureHashFamily:            bccsp.SHA2,
-			IdentityIdentifierHashFunction: bccsp.SHA256,
+			SignatureHashFamily:            bccsp.SM3,
+			IdentityIdentifierHashFunction: bccsp.SM3,
 		}
 		mspLogger.Debugf("CryptoConfig was nil. Move to defaults.")
 	}
 	if msp.cryptoConfig.SignatureHashFamily == "" {
-		msp.cryptoConfig.SignatureHashFamily = bccsp.SHA2
+		msp.cryptoConfig.SignatureHashFamily = bccsp.SM3
 		mspLogger.Debugf("CryptoConfig.SignatureHashFamily was nil. Move to defaults.")
 	}
 	if msp.cryptoConfig.IdentityIdentifierHashFunction == "" {
-		msp.cryptoConfig.IdentityIdentifierHashFunction = bccsp.SHA256
+		msp.cryptoConfig.IdentityIdentifierHashFunction = bccsp.SM3
 		mspLogger.Debugf("CryptoConfig.IdentityIdentifierHashFunction was nil. Move to defaults.")
 	}
 
@@ -195,6 +196,7 @@ func (msp *bccspmsp) setupAdminsV142(conf *m.FabricMSPConfig) error {
 	return nil
 }
 
+// TODO 需要改造为判断签名算法是否SM2
 func isECDSASignatureAlgorithm(algid asn1.ObjectIdentifier) bool {
 	// This is the set of ECDSA algorithms supported by Go 1.14 for CRL
 	// signatures.
@@ -222,17 +224,18 @@ func (msp *bccspmsp) setupCRLs(conf *m.FabricMSPConfig) error {
 		}
 
 		// Massage the ECDSA signature values
-		if isECDSASignatureAlgorithm(crl.SignatureAlgorithm.Algorithm) {
-			r, s, err := utils.UnmarshalECDSASignature(crl.SignatureValue.RightAlign())
-			if err != nil {
-				return err
-			}
-			sig, err := utils.MarshalECDSASignature(r, s)
-			if err != nil {
-				return err
-			}
-			crl.SignatureValue = asn1.BitString{Bytes: sig, BitLength: 8 * len(sig)}
-		}
+		// TODO 需要改造为SM2对应逻辑
+		// if isECDSASignatureAlgorithm(crl.SignatureAlgorithm.Algorithm) {
+		// 	r, s, err := utils.UnmarshalECDSASignature(crl.SignatureValue.RightAlign())
+		// 	if err != nil {
+		// 		return err
+		// 	}
+		// 	sig, err := utils.MarshalECDSASignature(r, s)
+		// 	if err != nil {
+		// 		return err
+		// 	}
+		// 	crl.SignatureValue = asn1.BitString{Bytes: sig, BitLength: 8 * len(sig)}
+		// }
 
 		// TODO: pre-verify the signature on the CRL and create a map
 		//       of CA certs to respective CRLs so that later upon
@@ -450,6 +453,7 @@ func (msp *bccspmsp) setupOUs(conf *m.FabricMSPConfig) error {
 }
 
 func (msp *bccspmsp) setupTLSCAs(conf *m.FabricMSPConfig) error {
+
 	opts := &x509.VerifyOptions{Roots: x509.NewCertPool(), Intermediates: x509.NewCertPool()}
 
 	// Load TLS root and intermediate CA identities
@@ -493,7 +497,6 @@ func (msp *bccspmsp) setupTLSCAs(conf *m.FabricMSPConfig) error {
 			return errors.WithMessagef(err, "CA Certificate problem with Subject Key Identifier extension, (SN: %x)", cert.SerialNumber)
 		}
 
-		opts.CurrentTime = cert.NotBefore.Add(time.Second)
 		if err := msp.validateTLSCAIdentity(cert, opts); err != nil {
 			return errors.WithMessagef(err, "CA Certificate is not valid, (SN: %s)", cert.SerialNumber)
 		}
@@ -670,8 +673,7 @@ func (msp *bccspmsp) postSetupV11(conf *m.FabricMSPConfig) error {
 	}
 	principal := &m.MSPPrincipal{
 		PrincipalClassification: m.MSPPrincipal_ROLE,
-		Principal:               principalBytes,
-	}
+		Principal:               principalBytes}
 	for i, admin := range msp.admins {
 		err = admin.SatisfiesPrincipal(principal)
 		if err != nil {

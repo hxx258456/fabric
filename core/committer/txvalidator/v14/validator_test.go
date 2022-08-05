@@ -575,6 +575,10 @@ func (fake *mockMSP) GetType() msp.ProviderType {
 	return msp.FABRIC
 }
 
+func (fake *mockMSP) GetSigningIdentity(identifier *msp.IdentityIdentifier) (msp.SigningIdentity, error) {
+	return nil, nil
+}
+
 func (fake *mockMSP) GetIdentifier() (string, error) {
 	return fake.MspID, nil
 }

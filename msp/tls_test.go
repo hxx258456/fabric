@@ -19,7 +19,7 @@ package msp
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestTLSCAs(t *testing.T) {
@@ -27,22 +27,22 @@ func TestTLSCAs(t *testing.T) {
 	thisMSP := getLocalMSP(t, "testdata/tls")
 
 	id, err := thisMSP.GetDefaultSigningIdentity()
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	err = thisMSP.Validate(id.GetPublicVersion())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	tlsRootCerts := thisMSP.GetTLSRootCerts()
-	require.Len(t, tlsRootCerts, 1)
+	assert.Len(t, tlsRootCerts, 1)
 	tlsRootCerts2, err := getPemMaterialFromDir("testdata/tls/tlscacerts")
-	require.NoError(t, err)
-	require.Len(t, tlsRootCerts2, 1)
-	require.Equal(t, tlsRootCerts2[0], tlsRootCerts[0])
+	assert.NoError(t, err)
+	assert.Len(t, tlsRootCerts2, 1)
+	assert.Equal(t, tlsRootCerts2[0], tlsRootCerts[0])
 
 	tlsIntermediateCerts := thisMSP.GetTLSIntermediateCerts()
-	require.Len(t, tlsIntermediateCerts, 1)
+	assert.Len(t, tlsIntermediateCerts, 1)
 	tlsIntermediateCerts2, err := getPemMaterialFromDir("testdata/tls/tlsintermediatecerts")
-	require.NoError(t, err)
-	require.Len(t, tlsIntermediateCerts2, 1)
-	require.Equal(t, tlsIntermediateCerts2[0], tlsIntermediateCerts[0])
+	assert.NoError(t, err)
+	assert.Len(t, tlsIntermediateCerts2, 1)
+	assert.Equal(t, tlsIntermediateCerts2[0], tlsIntermediateCerts[0])
 }

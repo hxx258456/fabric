@@ -7,8 +7,6 @@ SPDX-License-Identifier: Apache-2.0
 package mgmt
 
 import (
-	"fmt"
-	"os"
 	"testing"
 
 	"github.com/hxx258456/fabric/bccsp"
@@ -16,7 +14,7 @@ import (
 	"github.com/hxx258456/fabric/bccsp/sw"
 	"github.com/hxx258456/fabric/core/config/configtest"
 	"github.com/hxx258456/fabric/msp"
-	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGetManagerForChains(t *testing.T) {
@@ -46,13 +44,21 @@ func TestGetManagerForChains_usingMSPConfigHandlers(t *testing.T) {
 
 func TestGetIdentityDeserializer(t *testing.T) {
 	cryptoProvider, err := sw.NewDefaultSecurityLevelWithKeystore(sw.NewDummyKeyStore())
-	require.NoError(t, err)
+	assert.NoError(t, err)
 
 	XXXSetMSPManager("baz", msp.NewMSPManager())
 	ids := GetIdentityDeserializer("baz", cryptoProvider)
-	require.NotNil(t, ids)
+	assert.NotNil(t, ids)
 	ids = GetIdentityDeserializer("", cryptoProvider)
-	require.NotNil(t, ids)
+	assert.NotNil(t, ids)
+}
+
+func TestGetLocalSigningIdentityOrPanic(t *testing.T) {
+	cryptoProvider, err := sw.NewDefaultSecurityLevelWithKeystore(sw.NewDummyKeyStore())
+	assert.NoError(t, err)
+
+	sid := GetLocalSigningIdentityOrPanic(cryptoProvider)
+	assert.NotNil(t, sid)
 }
 
 func TestUpdateLocalMspCache(t *testing.T) {
@@ -80,29 +86,40 @@ func TestUpdateLocalMspCache(t *testing.T) {
 
 func TestNewMSPMgmtMgr(t *testing.T) {
 	cryptoProvider, err := LoadMSPSetupForTesting()
-	require.Nil(t, err)
-
-	id, err := GetLocalMSP(cryptoProvider).GetDefaultSigningIdentity()
-	require.NoError(t, err)
-	require.NotNil(t, id)
-
-	serializedID, err := id.Serialize()
-	require.NoError(t, err)
+	assert.Nil(t, err)
 
 	// test for nonexistent channel
 	mspMgmtMgr := GetManagerForChain("fake")
 
+	id := GetLocalSigningIdentityOrPanic(cryptoProvider)
+	assert.NotNil(t, id)
+
+	serializedID, err := id.Serialize()
+	if err != nil {
+		t.Fatalf("Serialize should have succeeded, got err %s", err)
+		return
+	}
+
 	idBack, err := mspMgmtMgr.DeserializeIdentity(serializedID)
-	require.Error(t, err)
-	require.Contains(t, err.Error(), "channel doesn't exist")
-	require.Nil(t, idBack, "deserialized identity should have been nil")
+	assert.Error(t, err)
+	assert.Contains(t, err.Error(), "channel doesn't exist")
+	assert.Nil(t, idBack, "deserialized identity should have been nil")
 
 	// test for existing channel
 	mspMgmtMgr = GetManagerForChain("testchannelid")
 
+	id = GetLocalSigningIdentityOrPanic(cryptoProvider)
+	assert.NotNil(t, id)
+
+	serializedID, err = id.Serialize()
+	if err != nil {
+		t.Fatalf("Serialize should have succeeded, got err %s", err)
+		return
+	}
+
 	idBack, err = mspMgmtMgr.DeserializeIdentity(serializedID)
-	require.NoError(t, err)
-	require.NotNil(t, idBack, "deserialized identity should not have been nil")
+	assert.NoError(t, err)
+	assert.NotNil(t, idBack, "deserialized identity should not have been nil")
 }
 
 func LoadMSPSetupForTesting() (bccsp.BCCSP, error) {
@@ -125,40 +142,4 @@ func LoadMSPSetupForTesting() (bccsp.BCCSP, error) {
 	}
 
 	return cryptoProvider, nil
-}
-
-func TestLocalMSP(t *testing.T) {
-	cryptoProvider, err := sw.NewDefaultSecurityLevelWithKeystore(sw.NewDummyKeyStore())
-	require.NoError(t, err)
-
-	mspDir := configtest.GetDevMspDir()
-	conf, err := msp.GetLocalMspConfig(mspDir, nil, "SampleOrg")
-	require.NoError(t, err, "failed to get local MSP config")
-	err = GetLocalMSP(cryptoProvider).Setup(conf)
-	require.NoError(t, err, "failed to setup local MSP")
-
-	_, err = GetLocalMSP(cryptoProvider).GetDefaultSigningIdentity()
-	require.NoError(t, err, "failed to get default signing identity")
-}
-
-func TestMain(m *testing.M) {
-	mspDir := configtest.GetDevMspDir()
-
-	testConf, err := msp.GetLocalMspConfig(mspDir, nil, "SampleOrg")
-	if err != nil {
-		fmt.Printf("Setup should have succeeded, got err %s instead", err)
-		os.Exit(-1)
-	}
-
-	cryptoProvider := factory.GetDefault()
-
-	err = GetLocalMSP(cryptoProvider).Setup(testConf)
-	if err != nil {
-		fmt.Printf("Setup for msp should have succeeded, got err %s instead", err)
-		os.Exit(-1)
-	}
-
-	XXXSetMSPManager("foo", msp.NewMSPManager())
-	retVal := m.Run()
-	os.Exit(retVal)
 }

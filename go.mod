@@ -52,7 +52,8 @@ require (
 	github.com/hxx258456/fabric-config-cc v0.0.0-20220727070643-bae0c2e79be8
 	github.com/hxx258456/fabric-lib-go-cc v1.1.1
 	github.com/hxx258456/fabric-protos-go-cc v0.0.0-20220714073103-d4d8369ba551
-	github.com/hyperledger/fabric-lib-go v1.0.0
+	github.com/hyperledger/fabric-amcl v0.0.0-20210603140002-2670f91851c8
+	github.com/onsi/ginkgo v1.16.4
 )
 
 require (
@@ -85,7 +86,6 @@ require (
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/go-cmp v0.5.7 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
-	github.com/hyperledger/fabric-amcl v0.0.0-20210603140002-2670f91851c8 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/magiconair/properties v1.8.1 // indirect
@@ -98,6 +98,7 @@ require (
 	github.com/moby/sys/mountinfo v0.4.0 // indirect
 	github.com/moby/term v0.0.0-20201216013528-df9cb8a40635 // indirect
 	github.com/morikuni/aec v1.0.0 // indirect
+	github.com/nxadm/tail v1.4.8 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
 	github.com/opencontainers/image-spec v1.0.1 // indirect
 	github.com/opencontainers/runc v1.0.0-rc8 // indirect
@@ -128,6 +129,7 @@ require (
 	google.golang.org/genproto v0.0.0-20210821163610-241b8fcbd6c8 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
 	gopkg.in/ini.v1 v1.51.0 // indirect
+	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 

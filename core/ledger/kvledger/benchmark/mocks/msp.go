@@ -20,6 +20,11 @@ func NewNoopMsp() msp.MSP {
 	return &noopmsp{}
 }
 
+func (msp *noopmsp) GetSigningIdentity(identifier *msp.IdentityIdentifier) (msp.SigningIdentity, error) {
+	id, _ := newNoopSigningIdentity()
+	return id, nil
+}
+
 func (msp *noopmsp) Setup(*mspprotos.MSPConfig) error {
 	return nil
 }
