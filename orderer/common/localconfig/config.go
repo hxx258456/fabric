@@ -10,12 +10,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Shopify/sarama"
 	bccsp "github.com/hxx258456/fabric/bccsp/factory"
 	"github.com/hxx258456/fabric/common/flogging"
 	"github.com/hxx258456/fabric/common/viperutil"
 	coreconfig "github.com/hxx258456/fabric/core/config"
 	"github.com/hxx258456/fabric/internal/pkg/comm"
+	"github.com/hxx258456/sarama-cc"
 )
 
 var logger = flogging.MustGetLogger("localconfig")

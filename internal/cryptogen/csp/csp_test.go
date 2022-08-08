@@ -6,11 +6,8 @@ SPDX-License-Identifier: Apache-2.0
 package csp_test
 
 import (
-	"crypto/ecdsa"
-	"crypto/elliptic"
 	"crypto/rand"
 	"crypto/rsa"
-	"crypto/x509"
 	"encoding/asn1"
 	"encoding/pem"
 	"fmt"
@@ -20,8 +17,10 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/hxx258456/ccgo/sm2"
+	"github.com/hxx258456/ccgo/x509"
 	"github.com/hxx258456/fabric/internal/cryptogen/csp"
-	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestLoadPrivateKey(t *testing.T) {
@@ -35,12 +34,12 @@ func TestLoadPrivateKey(t *testing.T) {
 		t.Fatalf("Failed to generate private key: %s", err)
 	}
 	pkFile := filepath.Join(testDir, "priv_sk")
-	require.Equal(t, true, checkForFile(pkFile),
+	assert.Equal(t, true, checkForFile(pkFile),
 		"Expected to find private key file")
 	loadedPriv, err := csp.LoadPrivateKey(testDir)
-	require.NoError(t, err, "Failed to load private key")
-	require.NotNil(t, loadedPriv, "Should have returned an *ecdsa.PrivateKey")
-	require.Equal(t, priv, loadedPriv, "Expected private keys to match")
+	assert.NoError(t, err, "Failed to load private key")
+	assert.NotNil(t, loadedPriv, "Should have returned an *sm2.PrivateKey")
+	assert.Equal(t, priv, loadedPriv, "Expected private keys to match")
 }
 
 func TestLoadPrivateKey_BadPEM(t *testing.T) {
@@ -94,13 +93,13 @@ func TestLoadPrivateKey_BadPEM(t *testing.T) {
 			err := ioutil.WriteFile(
 				badPEMFile,
 				test.data,
-				0o755,
+				0755,
 			)
 			if err != nil {
 				t.Fatalf("failed to write to wrong encoding file: %s", err)
 			}
 			_, err = csp.LoadPrivateKey(badPEMFile)
-			require.Contains(t, err.Error(), test.errMsg)
+			assert.Contains(t, err.Error(), test.errMsg)
 			os.Remove(badPEMFile)
 		})
 	}
@@ -115,17 +114,17 @@ func TestGeneratePrivateKey(t *testing.T) {
 
 	expectedFile := filepath.Join(testDir, "priv_sk")
 	priv, err := csp.GeneratePrivateKey(testDir)
-	require.NoError(t, err, "Failed to generate private key")
-	require.NotNil(t, priv, "Should have returned an *ecdsa.Key")
-	require.Equal(t, true, checkForFile(expectedFile),
+	assert.NoError(t, err, "Failed to generate private key")
+	assert.NotNil(t, priv, "Should have returned an *ecdsa.Key")
+	assert.Equal(t, true, checkForFile(expectedFile),
 		"Expected to find private key file")
 
 	_, err = csp.GeneratePrivateKey("notExist")
-	require.Contains(t, err.Error(), "no such file or directory")
+	assert.Contains(t, err.Error(), "no such file or directory")
 }
 
 func TestECDSASigner(t *testing.T) {
-	priv, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	priv, err := sm2.GenerateKey(rand.Reader)
 	if err != nil {
 		t.Fatalf("Failed to generate private key: %s", err)
 	}
@@ -133,7 +132,7 @@ func TestECDSASigner(t *testing.T) {
 	signer := csp.ECDSASigner{
 		PrivateKey: priv,
 	}
-	require.Equal(t, priv.Public(), signer.Public().(*ecdsa.PublicKey))
+	assert.Equal(t, priv.Public(), signer.Public().(*sm2.PublicKey))
 	digest := []byte{1}
 	sig, err := signer.Sign(rand.Reader, digest, nil)
 	if err != nil {
@@ -154,8 +153,9 @@ func TestECDSASigner(t *testing.T) {
 	}
 
 	// ensure signature is valid by using standard verify function
-	ok := ecdsa.Verify(&priv.PublicKey, digest, ecdsaSig.R, ecdsaSig.S)
-	require.True(t, ok, "Expected valid signature")
+	// TODO Verify -> Sm2Verify
+	ok := sm2.Sm2Verify(&priv.PublicKey, digest, nil, ecdsaSig.R, ecdsaSig.S)
+	assert.True(t, ok, "Expected valid signature")
 }
 
 func checkForFile(file string) bool {

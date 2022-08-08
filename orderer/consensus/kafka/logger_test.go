@@ -11,8 +11,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Shopify/sarama"
 	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/sarama-cc"
 	"github.com/onsi/gomega/gbytes"
 	"github.com/stretchr/testify/require"
 )

@@ -14,7 +14,7 @@ import (
 	"reflect"
 	"time"
 
-	"gitee.com/zhaochuninhefei/gmgo/x509"
+	"github.com/hxx258456/ccgo/x509"
 	"github.com/pkg/errors"
 )
 

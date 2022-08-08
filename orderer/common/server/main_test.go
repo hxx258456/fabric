@@ -590,10 +590,11 @@ func TestLoadLocalMSP(t *testing.T) {
 					LocalMSPDir: localMSPDir,
 					LocalMSPID:  "SampleOrg",
 					BCCSP: &factory.FactoryOpts{
-						Default: "SW",
-						SW: &factory.SwOpts{
-							Hash:     "SHA2",
-							Security: 256,
+						ProviderName: "GM",
+						SwOpts: &factory.SwOpts{
+							HashFamily: "SM3",
+							SecLevel:   256,
+							Ephemeral:  true,
 						},
 					},
 				},
@@ -1163,10 +1164,11 @@ func genesisConfig(t *testing.T, genesisFile string) (*localconfig.TopLevel, str
 			LocalMSPDir:     localMSPDir,
 			LocalMSPID:      "SampleOrg",
 			BCCSP: &factory.FactoryOpts{
-				Default: "SW",
-				SW: &factory.SwOpts{
-					Hash:     "SHA2",
-					Security: 256,
+				ProviderName: "SW",
+				SwOpts: &factory.SwOpts{
+					HashFamily: "SHA2",
+					SecLevel:   256,
+					Ephemeral:  true,
 				},
 			},
 		},

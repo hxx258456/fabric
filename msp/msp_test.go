@@ -23,10 +23,10 @@ import (
 	"testing"
 	"time"
 
-	"gitee.com/zhaochuninhefei/gmgo/sm2"
-	"gitee.com/zhaochuninhefei/gmgo/sm3"
-	"gitee.com/zhaochuninhefei/gmgo/x509"
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/sm2"
+	"github.com/hxx258456/ccgo/sm3"
+	"github.com/hxx258456/ccgo/x509"
 	"github.com/hxx258456/fabric-protos-go-cc/msp"
 	"github.com/hxx258456/fabric/bccsp"
 	"github.com/hxx258456/fabric/bccsp/factory"

@@ -20,6 +20,9 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/balancer"
+	"github.com/hxx258456/ccgo/grpc/balancer/roundrobin"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric-protos-go-cc/orderer"
 	"github.com/hxx258456/fabric/bccsp/factory"
@@ -34,9 +37,6 @@ import (
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/balancer"
-	"google.golang.org/grpc/balancer/roundrobin"
 )
 
 // protects gRPC balancer registration

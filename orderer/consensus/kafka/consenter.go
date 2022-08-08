@@ -7,7 +7,6 @@ SPDX-License-Identifier: Apache-2.0
 package kafka
 
 import (
-	"github.com/Shopify/sarama"
 	"github.com/hxx258456/fabric-lib-go-cc/healthz"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric/common/flogging"
@@ -15,6 +14,7 @@ import (
 	"github.com/hxx258456/fabric/orderer/common/localconfig"
 	"github.com/hxx258456/fabric/orderer/consensus"
 	"github.com/hxx258456/fabric/orderer/consensus/inactive"
+	"github.com/hxx258456/sarama-cc"
 	"github.com/pkg/errors"
 )
 

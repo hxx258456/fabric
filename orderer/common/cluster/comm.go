@@ -9,21 +9,22 @@ package cluster
 import (
 	"bytes"
 	"context"
-	"crypto/x509"
 	"encoding/pem"
 	"fmt"
 	"sync"
 	"sync/atomic"
 	"time"
 
+	"github.com/hxx258456/ccgo/x509"
+
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
+	"github.com/hxx258456/ccgo/grpc/connectivity"
 	"github.com/hxx258456/fabric-protos-go-cc/orderer"
 	"github.com/hxx258456/fabric/common/flogging"
 	"github.com/hxx258456/fabric/common/util"
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/connectivity"
 )
 
 const (

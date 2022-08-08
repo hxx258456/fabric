@@ -1,4 +1,4 @@
-module github.com/hyperledger/fabric/ccaas_builder
+module github.com/hxx258456/fabric/ccaas_builder
 
 go 1.16
 

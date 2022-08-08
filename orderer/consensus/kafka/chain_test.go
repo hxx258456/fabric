@@ -13,8 +13,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Shopify/sarama"
-	"github.com/Shopify/sarama/mocks"
 	"github.com/golang/protobuf/proto"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
@@ -26,6 +24,8 @@ import (
 	mockblockcutter "github.com/hxx258456/fabric/orderer/mocks/common/blockcutter"
 	mockmultichannel "github.com/hxx258456/fabric/orderer/mocks/common/multichannel"
 	"github.com/hxx258456/fabric/protoutil"
+	"github.com/hxx258456/sarama-cc"
+	"github.com/hxx258456/sarama-cc/mocks"
 	. "github.com/onsi/gomega"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
@@ -683,7 +683,7 @@ func TestSetupProducerForChannel(t *testing.T) {
 	t.Run("Proper", func(t *testing.T) {
 		metadataResponse := new(sarama.MetadataResponse)
 		metadataResponse.AddBroker(mockBroker.Addr(), mockBroker.BrokerID())
-		metadataResponse.AddTopicPartition(mockChannel.topic(), mockChannel.partition(), mockBroker.BrokerID(), nil, nil, sarama.ErrNoError)
+		metadataResponse.AddTopicPartition(mockChannel.topic(), mockChannel.partition(), mockBroker.BrokerID(), nil, nil, nil, sarama.ErrNoError)
 		mockBroker.Returns(metadataResponse)
 
 		producer, err := setupProducerForChannel(mockConsenter.retryOptions(), haltChan, []string{mockBroker.Addr()}, mockBrokerConfig, mockChannel)
@@ -709,7 +709,7 @@ func TestGetHealthyClusterReplicaInfo(t *testing.T) {
 		ids := []int32{int32(1), int32(2)}
 		metadataResponse := new(sarama.MetadataResponse)
 		metadataResponse.AddBroker(mockBroker.Addr(), mockBroker.BrokerID())
-		metadataResponse.AddTopicPartition(mockChannel.topic(), mockChannel.partition(), mockBroker.BrokerID(), ids, nil, sarama.ErrNoError)
+		metadataResponse.AddTopicPartition(mockChannel.topic(), mockChannel.partition(), mockBroker.BrokerID(), ids, nil, nil, sarama.ErrNoError)
 		mockBroker.Returns(metadataResponse)
 
 		replicaIDs, err := getHealthyClusterReplicaInfo(mockConsenter.retryOptions(), haltChan, []string{mockBroker.Addr()}, mockBrokerConfig, mockChannel)
@@ -934,7 +934,7 @@ func TestSendConnectMessage(t *testing.T) {
 
 	metadataResponse := new(sarama.MetadataResponse)
 	metadataResponse.AddBroker(mockBroker.Addr(), mockBroker.BrokerID())
-	metadataResponse.AddTopicPartition(mockChannel.topic(), mockChannel.partition(), mockBroker.BrokerID(), nil, nil, sarama.ErrNoError)
+	metadataResponse.AddTopicPartition(mockChannel.topic(), mockChannel.partition(), mockBroker.BrokerID(), nil, nil, nil, sarama.ErrNoError)
 	mockBroker.Returns(metadataResponse)
 
 	producer, _ := sarama.NewSyncProducer([]string{mockBroker.Addr()}, mockBrokerConfig)
@@ -973,7 +973,7 @@ func TestSendTimeToCut(t *testing.T) {
 
 	metadataResponse := new(sarama.MetadataResponse)
 	metadataResponse.AddBroker(mockBroker.Addr(), mockBroker.BrokerID())
-	metadataResponse.AddTopicPartition(mockChannel.topic(), mockChannel.partition(), mockBroker.BrokerID(), nil, nil, sarama.ErrNoError)
+	metadataResponse.AddTopicPartition(mockChannel.topic(), mockChannel.partition(), mockBroker.BrokerID(), nil, nil, nil, sarama.ErrNoError)
 	mockBroker.Returns(metadataResponse)
 
 	producer, err := sarama.NewSyncProducer([]string{mockBroker.Addr()}, mockBrokerConfig)
@@ -1018,7 +1018,7 @@ func TestProcessMessagesToBlocks(t *testing.T) {
 
 	metadataResponse := new(sarama.MetadataResponse)
 	metadataResponse.AddBroker(mockBroker.Addr(), mockBroker.BrokerID())
-	metadataResponse.AddTopicPartition(mockChannel.topic(), mockChannel.partition(), mockBroker.BrokerID(), nil, nil, sarama.ErrNoError)
+	metadataResponse.AddTopicPartition(mockChannel.topic(), mockChannel.partition(), mockBroker.BrokerID(), nil, nil, nil, sarama.ErrNoError)
 	mockBroker.Returns(metadataResponse)
 
 	producer, _ := sarama.NewSyncProducer([]string{mockBroker.Addr()}, mockBrokerConfig)
@@ -3616,7 +3616,7 @@ func TestDeliverSession(t *testing.T) {
 		})
 
 		metadataResponse := new(sarama.MetadataResponse)
-		metadataResponse.AddTopicPartition(env.topic, env.partition, -1, []int32{}, []int32{}, sarama.ErrBrokerNotAvailable)
+		metadataResponse.AddTopicPartition(env.topic, env.partition, -1, []int32{}, []int32{}, []int32{}, sarama.ErrBrokerNotAvailable)
 
 		// configure seed broker to return error on metadata request, otherwise the
 		// consumer client will keep 'subscribing' successfully to the topic/partition

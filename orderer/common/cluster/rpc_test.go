@@ -14,6 +14,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/hxx258456/ccgo/grpc"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric-protos-go-cc/orderer"
 	"github.com/hxx258456/fabric/common/flogging"
@@ -23,7 +24,6 @@ import (
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
 )
 
 func noopReport(_ error) {

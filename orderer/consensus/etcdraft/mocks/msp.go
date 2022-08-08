@@ -805,3 +805,8 @@ func (fake *MSP) recordInvocation(key string, args []interface{}) {
 	}
 	fake.invocations[key] = append(fake.invocations[key], args)
 }
+
+func (fake *MSP) GetSigningIdentity(arg1 *msp.IdentityIdentifier) (msp.SigningIdentity, error) {
+	return nil,nil
+}
+

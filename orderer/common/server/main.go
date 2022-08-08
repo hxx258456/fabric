@@ -12,12 +12,13 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net"
-	_ "net/http/pprof" // This is essentially the main package for the orderer
 	"os"
 	"os/signal"
 	"sync"
 	"syscall"
 	"time"
+
+	_ "github.com/hxx258456/ccgo/gmhttp/pprof" // This is essentially the main package for the orderer
 
 	http "github.com/hxx258456/ccgo/gmhttp"
 

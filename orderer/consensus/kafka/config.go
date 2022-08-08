@@ -12,7 +12,7 @@ import (
 
 	localconfig "github.com/hxx258456/fabric/orderer/common/localconfig"
 
-	"github.com/Shopify/sarama"
+	"github.com/hxx258456/sarama-cc"
 )
 
 func newBrokerConfig(

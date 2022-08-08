@@ -9,7 +9,7 @@ package kafka
 import (
 	"testing"
 
-	"github.com/Shopify/sarama"
+	"github.com/hxx258456/sarama-cc"
 	"github.com/stretchr/testify/require"
 )
 

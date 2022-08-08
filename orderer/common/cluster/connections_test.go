@@ -10,12 +10,12 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/hxx258456/ccgo/grpc"
 	"github.com/hxx258456/fabric/common/metrics/disabled"
 	"github.com/hxx258456/fabric/orderer/common/cluster"
 	"github.com/hxx258456/fabric/orderer/common/cluster/mocks"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
 )
 
 func TestConcurrentConnections(t *testing.T) {

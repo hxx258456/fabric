@@ -15,6 +15,7 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/hxx258456/ccgo/grpc"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric-protos-go-cc/orderer"
 	"github.com/hxx258456/fabric/common/flogging"
@@ -22,7 +23,6 @@ import (
 	"github.com/hxx258456/fabric/internal/pkg/identity"
 	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
-	"google.golang.org/grpc"
 )
 
 // BlockPuller pulls blocks from remote ordering nodes.
@@ -478,7 +478,7 @@ func (p *BlockPuller) seekLastEnvelope() (*common.Envelope, error) {
 		last(),
 		int32(0),
 		uint64(0),
-		util.ComputeSHA256(p.TLSCert),
+		util.ComputeSHA256ButSm3(p.TLSCert),
 	)
 }
 
@@ -490,7 +490,7 @@ func (p *BlockPuller) seekNextEnvelope(startSeq uint64) (*common.Envelope, error
 		nextSeekInfo(startSeq),
 		int32(0),
 		uint64(0),
-		util.ComputeSHA256(p.TLSCert),
+		util.ComputeSHA256ButSm3(p.TLSCert),
 	)
 }
 

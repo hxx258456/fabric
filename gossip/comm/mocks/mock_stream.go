@@ -6,7 +6,7 @@ import (
 	context "context"
 
 	gossip "github.com/hxx258456/fabric-protos-go-cc/gossip"
-	metadata "google.golang.org/grpc/metadata"
+	metadata "github.com/hxx258456/ccgo/grpc/metadata"
 
 	mock "github.com/stretchr/testify/mock"
 )

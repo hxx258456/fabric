@@ -11,8 +11,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/Shopify/sarama"
 	"github.com/hxx258456/fabric/common/flogging"
+	"github.com/hxx258456/sarama-cc"
 	"go.uber.org/zap"
 )
 

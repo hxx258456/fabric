@@ -12,11 +12,11 @@ import (
 	"sync"
 	"time"
 
+	"github.com/hxx258456/ccgo/grpc"
 	"github.com/hxx258456/fabric-protos-go-cc/orderer"
 	"github.com/hxx258456/fabric/common/flogging"
 	"github.com/pkg/errors"
 	"go.uber.org/zap/zapcore"
-	"google.golang.org/grpc"
 )
 
 //go:generate mockery -dir . -name StepClient -case underscore -output ./mocks/

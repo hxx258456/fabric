@@ -13,6 +13,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/hxx258456/ccgo/grpc"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
 	"github.com/hxx258456/fabric/bccsp/sw"
@@ -32,7 +33,6 @@ import (
 	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
 )
 
 type AttestationServerStream struct {

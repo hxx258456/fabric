@@ -12,6 +12,7 @@ import (
 	"io/ioutil"
 	"testing"
 
+	"github.com/hxx258456/ccgo/grpc/grpclog"
 	"github.com/hxx258456/fabric/common/flogging"
 	"github.com/hxx258456/fabric/common/flogging/fabenc"
 	"github.com/hxx258456/fabric/common/flogging/mock"
@@ -19,7 +20,6 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"go.uber.org/zap/zaptest/observer"
-	"google.golang.org/grpc/grpclog"
 )
 
 func TestFabricLoggerEncoding(t *testing.T) {

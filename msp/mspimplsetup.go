@@ -13,8 +13,8 @@ import (
 	"fmt"
 	"time"
 
-	"gitee.com/zhaochuninhefei/gmgo/x509"
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/x509"
 	m "github.com/hxx258456/fabric-protos-go-cc/msp"
 	"github.com/hxx258456/fabric/bccsp"
 	errors "github.com/pkg/errors"

@@ -126,7 +126,7 @@ const _ = grpc.SupportPackageIsVersion4
 
 // TestServiceClient is the client API for TestService service.
 //
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/github.com/hxx258456/ccgo/grpc#ClientConn.NewStream.
 type TestServiceClient interface {
 	EmptyCall(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error)
 }
@@ -190,7 +190,7 @@ var _TestService_serviceDesc = grpc.ServiceDesc{
 
 // EmptyServiceClient is the client API for EmptyService service.
 //
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/github.com/hxx258456/ccgo/grpc#ClientConn.NewStream.
 type EmptyServiceClient interface {
 	EmptyCall(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error)
 	EmptyStream(ctx context.Context, opts ...grpc.CallOption) (EmptyService_EmptyStreamClient, error)
@@ -320,7 +320,7 @@ var _EmptyService_serviceDesc = grpc.ServiceDesc{
 
 // EchoServiceClient is the client API for EchoService service.
 //
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/github.com/hxx258456/ccgo/grpc#ClientConn.NewStream.
 type EchoServiceClient interface {
 	EchoCall(ctx context.Context, in *Echo, opts ...grpc.CallOption) (*Echo, error)
 }

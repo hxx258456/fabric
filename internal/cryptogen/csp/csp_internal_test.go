@@ -6,12 +6,12 @@ SPDX-License-Identifier: Apache-2.0
 package csp
 
 import (
-	"crypto/ecdsa"
 	"crypto/elliptic"
 	"math/big"
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"github.com/hxx258456/ccgo/sm2"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestToLowS(t *testing.T) {
@@ -65,10 +65,10 @@ func TestToLowS(t *testing.T) {
 	} {
 		t.Run(test.name, func(t *testing.T) {
 			curve := elliptic.P256()
-			key := ecdsa.PublicKey{
+			key := sm2.PublicKey{
 				Curve: curve,
 			}
-			require.Equal(t, test.expectedSig, toLowS(key, test.sig))
+			assert.Equal(t, test.expectedSig, toLowS(key, test.sig))
 		})
 	}
 }

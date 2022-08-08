@@ -9,7 +9,6 @@ package cluster_test
 import (
 	"context"
 	"crypto/rand"
-	"crypto/x509"
 	"fmt"
 	"net"
 	"strings"
@@ -18,7 +17,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/hxx258456/ccgo/x509"
+
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric-protos-go-cc/orderer"
 	"github.com/hxx258456/fabric/common/crypto"
@@ -36,7 +38,6 @@ import (
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-	"google.golang.org/grpc"
 )
 
 const (

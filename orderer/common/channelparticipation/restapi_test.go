@@ -11,11 +11,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"mime/multipart"
-	"net/http"
-	"net/http/httptest"
 	"os"
 	"path"
 	"testing"
+
+	http "github.com/hxx258456/ccgo/gmhttp"
+	"github.com/hxx258456/ccgo/gmhttp/httptest"
 
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric/orderer/common/channelparticipation"

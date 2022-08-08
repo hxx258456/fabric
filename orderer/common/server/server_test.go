@@ -14,13 +14,13 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/grpc"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
 	localconfig "github.com/hxx258456/fabric/orderer/common/localconfig"
 	"github.com/hxx258456/fabric/orderer/common/multichannel"
 	"github.com/hxx258456/fabric/protoutil"
 	"github.com/stretchr/testify/require"
-	"google.golang.org/grpc"
 )
 
 func TestBroadcastNoPanic(t *testing.T) {

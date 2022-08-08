@@ -6,7 +6,7 @@ import (
 	context "context"
 
 	mock "github.com/stretchr/testify/mock"
-	metadata "google.golang.org/grpc/metadata"
+	metadata "github.com/hxx258456/ccgo/grpc/metadata"
 
 	orderer "github.com/hxx258456/fabric-protos-go-cc/orderer"
 )

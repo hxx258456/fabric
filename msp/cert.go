@@ -25,7 +25,7 @@ import (
 	"time"
 
 	// _ "github.com/hxx258456/fabric/bccsp/utils"
-	"gitee.com/zhaochuninhefei/gmgo/x509"
+	"github.com/hxx258456/ccgo/x509"
 
 	"github.com/pkg/errors"
 )

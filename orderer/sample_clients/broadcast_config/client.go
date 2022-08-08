@@ -9,13 +9,13 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/hxx258456/ccgo/grpc"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
 	"github.com/hxx258456/fabric/bccsp/factory"
 	"github.com/hxx258456/fabric/msp"
 	mspmgmt "github.com/hxx258456/fabric/msp/mgmt"
 	"github.com/hxx258456/fabric/orderer/common/localconfig"
-	"google.golang.org/grpc"
 )
 
 type broadcastClient struct {

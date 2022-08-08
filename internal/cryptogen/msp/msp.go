@@ -6,10 +6,11 @@ SPDX-License-Identifier: Apache-2.0
 package msp
 
 import (
-	"crypto/x509"
 	"encoding/pem"
 	"os"
 	"path/filepath"
+
+	"github.com/hxx258456/ccgo/x509"
 
 	"github.com/hxx258456/fabric/internal/cryptogen/ca"
 	"github.com/hxx258456/fabric/internal/cryptogen/csp"

@@ -11,6 +11,7 @@ import (
 	"sync"
 
 	pb "github.com/cheggaaa/pb"
+	"github.com/hxx258456/ccgo/grpc"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
 	"github.com/hxx258456/fabric/bccsp/factory"
@@ -19,7 +20,6 @@ import (
 	mspmgmt "github.com/hxx258456/fabric/msp/mgmt"
 	"github.com/hxx258456/fabric/orderer/common/localconfig"
 	"github.com/hxx258456/fabric/protoutil"
-	"google.golang.org/grpc"
 )
 
 type broadcastClient struct {

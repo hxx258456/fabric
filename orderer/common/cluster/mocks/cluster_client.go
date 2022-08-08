@@ -5,7 +5,7 @@ package mocks
 import (
 	context "context"
 
-	grpc "google.golang.org/grpc"
+	grpc "github.com/hxx258456/ccgo/grpc"
 
 	mock "github.com/stretchr/testify/mock"
 

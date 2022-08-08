@@ -15,8 +15,8 @@ import (
 	"sync"
 	"time"
 
-	"gitee.com/zhaochuninhefei/gmgo/x509"
 	"github.com/golang/protobuf/proto"
+	"github.com/hxx258456/ccgo/x509"
 	"github.com/hxx258456/fabric-protos-go-cc/msp"
 	"github.com/hxx258456/fabric/bccsp"
 	"github.com/hxx258456/fabric/common/flogging"

@@ -12,7 +12,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Shopify/sarama"
 	"github.com/golang/protobuf/proto"
 	cb "github.com/hxx258456/fabric-protos-go-cc/common"
 	ab "github.com/hxx258456/fabric-protos-go-cc/orderer"
@@ -24,6 +23,7 @@ import (
 	"github.com/hxx258456/fabric/orderer/consensus/kafka/mock"
 	mockmultichannel "github.com/hxx258456/fabric/orderer/mocks/common/multichannel"
 	"github.com/hxx258456/fabric/protoutil"
+	"github.com/hxx258456/sarama-cc"
 	"github.com/stretchr/testify/require"
 )
 

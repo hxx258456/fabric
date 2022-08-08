@@ -7,13 +7,14 @@ SPDX-License-Identifier: Apache-2.0
 package cluster
 
 import (
-	"crypto/x509"
 	"sync"
 
+	"github.com/hxx258456/ccgo/x509"
+
+	"github.com/hxx258456/ccgo/grpc"
 	"github.com/hxx258456/fabric/common/crypto"
 	"github.com/hxx258456/fabric/common/metrics"
 	"github.com/pkg/errors"
-	"google.golang.org/grpc"
 )
 
 // RemoteVerifier verifies the connection to the remote host

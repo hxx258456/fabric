@@ -8,7 +8,6 @@ package cluster
 
 import (
 	"bytes"
-	"crypto/x509"
 	"encoding/hex"
 	"encoding/json"
 	"encoding/pem"
@@ -18,6 +17,9 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/hxx258456/ccgo/x509"
+
+	"github.com/hxx258456/ccgo/grpc"
 	"github.com/hxx258456/fabric-config-cc/protolator"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
 	"github.com/hxx258456/fabric/bccsp"
@@ -29,7 +31,6 @@ import (
 	"github.com/hxx258456/fabric/internal/pkg/comm"
 	"github.com/hxx258456/fabric/protoutil"
 	"github.com/pkg/errors"
-	"google.golang.org/grpc"
 )
 
 // ConnByCertMap maps certificates represented as strings
