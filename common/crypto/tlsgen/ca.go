@@ -8,7 +8,8 @@ package tlsgen
 
 import (
 	"crypto"
-	"crypto/x509"
+
+	"github.com/hxx258456/ccgo/x509"
 )
 
 // CertKeyPair denotes a TLS certificate and corresponding key,

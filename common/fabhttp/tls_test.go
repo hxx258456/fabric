@@ -6,136 +6,137 @@
 
 package fabhttp_test
 
-// import (
-// 	"crypto/tls"
-// 	"crypto/x509"
-// 	"io/ioutil"
-// 	"os"
-// 	"path/filepath"
+import (
+	"io/ioutil"
+	"os"
+	"path/filepath"
 
-// 	"github.com/hxx258456/fabric/common/fabhttp"
-// 	. "github.com/onsi/ginkgo/v2"
-// 	. "github.com/onsi/gomega"
-// )
+	tls "github.com/hxx258456/ccgo/gmtls"
+	"github.com/hxx258456/ccgo/x509"
 
-// var _ = Describe("TLS", func() {
-// 	var httpTLS fabhttp.TLS
-// 	var tempDir string
+	"github.com/hxx258456/fabric/common/fabhttp"
+	. "github.com/onsi/ginkgo/v2"
+	. "github.com/onsi/gomega"
+)
 
-// 	BeforeEach(func() {
-// 		var err error
-// 		tempDir, err = ioutil.TempDir("", "opstls")
-// 		Expect(err).NotTo(HaveOccurred())
+var _ = Describe("TLS", func() {
+	var httpTLS fabhttp.TLS
+	var tempDir string
 
-// 		generateCertificates(tempDir)
+	BeforeEach(func() {
+		var err error
+		tempDir, err = ioutil.TempDir("", "opstls")
+		Expect(err).NotTo(HaveOccurred())
 
-// 		httpTLS = fabhttp.TLS{
-// 			Enabled:            true,
-// 			CertFile:           filepath.Join(tempDir, "server-cert.pem"),
-// 			KeyFile:            filepath.Join(tempDir, "server-key.pem"),
-// 			ClientCertRequired: true,
-// 			ClientCACertFiles: []string{
-// 				filepath.Join(tempDir, "client-ca.pem"),
-// 			},
-// 		}
-// 	})
+		generateCertificates(tempDir)
 
-// 	AfterEach(func() {
-// 		os.RemoveAll(tempDir)
-// 	})
+		httpTLS = fabhttp.TLS{
+			Enabled:            true,
+			CertFile:           filepath.Join(tempDir, "server-cert.pem"),
+			KeyFile:            filepath.Join(tempDir, "server-key.pem"),
+			ClientCertRequired: true,
+			ClientCACertFiles: []string{
+				filepath.Join(tempDir, "client-ca.pem"),
+			},
+		}
+	})
 
-// 	It("creates a valid TLS configuration", func() {
-// 		cert, err := tls.LoadX509KeyPair(
-// 			filepath.Join(tempDir, "server-cert.pem"),
-// 			filepath.Join(tempDir, "server-key.pem"),
-// 		)
-// 		Expect(err).NotTo(HaveOccurred())
+	AfterEach(func() {
+		os.RemoveAll(tempDir)
+	})
 
-// 		pemBytes, err := ioutil.ReadFile(filepath.Join(tempDir, "client-ca.pem"))
-// 		Expect(err).NotTo(HaveOccurred())
+	It("creates a valid TLS configuration", func() {
+		cert, err := tls.LoadX509KeyPair(
+			filepath.Join(tempDir, "server-cert.pem"),
+			filepath.Join(tempDir, "server-key.pem"),
+		)
+		Expect(err).NotTo(HaveOccurred())
 
-// 		clientCAPool := x509.NewCertPool()
-// 		clientCAPool.AppendCertsFromPEM(pemBytes)
+		pemBytes, err := ioutil.ReadFile(filepath.Join(tempDir, "client-ca.pem"))
+		Expect(err).NotTo(HaveOccurred())
 
-// 		tlsConfig, err := httpTLS.Config()
-// 		Expect(err).NotTo(HaveOccurred())
+		clientCAPool := x509.NewCertPool()
+		clientCAPool.AppendCertsFromPEM(pemBytes)
 
-// 		// https://go-review.googlesource.com/c/go/+/229917
-// 		Expect(tlsConfig.ClientCAs.Subjects()).To(Equal(clientCAPool.Subjects()))
-// 		tlsConfig.ClientCAs = nil
+		tlsConfig, err := httpTLS.Config()
+		Expect(err).NotTo(HaveOccurred())
 
-// 		Expect(tlsConfig).To(Equal(&tls.Config{
-// 			MinVersion:   tls.VersionTLS12,
-// 			Certificates: []tls.Certificate{cert},
-// 			CipherSuites: []uint16{
-// 				tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-// 				tls.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
-// 				tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-// 				tls.TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
-// 				tls.TLS_RSA_WITH_AES_128_GCM_SHA256,
-// 				tls.TLS_RSA_WITH_AES_256_GCM_SHA384,
-// 			},
-// 			ClientAuth: tls.RequireAndVerifyClientCert,
-// 		}))
-// 	})
+		// https://go-review.googlesource.com/c/go/+/229917
+		Expect(tlsConfig.ClientCAs.Subjects()).To(Equal(clientCAPool.Subjects()))
+		tlsConfig.ClientCAs = nil
 
-// 	Context("when TLS is not enabled", func() {
-// 		BeforeEach(func() {
-// 			httpTLS.Enabled = false
-// 		})
+		Expect(tlsConfig).To(Equal(&tls.Config{
+			MinVersion:   tls.VersionTLS12,
+			Certificates: []tls.Certificate{cert},
+			CipherSuites: []uint16{
+				tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+				tls.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+				tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+				tls.TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
+				tls.TLS_RSA_WITH_AES_128_GCM_SHA256,
+				tls.TLS_RSA_WITH_AES_256_GCM_SHA384,
+			},
+			ClientAuth: tls.RequireAndVerifyClientCert,
+		}))
+	})
 
-// 		It("returns a nil config", func() {
-// 			tlsConfig, err := httpTLS.Config()
-// 			Expect(err).NotTo(HaveOccurred())
-// 			Expect(tlsConfig).To(BeNil())
-// 		})
-// 	})
+	Context("when TLS is not enabled", func() {
+		BeforeEach(func() {
+			httpTLS.Enabled = false
+		})
 
-// 	Context("when a client certificate is not required", func() {
-// 		BeforeEach(func() {
-// 			httpTLS.ClientCertRequired = false
-// 		})
+		It("returns a nil config", func() {
+			tlsConfig, err := httpTLS.Config()
+			Expect(err).NotTo(HaveOccurred())
+			Expect(tlsConfig).To(BeNil())
+		})
+	})
 
-// 		It("requests a client cert with verification", func() {
-// 			tlsConfig, err := httpTLS.Config()
-// 			Expect(err).NotTo(HaveOccurred())
-// 			Expect(tlsConfig.ClientAuth).To(Equal(tls.VerifyClientCertIfGiven))
-// 		})
-// 	})
+	Context("when a client certificate is not required", func() {
+		BeforeEach(func() {
+			httpTLS.ClientCertRequired = false
+		})
 
-// 	Context("when the server certificate cannot be constructed", func() {
-// 		BeforeEach(func() {
-// 			httpTLS.CertFile = "non-existent-file"
-// 		})
+		It("requests a client cert with verification", func() {
+			tlsConfig, err := httpTLS.Config()
+			Expect(err).NotTo(HaveOccurred())
+			Expect(tlsConfig.ClientAuth).To(Equal(tls.VerifyClientCertIfGiven))
+		})
+	})
 
-// 		It("returns an error", func() {
-// 			_, err := httpTLS.Config()
-// 			Expect(err).To(MatchError("open non-existent-file: no such file or directory"))
-// 		})
-// 	})
+	Context("when the server certificate cannot be constructed", func() {
+		BeforeEach(func() {
+			httpTLS.CertFile = "non-existent-file"
+		})
 
-// 	Context("the client CA slice is empty", func() {
-// 		BeforeEach(func() {
-// 			httpTLS.ClientCACertFiles = nil
-// 		})
+		It("returns an error", func() {
+			_, err := httpTLS.Config()
+			Expect(err).To(MatchError("open non-existent-file: no such file or directory"))
+		})
+	})
 
-// 		It("builds a TLS configuration without an empty CA pool", func() {
-// 			tlsConfig, err := httpTLS.Config()
-// 			Expect(err).NotTo(HaveOccurred())
-// 			Expect(tlsConfig.ClientCAs.Subjects()).To(BeEmpty())
-// 		})
-// 	})
+	Context("the client CA slice is empty", func() {
+		BeforeEach(func() {
+			httpTLS.ClientCACertFiles = nil
+		})
 
-// 	Context("when a client CA cert cannot be read", func() {
-// 		BeforeEach(func() {
-// 			httpTLS.ClientCACertFiles = []string{
-// 				"non-existent-file",
-// 			}
-// 		})
+		It("builds a TLS configuration without an empty CA pool", func() {
+			tlsConfig, err := httpTLS.Config()
+			Expect(err).NotTo(HaveOccurred())
+			Expect(tlsConfig.ClientCAs.Subjects()).To(BeEmpty())
+		})
+	})
 
-// 		It("returns an error", func() {
-// 			_, err := httpTLS.Config()
-// 			Expect(err).To(MatchError("open non-existent-file: no such file or directory"))
-// 		})
-// 	})
-// })
+	Context("when a client CA cert cannot be read", func() {
+		BeforeEach(func() {
+			httpTLS.ClientCACertFiles = []string{
+				"non-existent-file",
+			}
+		})
+
+		It("returns an error", func() {
+			_, err := httpTLS.Config()
+			Expect(err).To(MatchError("open non-existent-file: no such file or directory"))
+		})
+	})
+})

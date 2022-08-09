@@ -7,9 +7,10 @@ SPDX-License-Identifier: Apache-2.0
 package etcdraft
 
 import (
-	"crypto/x509"
 	"encoding/pem"
 	"time"
+
+	"github.com/hxx258456/ccgo/x509"
 
 	"github.com/golang/protobuf/proto"
 	"github.com/hxx258456/fabric-protos-go-cc/common"

@@ -8,7 +8,6 @@ package etcdraft
 
 import (
 	"crypto/rand"
-	"crypto/x509"
 	"encoding/base64"
 	"encoding/pem"
 	"fmt"
@@ -16,6 +15,8 @@ import (
 	"path/filepath"
 	"testing"
 	"time"
+
+	"github.com/hxx258456/ccgo/x509"
 
 	"github.com/golang/protobuf/proto"
 	"github.com/hxx258456/fabric-protos-go-cc/common"
